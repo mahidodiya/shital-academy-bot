@@ -1,0 +1,135 @@
+{
+    "id": "foundation_english",
+    "name": "Foundation English Course",
+    "category": "English Language",
+    "keywords": [
+        "foundation english",
+        "basic english",
+        "beginner english",
+        "english basics",
+        "english for beginners",
+        "foundation course",
+        "learn basic english",
+        "english grammar",
+        "basic communication",
+        "english vocabulary",
+        "english learning"
+    ],
+    "aliases": [
+        "Basic English Course",
+        "Foundation Course",
+        "English Foundation Course"
+    ],
+    "overview": "The Foundation English Course is specially designed for beginners who want to build a strong foundation in English language skills for academics, daily communication, and future learning.",
+    "description": "This course develops essential English language skills through structured lessons, practical activities, and personalized guidance. Learners improve grammar, vocabulary, pronunciation, reading, writing, listening, and basic speaking confidence.",
+    "target_audience": [
+        "School Students",
+        "College Students",
+        "Beginners",
+        "Job Seekers",
+        "Working Professionals",
+        "Anyone with basic or limited English knowledge"
+    ],
+    "eligibility": "Open to anyone who wants to improve their basic English skills.",
+    "prerequisites": "No prior English knowledge is officially required.",
+    "duration": {
+        "value": "",
+        "note": "Course duration varies. Please contact the academy for details."
+    },
+    "fees": {
+        "range": "Varies by course",
+        "note": "Please contact the academy for the latest fee details."
+    },
+    "mode": [
+        "Offline"
+    ],
+    "batch_timings": "Flexible batch timings available.",
+    "teaching_methodology": "Personalized teaching with individual attention, interactive classroom activities, and practical language exercises.",
+    "study_material": "Comprehensive study material is provided according to the course requirements.",
+    "faculty": "Highly qualified, experienced, patient, and supportive faculty members guide students throughout the learning journey.",
+    "certificate": "",
+    "placement_support": "",
+    "skills_you_will_learn": [
+        "Basic English Grammar",
+        "Vocabulary Building",
+        "Sentence Formation",
+        "Reading Skills",
+        "Writing Skills",
+        "Listening Skills",
+        "Pronunciation",
+        "Basic Speaking Skills",
+        "Daily English Communication",
+        "Confidence Building"
+    ],
+    "syllabus": {},
+    "activities": [
+        "Speaking Practice",
+        "Reading Practice",
+        "Writing Exercises",
+        "Vocabulary Activities",
+        "Grammar Exercises",
+        "Interactive Classroom Sessions"
+    ],
+    "practical_training": true,
+    "learning_outcomes": [
+        "Build a strong foundation in English",
+        "Understand basic English grammar",
+        "Improve vocabulary and pronunciation",
+        "Communicate confidently in everyday situations",
+        "Develop reading, writing, listening, and speaking skills",
+        "Prepare for higher-level English courses"
+    ],
+    "career_benefits": [
+        "Improved communication skills",
+        "Greater confidence during interviews",
+        "Better workplace communication",
+        "Strong foundation for advanced English learning"
+    ],
+    "recommended_for": [
+        "Beginners",
+        "School Students",
+        "College Students",
+        "Job Seekers",
+        "Anyone starting to learn English"
+    ],
+    "career_opportunities": [
+        "Improved employability through better communication",
+        "Better interview performance",
+        "Foundation for customer-facing roles",
+        "Preparation for advanced professional courses"
+    ],
+    "faqs": [
+        {
+            "question": "Who should join the Foundation English Course?",
+            "answer": "Anyone who wants to build a strong foundation in English, including students, beginners, job seekers, and working professionals."
+        },
+        {
+            "question": "Is this course suitable for complete beginners?",
+            "answer": "Yes. It is specially designed for learners with little or no English knowledge."
+        },
+        {
+            "question": "Will I learn grammar?",
+            "answer": "Yes. The course includes basic English grammar along with vocabulary, pronunciation, reading, writing, and speaking practice."
+        },
+        {
+            "question": "Does the course include speaking practice?",
+            "answer": "Yes. Students participate in practical speaking activities to build confidence."
+        },
+        {
+            "question": "Do you provide study material?",
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+        },
+        {
+            "question": "Are flexible batch timings available?",
+            "answer": "Yes. Flexible batch timings are available."
+        },
+        {
+            "question": "What teaching methodology do you follow?",
+            "answer": "We follow a personalized teaching approach with individual attention, practical activities, and interactive classroom sessions."
+        },
+        {
+            "question": "How can I know the course duration and fees?",
+            "answer": "Please contact the academy for the latest duration and fee details."
+        }
+    ]
+}

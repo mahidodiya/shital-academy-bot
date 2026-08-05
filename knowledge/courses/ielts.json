@@ -1,0 +1,123 @@
+{
+    "id": "ielts",
+    "name": "IELTS Preparation",
+    "category": "English Language",
+    "keywords": [
+        "ielts",
+        "ielts coaching",
+        "ielts preparation",
+        "ielts classes",
+        "ielts course",
+        "study abroad",
+        "band score",
+        "international english",
+        "ielts speaking",
+        "ielts writing",
+        "ielts reading",
+        "ielts listening"
+    ],
+    "aliases": [
+        "IELTS Course",
+        "IELTS Coaching",
+        "IELTS Training",
+        "IELTS Preparation Course"
+    ],
+    "overview": "The IELTS Preparation course is designed to help learners prepare for the International English Language Testing System (IELTS) examination through structured practice and personalized guidance.",
+    "description": "The course focuses on all four IELTS test modules and helps learners improve their English proficiency, test-taking strategies, and confidence for achieving their desired band score.",
+    "target_audience": [
+        "Students planning to study abroad",
+        "Working Professionals",
+        "Job Seekers",
+        "Immigration Applicants",
+        "Anyone preparing for the IELTS examination"
+    ],
+    "eligibility": "Open to anyone interested in preparing for the IELTS examination.",
+    "prerequisites": "No official prerequisites specified. Basic English proficiency is recommended for effective preparation.",
+    "duration": {
+        "value": "",
+        "note": "Course duration varies. Please contact the academy for details."
+    },
+    "fees": {
+        "range": "Varies by course",
+        "note": "Please contact the academy for the latest fee details."
+    },
+    "mode": [
+        "Offline"
+    ],
+    "batch_timings": "Flexible batch timings available.",
+    "teaching_methodology": "Personalized teaching with individual attention, regular practice sessions, mock tests, and performance feedback.",
+    "study_material": "Comprehensive IELTS study material is provided according to the course requirements.",
+    "faculty": "Highly qualified, experienced, patient, and supportive faculty members provide personalized guidance throughout the course.",
+    "certificate": "",
+    "placement_support": "",
+    "modules": [
+        "Listening",
+        "Reading",
+        "Writing",
+        "Speaking"
+    ],
+    "skills_you_will_learn": [
+        "Listening Skills",
+        "Reading Comprehension",
+        "Academic Writing",
+        "Essay Writing",
+        "Letter Writing",
+        "Speaking Fluency",
+        "Vocabulary Development",
+        "Grammar Improvement",
+        "Pronunciation",
+        "Time Management",
+        "Exam Strategies"
+    ],
+    "practice_tests": "Regular IELTS practice exercises and mock tests are conducted as part of the preparation process.",
+    "practical_training": true,
+    "learning_outcomes": [
+        "Understand the IELTS examination format",
+        "Improve English language proficiency",
+        "Develop effective test-taking strategies",
+        "Build confidence in all four IELTS modules",
+        "Prepare to achieve the desired IELTS band score"
+    ],
+    "career_benefits": [
+        "Preparation for international education opportunities",
+        "Support for study abroad applications",
+        "Improved English communication skills",
+        "Enhanced opportunities for international careers and migration"
+    ],
+    "recommended_for": [
+        "Students planning to study abroad",
+        "Professionals seeking international opportunities",
+        "Immigration Applicants",
+        "Anyone preparing for IELTS"
+    ],
+    "faqs": [
+        {
+            "question": "Who can join the IELTS Preparation course?",
+            "answer": "Anyone planning to prepare for the IELTS examination, including students, professionals, and immigration applicants, can join."
+        },
+        {
+            "question": "Which IELTS modules are covered?",
+            "answer": "The course covers Listening, Reading, Writing, and Speaking."
+        },
+        {
+            "question": "Are mock tests included?",
+            "answer": "Yes. Regular practice exercises and mock tests are conducted as part of the preparation process."
+        },
+        {
+            "question": "Will I receive study material?",
+            "answer": "Yes. Comprehensive IELTS study material is provided according to the course requirements."
+        },
+        {
+            "question": "Is personalized guidance provided?",
+            "answer": "Yes. The course follows a personalized teaching approach with individual attention and performance feedback."
+        },
+        {
+            "question": "Are flexible batch timings available?",
+            "answer": "Yes. Flexible batch timings are available."
+        },
+        {
+            "question": "How can I know the course duration and fees?",
+            "answer": "Please contact the academy for the latest duration and fee details."
+        }
+    ]
+}

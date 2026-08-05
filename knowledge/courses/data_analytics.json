@@ -1,0 +1,123 @@
+{
+    "id": "data_analytics",
+    "name": "Data Analytics",
+    "category": "Information Technology",
+    "keywords": [
+        "data analytics",
+        "data analyst",
+        "analytics",
+        "business analytics",
+        "data analysis",
+        "data visualization",
+        "reporting",
+        "business intelligence",
+        "excel analytics",
+        "analytical skills"
+    ],
+    "aliases": [
+        "Data Analyst Course",
+        "Data Analysis Course",
+        "Business Analytics",
+        "Analytics Course"
+    ],
+    "overview": "The Data Analytics course is designed for learners who want to develop analytical thinking and practical data analysis skills using industry-relevant concepts and tools.",
+    "description": "The course provides practical training in data analytics concepts, data handling, reporting, and visualization techniques to help learners prepare for careers involving data-driven decision making.",
+    "target_audience": [
+        "College Students",
+        "Graduates",
+        "Engineering Students",
+        "Working Professionals",
+        "Job Seekers"
+    ],
+    "eligibility": "Open to anyone interested in learning data analytics.",
+    "prerequisites": "Basic computer knowledge is recommended. No official programming prerequisite has been specified.",
+    "duration": {
+        "value": "",
+        "note": "Course duration varies. Please contact the academy for details."
+    },
+    "fees": {
+        "range": "Varies by course",
+        "note": "Please contact the academy for the latest fee details."
+    },
+    "mode": [
+        "Offline"
+    ],
+    "batch_timings": "Flexible batch timings available.",
+    "teaching_methodology": "Personalized teaching with practical exercises, real-world datasets, and individual attention.",
+    "study_material": "Comprehensive study material is provided according to the course requirements.",
+    "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
+    "certificate": "",
+    "placement_support": "",
+    "tools": [],
+    "skills_you_will_learn": [
+        "Data Analysis Fundamentals",
+        "Analytical Thinking",
+        "Data Interpretation",
+        "Data Cleaning Concepts",
+        "Reporting",
+        "Data Visualization Concepts",
+        "Problem Solving",
+        "Business Decision Support"
+    ],
+    "syllabus": {},
+    "projects": [],
+    "practical_training": true,
+    "learning_outcomes": [
+        "Understand the fundamentals of data analytics",
+        "Develop analytical and problem-solving skills",
+        "Interpret and organize data effectively",
+        "Prepare reports and visualize information",
+        "Build a foundation for entry-level analytics roles"
+    ],
+    "career_benefits": [
+        "Improved analytical thinking",
+        "Practical data handling skills",
+        "Preparation for analytics and reporting roles",
+        "Foundation for advanced data science learning"
+    ],
+    "recommended_for": [
+        "College Students",
+        "Engineering Students",
+        "Graduates",
+        "Working Professionals",
+        "Job Seekers"
+    ],
+    "career_opportunities": [
+        "Data Analyst",
+        "Business Analyst",
+        "MIS Executive",
+        "Reporting Executive",
+        "Data Associate",
+        "Operations Analyst"
+    ],
+    "faqs": [
+        {
+            "question": "Who can join the Data Analytics course?",
+            "answer": "College students, graduates, engineering students, working professionals, and job seekers interested in data analytics can join the course."
+        },
+        {
+            "question": "Do I need programming knowledge before joining?",
+            "answer": "No official programming prerequisite has been specified. Basic computer knowledge is recommended."
+        },
+        {
+            "question": "Is this course suitable for beginners?",
+            "answer": "Yes. Beginners with an interest in data analysis and reporting can join the course."
+        },
+        {
+            "question": "Is practical training provided?",
+            "answer": "Yes. The course emphasizes practical learning through exercises and real-world data analysis activities."
+        },
+        {
+            "question": "Will I work on projects?",
+            "answer": "The course includes practical learning. Please contact the academy for details about project work."
+        },
+        {
+            "question": "Do you provide study material?",
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+        },
+        {
+            "question": "How can I know the course duration and fees?",
+            "answer": "Please contact the academy for the latest duration and fee details."
+        }
+    ]
+}

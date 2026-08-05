@@ -1,0 +1,179 @@
+{
+    "id": "office_executive",
+    "name": "Office Executive",
+    "category": "Information Technology",
+    "keywords": [
+        "office executive",
+        "office management",
+        "office administration",
+        "office course",
+        "office job",
+        "computer office course",
+        "office assistant",
+        "office administration course",
+        "back office",
+        "office work",
+        "administration",
+        "computer operator"
+    ],
+    "aliases": [
+        "Office Executive Course",
+        "Office Administration Course",
+        "Office Management Course",
+        "Back Office Course"
+    ],
+    "overview": "The Office Executive course is a comprehensive job-oriented program designed to prepare learners with practical computer, communication, accounting, and office administration skills required in modern workplaces.",
+    "description": "The course combines computer applications, office productivity tools, communication skills, accounting fundamentals, and professional development to help learners become job-ready for office-based careers.",
+    "target_audience": [
+        "12th Pass Students",
+        "College Students",
+        "Graduates",
+        "Job Seekers",
+        "Working Professionals",
+        "Anyone seeking an office job"
+    ],
+    "eligibility": "Open to anyone interested in developing office administration and computer skills.",
+    "prerequisites": "No official prerequisites specified.",
+    "duration": {
+        "value": "",
+        "note": "Course duration varies. Please contact the academy for details."
+    },
+    "fees": {
+        "range": "Varies by course",
+        "note": "Please contact the academy for the latest fee details."
+    },
+    "mode": [
+        "Offline"
+    ],
+    "batch_timings": "Flexible batch timings available.",
+    "teaching_methodology": "Personalized teaching with practical sessions, real office scenarios, and individual attention.",
+    "study_material": "Comprehensive study material is provided according to the course requirements.",
+    "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
+    "certificate": "",
+    "placement_support": "",
+    "software": [
+        "Microsoft Word",
+        "Microsoft Excel",
+        "Microsoft PowerPoint",
+        "Tally Prime",
+        "Google Workspace"
+    ],
+    "skills_you_will_learn": [
+        "Office Administration",
+        "Computer Operations",
+        "Microsoft Office",
+        "Tally Prime Basics",
+        "Advanced Excel Basics",
+        "Business Communication",
+        "Email Communication",
+        "Documentation",
+        "Professional Office Skills",
+        "Personality Development",
+        "Office Productivity"
+    ],
+    "syllabus": {
+        "computer_skills": [
+            "Advanced CCC",
+            "Microsoft Office",
+            "Advanced Excel"
+        ],
+        "accounting": [
+            "Tally Prime"
+        ],
+        "communication": [
+            "Spoken English",
+            "Business Communication"
+        ],
+        "professional_development": [
+            "Personality Development",
+            "Interview Preparation"
+        ],
+        "office_tools": [
+            "Google Workspace"
+        ],
+        "office_administration": [
+            "Office Assistance",
+            "Office Management"
+        ]
+    },
+    "soft_skills": [
+        "Communication Skills",
+        "Professional Etiquette",
+        "Personality Development",
+        "Teamwork",
+        "Time Management",
+        "Presentation Skills",
+        "Interview Skills"
+    ],
+    "practical_training": true,
+    "learning_outcomes": [
+        "Develop practical office administration skills",
+        "Improve computer proficiency for office work",
+        "Create professional documents and reports",
+        "Communicate effectively in office environments",
+        "Use office productivity software confidently",
+        "Become job-ready for office-based roles"
+    ],
+    "career_benefits": [
+        "Preparation for office administration careers",
+        "Improved employability",
+        "Practical computer skills",
+        "Professional communication skills",
+        "Foundation for administrative roles"
+    ],
+    "recommended_for": [
+        "12th Pass Students",
+        "Graduates",
+        "Job Seekers",
+        "Freshers",
+        "Working Professionals"
+    ],
+    "career_opportunities": [
+        "Office Executive",
+        "Office Assistant",
+        "Administrative Assistant",
+        "Back Office Executive",
+        "Computer Operator",
+        "Data Entry Operator",
+        "Receptionist",
+        "Office Coordinator"
+    ],
+    "faqs": [
+        {
+            "question": "Who can join the Office Executive course?",
+            "answer": "Students, graduates, job seekers, working professionals, and anyone interested in office-based careers can join."
+        },
+        {
+            "question": "Is this course suitable for beginners?",
+            "answer": "Yes. The course is suitable for beginners interested in developing office and computer skills."
+        },
+        {
+            "question": "Does the course include Microsoft Office?",
+            "answer": "Yes. Microsoft Office applications are part of the course."
+        },
+        {
+            "question": "Will I learn Tally Prime?",
+            "answer": "Yes. Tally Prime is included as part of the Office Executive program."
+        },
+        {
+            "question": "Does the course include communication skills?",
+            "answer": "Yes. The program includes spoken English and professional communication training."
+        },
+        {
+            "question": "Is personality development included?",
+            "answer": "Yes. Personality development is included to help learners prepare for professional workplaces."
+        },
+        {
+            "question": "Is practical training provided?",
+            "answer": "Yes. The course focuses on practical learning through hands-on office tasks and computer applications."
+        },
+        {
+            "question": "Do you provide study material?",
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+        },
+        {
+            "question": "How can I know the course duration and fees?",
+            "answer": "The duration and fees vary depending on the course. Please contact the academy for the latest details."
+        }
+    ]
+}

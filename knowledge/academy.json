@@ -1,0 +1,63 @@
+{
+    "id": "academy",
+    "name": "Shital Academy",
+    "about": "Shital Academy is a training institute in Bhavnagar that provides English language and Information Technology courses for students, professionals, and job seekers.",
+    "experience": "20+ years",
+    "teaching_methodology": "We follow a personalized teaching approach, ensuring individual attention and customized learning for every student.",
+    "faculty": {
+        "description": "Our faculty members are highly qualified, well-trained, experienced, patient, supportive, and dedicated to every student's success.",
+        "experience": "10+ years"
+    },
+    "office_timings": {
+        "opening": "07:00 AM",
+        "closing": "08:00 PM"
+    },
+    "study_material": "Comprehensive study material is provided according to the requirements of each course.",
+    "why_choose_us": [
+        "20+ years of excellence in English language training.",
+        "Personalized training with individual attention.",
+        "Flexible batch timings.",
+        "Dedicated female staff.",
+        "Customized courses based on individual learning needs.",
+        "Proven track record of satisfactory results."
+    ],
+    "branches": [
+        {
+            "name": "Branch 1",
+            "address": "2nd Floor, Omkar Complex, Between Sanskar Mandal and Pangli Gate, Near Solanki Restaurant",
+            "city": "Bhavnagar"
+        },
+        {
+            "name": "Branch 2",
+            "address": "2nd Floor, Hardik Complex, Besides Suraj Sofa",
+            "city": "Bhavnagar"
+        }
+    ],
+    "courses_offered": {
+        "english": [
+            "Foundation Course",
+            "Rapido English Course",
+            "Basic to Advanced English Course",
+            "Special Speaking Course for English Medium Students",
+            "IELTS Preparation",
+            "Customized English Courses"
+        ],
+        "it": [
+            "Web Development",
+            "Web Designing",
+            "C",
+            "C++",
+            "Java",
+            "HTML",
+            "Python",
+            "Bootstrap"
+        ]
+    },
+    "fees": {
+        "range": "₹6,500 - ₹25,000",
+        "note": "Course fees vary depending on the selected course. Please contact the academy for detailed fee information."
+    },
+    "duration": {
+        "note": "Course duration varies depending on the selected course. Our counsellors will help you choose the most suitable course."
+    }
+}

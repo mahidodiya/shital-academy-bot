@@ -1,0 +1,121 @@
+{
+    "id": "web_designing",
+    "name": "Web Designing",
+    "category": "Information Technology",
+    "keywords": [
+        "web designing",
+        "website design",
+        "web design",
+        "html",
+        "css",
+        "bootstrap",
+        "responsive design",
+        "frontend",
+        "frontend development",
+        "web designer",
+        "ui design",
+        "website creation"
+    ],
+    "aliases": [
+        "Web Design",
+        "Website Designing",
+        "Frontend Web Designing",
+        "Web Designing Course"
+    ],
+    "overview": "The Web Designing course is designed for learners who want to create attractive, responsive, and user-friendly websites.",
+    "description": "The course provides practical training in modern web designing concepts and helps learners develop the skills required to design professional websites. It is suitable for beginners, students, freelancers, and aspiring web designers.",
+    "target_audience": [
+        "School Students",
+        "College Students",
+        "Engineering Students",
+        "Beginners",
+        "Job Seekers",
+        "Working Professionals",
+        "Freelancers"
+    ],
+    "eligibility": "Open to anyone interested in learning web designing.",
+    "prerequisites": "Basic computer knowledge is recommended but not mandatory.",
+    "duration": {
+        "value": "",
+        "note": "Course duration varies. Please contact the academy for details."
+    },
+    "fees": {
+        "range": "Varies by course",
+        "note": "Please contact the academy for the latest fee details."
+    },
+    "mode": [
+        "Offline"
+    ],
+    "batch_timings": "Flexible batch timings available.",
+    "teaching_methodology": "Personalized teaching with practical website designing exercises and individual attention.",
+    "study_material": "Comprehensive study material is provided according to the course requirements.",
+    "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
+    "certificate": "",
+    "placement_support": "",
+    "software_covered": [],
+    "technologies": [],
+    "skills_you_will_learn": [
+        "Website Layout Design",
+        "Responsive Design Concepts",
+        "UI Design Fundamentals",
+        "Frontend Design",
+        "Website Planning",
+        "Practical Website Creation"
+    ],
+    "syllabus": {},
+    "projects": [],
+    "practical_training": true,
+    "learning_outcomes": [
+        "Understand web designing fundamentals",
+        "Design responsive websites",
+        "Create attractive web pages",
+        "Improve user interface design skills",
+        "Build a foundation for frontend development"
+    ],
+    "recommended_for": [
+        "Students",
+        "Beginners",
+        "Freelancers",
+        "Job Seekers",
+        "Anyone interested in website design"
+    ],
+    "career_opportunities": [
+        "Web Designer",
+        "Frontend Developer",
+        "UI Designer",
+        "Website Designer",
+        "Freelance Web Designer"
+    ],
+    "career_benefits": [
+        "Strong foundation in web designing",
+        "Portfolio development opportunities",
+        "Freelancing opportunities",
+        "Preparation for frontend development careers"
+    ],
+    "faqs": [
+        {
+            "question": "Who can join the Web Designing course?",
+            "answer": "Students, beginners, job seekers, freelancers, working professionals, and anyone interested in designing websites can join."
+        },
+        {
+            "question": "Do I need programming knowledge?",
+            "answer": "No official prerequisite has been specified. Basic computer knowledge is recommended."
+        },
+        {
+            "question": "Is practical training provided?",
+            "answer": "Yes. The course emphasizes practical website designing through hands-on exercises."
+        },
+        {
+            "question": "Will I build websites during the course?",
+            "answer": "Yes. Practical website designing is an important part of the training."
+        },
+        {
+            "question": "Do you provide study material?",
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+        },
+        {
+            "question": "How can I know the course duration and fees?",
+            "answer": "Please contact the academy for the latest duration and fee details."
+        }
+    ]
+}

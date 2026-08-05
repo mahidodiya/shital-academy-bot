@@ -1,0 +1,131 @@
+{
+    "id": "web_development",
+    "name": "Web Development",
+    "category": "Information Technology",
+    "keywords": [
+        "web development",
+        "website development",
+        "web developer",
+        "web programming",
+        "frontend",
+        "backend",
+        "full stack",
+        "dynamic website",
+        "responsive website",
+        "website creation",
+        "web application"
+    ],
+    "aliases": [
+        "Website Development",
+        "Web Developer Course",
+        "Web Programming",
+        "Website Programming"
+    ],
+    "overview": "The Web Development course is designed for learners who want to build dynamic, responsive, and interactive websites using modern web technologies.",
+    "description": "The course provides practical training in website development and helps learners understand how to design, develop, and deploy functional web applications. It is suitable for beginners, students, freelancers, and aspiring web developers.",
+    "target_audience": [
+        "School Students",
+        "College Students",
+        "Engineering Students",
+        "Beginners",
+        "Job Seekers",
+        "Working Professionals",
+        "Freelancers"
+    ],
+    "eligibility": "Open to anyone interested in learning web development.",
+    "prerequisites": "Basic computer knowledge is recommended but not mandatory.",
+    "duration": {
+        "value": "",
+        "note": "Course duration varies. Please contact the academy for details."
+    },
+    "fees": {
+        "range": "Varies by course",
+        "note": "Please contact the academy for the latest fee details."
+    },
+    "mode": [
+        "Offline"
+    ],
+    "batch_timings": "Flexible batch timings available.",
+    "teaching_methodology": "Personalized teaching with practical coding sessions, live website development, and individual attention.",
+    "study_material": "Comprehensive study material is provided according to the course requirements.",
+    "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
+    "certificate": "",
+    "placement_support": "",
+    "technologies": [],
+    "software_covered": [],
+    "skills_you_will_learn": [
+        "Website Development Fundamentals",
+        "Frontend Development Concepts",
+        "Backend Development Concepts",
+        "Responsive Website Development",
+        "Problem Solving",
+        "Website Deployment Basics",
+        "Debugging",
+        "Real-world Development Workflow"
+    ],
+    "syllabus": {},
+    "projects": [],
+    "practical_training": true,
+    "learning_outcomes": [
+        "Understand web development fundamentals",
+        "Build responsive and dynamic websites",
+        "Develop practical web programming skills",
+        "Understand the web application development process",
+        "Improve logical thinking and problem-solving abilities",
+        "Build a strong foundation for a career in web development"
+    ],
+    "career_benefits": [
+        "Strong foundation in web development",
+        "Portfolio development opportunities",
+        "Freelancing opportunities",
+        "Preparation for software development careers",
+        "Practical experience in website creation"
+    ],
+    "recommended_for": [
+        "Students",
+        "Engineering Students",
+        "Beginners",
+        "Freelancers",
+        "Job Seekers",
+        "Anyone interested in website development"
+    ],
+    "career_opportunities": [
+        "Web Developer",
+        "Frontend Developer",
+        "Backend Developer",
+        "Full Stack Developer",
+        "PHP Developer",
+        "Software Developer",
+        "Freelance Web Developer"
+    ],
+    "faqs": [
+        {
+            "question": "Who can join the Web Development course?",
+            "answer": "Students, beginners, job seekers, working professionals, freelancers, and anyone interested in website development can join."
+        },
+        {
+            "question": "Do I need programming knowledge before joining?",
+            "answer": "No official prerequisite has been specified. Basic computer knowledge is recommended."
+        },
+        {
+            "question": "Is this course suitable for beginners?",
+            "answer": "Yes. The course is suitable for beginners who want to start learning web development."
+        },
+        {
+            "question": "Is practical training included?",
+            "answer": "Yes. The course emphasizes practical coding and hands-on website development."
+        },
+        {
+            "question": "Will I work on projects?",
+            "answer": "Yes. Practical website development is an important part of the learning process."
+        },
+        {
+            "question": "Do you provide study material?",
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+        },
+        {
+            "question": "How can I know the course duration and fees?",
+            "answer": "Please contact the academy for the latest duration and fee details."
+        }
+    ]
+}

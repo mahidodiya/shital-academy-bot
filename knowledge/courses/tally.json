@@ -1,0 +1,174 @@
+{
+    "id": "tally",
+    "name": "Tally Prime with GST",
+    "category": "Information Technology",
+    "keywords": [
+        "tally",
+        "tally prime",
+        "gst",
+        "accounting",
+        "accounts",
+        "bookkeeping",
+        "accounting course",
+        "gst course",
+        "tally classes",
+        "erp",
+        "tally erp"
+    ],
+    "aliases": [
+        "Tally",
+        "Tally Prime",
+        "Tally Prime with GST",
+        "Tally ERP"
+    ],
+    "overview": "The Tally Prime with GST course provides practical training in computerized accounting, GST, and business transactions using Tally Prime.",
+    "description": "The course is designed for students, commerce graduates, accountants, business owners, and job seekers who want practical accounting skills using Tally Prime.",
+    "target_audience": [
+        "Commerce Students",
+        "B.Com Students",
+        "M.Com Students",
+        "Job Seekers",
+        "Business Owners",
+        "Accountants",
+        "Working Professionals"
+    ],
+    "eligibility": "Open to anyone interested in learning computerized accounting using Tally Prime.",
+    "prerequisites": "Basic knowledge of accounting is helpful but not mandatory.",
+    "duration": {
+        "value": "",
+        "note": "Course duration varies. Please contact the academy for details."
+    },
+    "fees": {
+        "range": "Varies by course",
+        "note": "Please contact the academy for the latest fee details."
+    },
+    "mode": [
+        "Offline"
+    ],
+    "batch_timings": "Flexible batch timings available.",
+    "teaching_methodology": "Personalized teaching with practical accounting exercises and individual attention.",
+    "study_material": "Comprehensive study material is provided according to the course requirements.",
+    "faculty": "Highly qualified and experienced faculty members provide practical accounting training.",
+    "certificate": "",
+    "placement_support": "",
+    "software_covered": [
+        "Tally Prime",
+        "Tally ERP 9"
+    ],
+    "skills_you_will_learn": [
+        "Accounting Theory",
+        "Company Creation",
+        "Ledger Creation",
+        "Voucher Entry",
+        "Inventory Management",
+        "Interest Calculation",
+        "GST Management",
+        "TDS",
+        "Bill of Materials",
+        "Payroll",
+        "Multi Currency",
+        "Order Processing",
+        "Export Sales"
+    ],
+    "syllabus": {
+        "accounting_basics": [
+            "Accounting Theory"
+        ],
+        "company_management": [
+            "Company Creation"
+        ],
+        "accounting_operations": [
+            "Ledger Creation",
+            "Voucher Entry"
+        ],
+        "inventory": [
+            "Inventory Creation and Management"
+        ],
+        "gst": [
+            "GST"
+        ],
+        "taxation": [
+            "TDS"
+        ],
+        "business_operations": [
+            "Interest Calculation",
+            "Bill of Materials",
+            "Payroll",
+            "Multi Currency",
+            "Order Processing",
+            "Export Sales"
+        ]
+    },
+    "learning_outcomes": [
+        "Understand computerized accounting",
+        "Create and manage companies in Tally Prime",
+        "Maintain ledgers and vouchers",
+        "Manage GST transactions",
+        "Handle inventory records",
+        "Process payroll",
+        "Work with multi-currency transactions",
+        "Manage business orders",
+        "Maintain export sales records"
+    ],
+    "career_benefits": [
+        "Practical accounting skills",
+        "GST knowledge",
+        "Job-ready accounting experience",
+        "Improved office accounting skills",
+        "Foundation for accounting careers"
+    ],
+    "recommended_for": [
+        "Commerce Students",
+        "Accounting Beginners",
+        "Business Owners",
+        "Job Seekers",
+        "Office Staff"
+    ],
+    "career_opportunities": [
+        "Accountant",
+        "Junior Accountant",
+        "Accounts Executive",
+        "GST Executive",
+        "Billing Executive",
+        "Office Executive",
+        "Accounts Assistant"
+    ],
+    "faqs": [
+        {
+            "question": "Will I learn GST in this course?",
+            "answer": "Yes. GST is included as part of the Tally Prime course."
+        },
+        {
+            "question": "Which version of Tally is taught?",
+            "answer": "The course covers Tally Prime and also references Tally ERP 9."
+        },
+        {
+            "question": "Does the course include payroll?",
+            "answer": "Yes. Payroll management is part of the syllabus."
+        },
+        {
+            "question": "Will I learn inventory management?",
+            "answer": "Yes. Inventory creation and management are included."
+        },
+        {
+            "question": "Is TDS covered?",
+            "answer": "Yes. TDS is included in the course."
+        },
+        {
+            "question": "Will I learn company creation?",
+            "answer": "Yes. Company creation is one of the core topics."
+        },
+        {
+            "question": "Is practical training provided?",
+            "answer": "Yes. The course emphasizes practical accounting using Tally Prime."
+        },
+        {
+            "question": "Who can join this course?",
+            "answer": "Students, commerce graduates, accountants, business owners, job seekers, and working professionals can join."
+        },
+        {
+            "question": "How can I know the course duration and fees?",
+            "answer": "Please contact the academy for the latest duration and fee details."
+        }
+    ]
+}

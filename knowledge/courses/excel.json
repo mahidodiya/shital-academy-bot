@@ -1,0 +1,183 @@
+{
+    "id": "advanced_excel",
+    "name": "Advanced Excel",
+    "category": "Information Technology",
+    "keywords": [
+        "advanced excel",
+        "excel",
+        "ms excel",
+        "microsoft excel",
+        "advanced ms excel",
+        "excel course",
+        "spreadsheet",
+        "office excel",
+        "data analysis",
+        "excel training"
+    ],
+    "aliases": [
+        "Advanced MS Excel",
+        "Microsoft Excel",
+        "Excel Training"
+    ],
+    "overview": "The Advanced Excel course is designed to help learners master Microsoft Excel for office work, reporting, data analysis, and business productivity.",
+    "description": "This course provides practical training in Advanced Microsoft Excel with industry-relevant features used in offices, businesses, and corporate environments.",
+    "target_audience": [
+        "Students",
+        "College Students",
+        "Job Seekers",
+        "Working Professionals",
+        "Office Staff",
+        "Business Owners",
+        "Accountants"
+    ],
+    "eligibility": "Open to anyone interested in learning Microsoft Excel.",
+    "prerequisites": "Basic computer knowledge is recommended.",
+    "duration": {
+        "value": "",
+        "note": "Course duration varies. Please contact the academy for details."
+    },
+    "fees": {
+        "range": "Varies by course",
+        "note": "Please contact the academy for the latest fee details."
+    },
+    "mode": [
+        "Offline"
+    ],
+    "batch_timings": "Flexible batch timings available.",
+    "teaching_methodology": "Personalized teaching with practical assignments and individual attention.",
+    "study_material": "Comprehensive study material is provided according to the course requirements.",
+    "faculty": "Highly qualified and experienced faculty members.",
+    "certificate": "",
+    "placement_support": "",
+    "software_covered": [
+        "Microsoft Excel"
+    ],
+    "skills_you_will_learn": [
+        "Workbook Management",
+        "Worksheet Management",
+        "Cell Formatting",
+        "Formula Creation",
+        "Functions",
+        "Charts",
+        "Sorting",
+        "Filtering",
+        "Conditional Formatting",
+        "Data Validation",
+        "Pivot Table",
+        "Pivot Chart",
+        "Lookup Functions",
+        "What-If Analysis",
+        "Printing",
+        "Dashboard Basics"
+    ],
+    "syllabus": {
+        "excel_basics": [
+            "Workbook",
+            "Worksheet",
+            "Rows and Columns",
+            "Cell Formatting"
+        ],
+        "formulas_functions": [
+            "Basic Formulas",
+            "Mathematical Functions",
+            "Logical Functions",
+            "Date & Time Functions",
+            "Text Functions",
+            "Lookup Functions"
+        ],
+        "data_management": [
+            "Sorting",
+            "Filtering",
+            "Data Validation",
+            "Conditional Formatting"
+        ],
+        "analysis": [
+            "Pivot Table",
+            "Pivot Chart",
+            "What-If Analysis"
+        ],
+        "visualization": [
+            "Charts",
+            "Dashboard Basics"
+        ],
+        "printing": [
+            "Print Setup",
+            "Page Layout"
+        ]
+    },
+    "learning_outcomes": [
+        "Create professional spreadsheets",
+        "Use formulas and functions efficiently",
+        "Analyze business data",
+        "Generate reports",
+        "Create Pivot Tables and Charts",
+        "Improve office productivity",
+        "Handle real-world Excel tasks confidently"
+    ],
+    "career_benefits": [
+        "Improved office productivity",
+        "Better reporting skills",
+        "Enhanced data analysis skills",
+        "Better employability in office jobs",
+        "Useful for business operations"
+    ],
+    "recommended_for": [
+        "Students",
+        "Job Seekers",
+        "Office Employees",
+        "Business Owners",
+        "Accountants",
+        "MIS Executives"
+    ],
+    "career_opportunities": [
+        "MIS Executive",
+        "Data Analyst",
+        "Office Executive",
+        "Back Office Executive",
+        "Administrative Assistant",
+        "Data Entry Operator",
+        "Reporting Executive"
+    ],
+    "faqs": [
+        {
+            "question": "Is this course suitable for beginners?",
+            "answer": "Basic computer knowledge is recommended before joining Advanced Excel."
+        },
+        {
+            "question": "Will I learn Pivot Tables?",
+            "answer": "Yes. Pivot Tables and Pivot Charts are included in the course."
+        },
+        {
+            "question": "Does the course include formulas and functions?",
+            "answer": "Yes. The course covers formulas along with mathematical, logical, text, date/time, and lookup functions."
+        },
+        {
+            "question": "Will I learn charts?",
+            "answer": "Yes. Different types of charts are covered."
+        },
+        {
+            "question": "Is Conditional Formatting included?",
+            "answer": "Yes. Conditional Formatting is part of the syllabus."
+        },
+        {
+            "question": "Will I learn Data Validation?",
+            "answer": "Yes. Data Validation is included."
+        },
+        {
+            "question": "Does the course include dashboard creation?",
+            "answer": "Yes. Dashboard basics are included."
+        },
+        {
+            "question": "Is practical training provided?",
+            "answer": "Yes. The course focuses on practical Excel exercises and real-world applications."
+        },
+        {
+            "question": "Do you provide study material?",
+            "answer": "Yes. Comprehensive study material is provided."
+        },
+        {
+            "question": "How can I know the course duration and fees?",
+            "answer": "Please contact the academy for the latest duration and fee details."
+        }
+    ]
+}

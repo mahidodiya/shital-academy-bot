@@ -1,0 +1,138 @@
+{
+    "id": "spoken_english",
+    "name": "Spoken English",
+    "category": "English Language",
+    "keywords": [
+        "spoken english",
+        "english speaking",
+        "learn english",
+        "english communication",
+        "speak english",
+        "english course",
+        "communication skills",
+        "english classes",
+        "spoken english classes",
+        "english conversation",
+        "public speaking",
+        "personality development"
+    ],
+    "aliases": [
+        "English Speaking Course",
+        "Spoken English Course",
+        "English Communication Course"
+    ],
+    "overview": "The Spoken English course is designed to improve English speaking skills, communication confidence, pronunciation, and overall personality through practical training.",
+    "description": "This practical course focuses on developing spoken English through conversation practice, vocabulary building, pronunciation improvement, grammar fundamentals, group discussions, presentations, and real-life communication activities.",
+    "target_audience": [
+        "School Students",
+        "College Students",
+        "Job Seekers",
+        "Working Professionals",
+        "Business Owners",
+        "Homemakers",
+        "Anyone who wants to improve spoken English"
+    ],
+    "eligibility": "Open to anyone interested in improving English communication skills.",
+    "prerequisites": "No prior English speaking experience is required.",
+    "duration": {
+        "value": "",
+        "note": "Course duration varies. Please contact the academy for details."
+    },
+    "fees": {
+        "range": "Varies by course",
+        "note": "Please contact the academy for the latest fee details."
+    },
+    "mode": [
+        "Offline"
+    ],
+    "batch_timings": "Flexible batch timings available.",
+    "teaching_methodology": "Personalized teaching with individual attention, interactive speaking practice, group discussions, and practical communication activities.",
+    "study_material": "Comprehensive study material is provided according to the course requirements.",
+    "faculty": "Experienced, well-trained, patient, and supportive faculty members guide students throughout the course.",
+    "certificate": "",
+    "placement_support": "",
+    "skills_you_will_learn": [
+        "English Speaking",
+        "Daily Conversation",
+        "Professional Communication",
+        "Vocabulary Building",
+        "Pronunciation",
+        "Grammar Fundamentals",
+        "Listening Skills",
+        "Public Speaking",
+        "Group Discussion",
+        "Interview Communication",
+        "Presentation Skills",
+        "Confidence Building"
+    ],
+    "syllabus": {},
+    "projects": [],
+    "practical_training": true,
+    "learning_outcomes": [
+        "Speak English with greater confidence",
+        "Improve pronunciation and fluency",
+        "Communicate effectively in daily life",
+        "Participate confidently in interviews and group discussions",
+        "Develop better presentation and public speaking skills"
+    ],
+    "career_benefits": [
+        "Better communication skills",
+        "Improved interview confidence",
+        "Enhanced workplace communication",
+        "Improved presentation skills",
+        "Greater confidence in professional and social situations"
+    ],
+    "recommended_for": [
+        "Students",
+        "Job Seekers",
+        "Working Professionals",
+        "Business Owners",
+        "Anyone wanting to improve spoken English"
+    ],
+    "career_opportunities": [
+        "Improved performance in interviews",
+        "Customer Support Executive",
+        "Receptionist",
+        "Office Executive",
+        "Sales Executive",
+        "Business Development Executive"
+    ],
+    "faqs": [
+        {
+            "question": "Who can join the Spoken English course?",
+            "answer": "Students, job seekers, working professionals, business owners, and anyone who wants to improve spoken English can join."
+        },
+        {
+            "question": "Is this course suitable for beginners?",
+            "answer": "Yes. The course is designed for learners who want to improve their spoken English, including beginners."
+        },
+        {
+            "question": "Will I get speaking practice?",
+            "answer": "Yes. The course includes practical speaking activities, conversations, and interactive communication exercises."
+        },
+        {
+            "question": "Does the course improve interview skills?",
+            "answer": "Yes. The course helps improve communication confidence for interviews, presentations, and workplace conversations."
+        },
+        {
+            "question": "Will grammar also be covered?",
+            "answer": "Yes. Grammar fundamentals are taught to support better spoken English."
+        },
+        {
+            "question": "Do you provide study material?",
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+        },
+        {
+            "question": "Are flexible batch timings available?",
+            "answer": "Yes. Flexible batch timings are available."
+        },
+        {
+            "question": "How experienced are the faculty members?",
+            "answer": "Faculty members are experienced, well-trained, patient, supportive, and focused on helping every student improve their communication skills."
+        },
+        {
+            "question": "How can I know the course duration and fees?",
+            "answer": "Please contact the academy for the latest duration and fee details."
+        }
+    ]
+}

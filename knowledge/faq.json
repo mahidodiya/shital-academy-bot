@@ -1,0 +1,244 @@
+{
+    "last_updated": "2026-08",
+    "version": "1.0",
+    "faqs": [
+        {
+            "id": "admission_process",
+            "category": "Admissions",
+            "question": "How can I take admission?",
+            "keywords": [
+                "admission",
+                "join",
+                "enroll",
+                "registration",
+                "apply"
+            ],
+            "answer": "You can visit any Shital Academy branch or contact the academy directly to receive admission guidance and complete the enrollment process."
+        },
+        {
+            "id": "course_selection",
+            "category": "Admissions",
+            "question": "How do I choose the right course?",
+            "keywords": [
+                "course suggestion",
+                "recommend",
+                "which course",
+                "guidance"
+            ],
+            "answer": "Our counselors help students choose a suitable course based on their education, career goals, and current skill level."
+        },
+        {
+            "id": "demo_lecture",
+            "category": "Admissions",
+            "question": "Do you provide demo lectures?",
+            "keywords": [
+                "demo",
+                "trial",
+                "sample class",
+                "free lecture"
+            ],
+            "answer": "Please contact the academy to know whether demo lectures are currently available."
+        },
+        {
+            "id": "fees",
+            "category": "Fees",
+            "question": "How can I know the course fees?",
+            "keywords": [
+                "fees",
+                "fee",
+                "price",
+                "cost",
+                "charges"
+            ],
+            "answer": "Course fees vary depending on the selected course. Please contact the academy for the latest fee details."
+        },
+        {
+            "id": "payment",
+            "category": "Fees",
+            "question": "What payment options are available?",
+            "keywords": [
+                "payment",
+                "upi",
+                "cash",
+                "online payment"
+            ],
+            "answer": "Please contact the academy to know the currently accepted payment methods."
+        },
+        {
+            "id": "duration",
+            "category": "Courses",
+            "question": "How long are the courses?",
+            "keywords": [
+                "duration",
+                "months",
+                "weeks",
+                "course length"
+            ],
+            "answer": "Course duration varies depending on the selected program."
+        },
+        {
+            "id": "batch_timings",
+            "category": "Batches",
+            "question": "Are flexible batches available?",
+            "keywords": [
+                "batch",
+                "timing",
+                "morning",
+                "evening",
+                "weekend"
+            ],
+            "answer": "Yes. Flexible batch timings are available for most courses."
+        },
+        {
+            "id": "study_material",
+            "category": "Learning",
+            "question": "Do you provide study material?",
+            "keywords": [
+                "notes",
+                "books",
+                "study material",
+                "material"
+            ],
+            "answer": "Yes. Study material is provided according to the course requirements."
+        },
+        {
+            "id": "faculty",
+            "category": "Faculty",
+            "question": "How are the faculty members?",
+            "keywords": [
+                "teacher",
+                "trainer",
+                "faculty",
+                "mentor"
+            ],
+            "answer": "The academy has qualified, experienced, patient, and supportive faculty members who provide personalized guidance."
+        },
+        {
+            "id": "certificate",
+            "category": "Certificates",
+            "question": "Do you provide certificates?",
+            "keywords": [
+                "certificate",
+                "certification",
+                "completion certificate"
+            ],
+            "answer": "Please contact the academy for information about certificate availability for your selected course."
+        },
+        {
+            "id": "placement",
+            "category": "Career",
+            "question": "Do you provide placement support?",
+            "keywords": [
+                "placement",
+                "job",
+                "career",
+                "interview"
+            ],
+            "answer": "Please contact the academy to know the placement support available for your chosen course."
+        },
+        {
+            "id": "online_classes",
+            "category": "Learning",
+            "question": "Are online classes available?",
+            "keywords": [
+                "online",
+                "virtual",
+                "zoom",
+                "remote"
+            ],
+            "answer": "Please contact the academy to know whether online classes are available for your preferred course."
+        },
+        {
+            "id": "offline_classes",
+            "category": "Learning",
+            "question": "Are offline classes available?",
+            "keywords": [
+                "offline",
+                "classroom"
+            ],
+            "answer": "Yes. Courses are primarily conducted through offline classroom training."
+        },
+        {
+            "id": "branches",
+            "category": "Academy",
+            "question": "How many branches does Shital Academy have?",
+            "keywords": [
+                "branch",
+                "branches",
+                "location",
+                "center"
+            ],
+            "answer": "Shital Academy has multiple branches. Please ask for a specific branch or check the contact information."
+        },
+        {
+            "id": "contact",
+            "category": "Academy",
+            "question": "How can I contact the academy?",
+            "keywords": [
+                "contact",
+                "phone",
+                "mobile",
+                "email",
+                "call"
+            ],
+            "answer": "You can contact the academy using the phone numbers, email addresses, or branch contact details provided by Shital Academy."
+        },
+        {
+            "id": "parking",
+            "category": "Facilities",
+            "question": "Is parking available?",
+            "keywords": [
+                "parking",
+                "vehicle",
+                "bike",
+                "car"
+            ],
+            "answer": "Please contact the respective branch for parking availability."
+        },
+        {
+            "id": "age_limit",
+            "category": "Admissions",
+            "question": "Is there any age limit?",
+            "keywords": [
+                "age",
+                "minimum age",
+                "maximum age"
+            ],
+            "answer": "Most courses are open to learners of different age groups. Please contact the academy for course-specific eligibility."
+        },
+        {
+            "id": "personal_attention",
+            "category": "Learning",
+            "question": "Do students receive individual attention?",
+            "keywords": [
+                "personal attention",
+                "individual attention",
+                "one to one"
+            ],
+            "answer": "Yes. The academy follows a personalized teaching approach with individual attention."
+        },
+        {
+            "id": "language",
+            "category": "Learning",
+            "question": "In which language are classes conducted?",
+            "keywords": [
+                "language",
+                "english",
+                "gujarati",
+                "hindi"
+            ],
+            "answer": "Please contact the academy for the language of instruction for your selected course."
+        },
+        {
+            "id": "holiday",
+            "category": "General",
+            "question": "What are the academy holidays?",
+            "keywords": [
+                "holiday",
+                "vacation",
+                "closed"
+            ],
+            "answer": "Please contact your branch for the latest holiday schedule."
+        }
+    ]
+}

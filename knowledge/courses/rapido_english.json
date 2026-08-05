@@ -1,0 +1,138 @@
+{
+    "id": "rapido_english",
+    "name": "Rapido English Course",
+    "category": "English Language",
+    "keywords": [
+        "rapido english",
+        "rapid english",
+        "fast english",
+        "quick english",
+        "spoken english",
+        "english speaking",
+        "english communication",
+        "communication skills",
+        "english fluency",
+        "english course",
+        "personality development"
+    ],
+    "aliases": [
+        "Rapido English",
+        "Rapid English Course",
+        "Rapido Spoken English"
+    ],
+    "overview": "The Rapido English Course is a practical English communication program designed to help learners improve spoken English, confidence, and everyday communication skills through personalized training.",
+    "description": "The course focuses on improving English speaking ability through interactive sessions, conversation practice, vocabulary building, pronunciation improvement, and confidence-building activities. It is suitable for learners who want to communicate more effectively in academic, professional, and daily life.",
+    "target_audience": [
+        "School Students",
+        "College Students",
+        "Job Seekers",
+        "Working Professionals",
+        "Business Owners",
+        "Homemakers",
+        "Anyone interested in improving spoken English"
+    ],
+    "eligibility": "Open to anyone interested in improving English communication skills.",
+    "prerequisites": "No official prerequisites specified. Please contact the academy to determine whether this course best matches your current English level.",
+    "duration": {
+        "value": "",
+        "note": "Course duration varies. Please contact the academy for details."
+    },
+    "fees": {
+        "range": "Varies by course",
+        "note": "Please contact the academy for the latest fee details."
+    },
+    "mode": [
+        "Offline"
+    ],
+    "batch_timings": "Flexible batch timings available.",
+    "teaching_methodology": "Personalized teaching with individual attention, conversation practice, interactive classroom activities, and confidence-building exercises.",
+    "study_material": "Comprehensive study material is provided according to the course requirements.",
+    "faculty": "Experienced, qualified, patient, and supportive faculty members guide students throughout the course.",
+    "certificate": "",
+    "placement_support": "",
+    "skills_you_will_learn": [
+        "English Speaking",
+        "Daily Conversation",
+        "Vocabulary Building",
+        "Pronunciation",
+        "Listening Skills",
+        "Communication Skills",
+        "Confidence Building",
+        "Presentation Skills",
+        "Interview Communication",
+        "Public Speaking Basics"
+    ],
+    "syllabus": {},
+    "activities": [
+        "Conversation Practice",
+        "Vocabulary Activities",
+        "Pronunciation Practice",
+        "Listening Exercises",
+        "Group Discussions",
+        "Presentation Practice",
+        "Interactive Classroom Sessions"
+    ],
+    "practical_training": true,
+    "learning_outcomes": [
+        "Improve spoken English fluency",
+        "Communicate more confidently in English",
+        "Improve pronunciation and vocabulary",
+        "Participate confidently in conversations",
+        "Develop effective communication skills for daily and professional situations"
+    ],
+    "career_benefits": [
+        "Improved communication skills",
+        "Better interview performance",
+        "Greater confidence in workplace communication",
+        "Improved presentation and public speaking abilities"
+    ],
+    "recommended_for": [
+        "Students",
+        "College Students",
+        "Job Seekers",
+        "Working Professionals",
+        "Anyone wanting to improve spoken English quickly"
+    ],
+    "career_opportunities": [
+        "Better performance in interviews",
+        "Customer Support Executive",
+        "Receptionist",
+        "Office Executive",
+        "Sales Executive",
+        "Business Development Executive"
+    ],
+    "faqs": [
+        {
+            "question": "Who can join the Rapido English Course?",
+            "answer": "Students, professionals, job seekers, and anyone interested in improving English communication skills can join."
+        },
+        {
+            "question": "Is the course suitable for beginners?",
+            "answer": "Please contact the academy to determine whether this course or another English course is most suitable for your current English level."
+        },
+        {
+            "question": "Will I get speaking practice?",
+            "answer": "Yes. The course emphasizes practical speaking, conversation practice, and interactive communication activities."
+        },
+        {
+            "question": "Does the course improve interview confidence?",
+            "answer": "Yes. The course helps learners build confidence for interviews, presentations, and professional communication."
+        },
+        {
+            "question": "Do you provide study material?",
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+        },
+        {
+            "question": "Are flexible batch timings available?",
+            "answer": "Yes. Flexible batch timings are available."
+        },
+        {
+            "question": "What teaching methodology do you follow?",
+            "answer": "We follow a personalized teaching approach with individual attention, conversation practice, and interactive learning."
+        },
+        {
+            "question": "How can I know the course duration and fees?",
+            "answer": "Please contact the academy for the latest duration and fee details."
+        }
+    ]
+}

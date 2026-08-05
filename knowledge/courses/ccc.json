@@ -1,0 +1,192 @@
+{
+    "id": "ccc",
+    "name": "Advanced CCC",
+    "category": "Information Technology",
+    "keywords": [
+        "ccc",
+        "advanced ccc",
+        "computer course",
+        "computer basics",
+        "basic computer",
+        "ccc course",
+        "computer classes",
+        "computer training",
+        "computer fundamentals",
+        "ms office",
+        "office course"
+    ],
+    "aliases": [
+        "Advanced CCC Course",
+        "Computer Basics Course",
+        "Basic Computer Course"
+    ],
+    "overview": "Advanced CCC is a practical computer fundamentals course designed for beginners who want to develop essential computer skills for education, office work, and everyday computer usage.",
+    "description": "The course provides hands-on training in computer fundamentals, Microsoft Office applications, typing, internet skills, resume preparation, and productivity tools. It is suitable for students, job seekers, office employees, and anyone who wants to become confident in using computers.",
+    "target_audience": [
+        "School Students",
+        "College Students",
+        "Job Seekers",
+        "Working Professionals",
+        "Beginners",
+        "Homemakers",
+        "Senior Citizens",
+        "Anyone new to computers"
+    ],
+    "eligibility": "Open to anyone interested in learning computer fundamentals.",
+    "prerequisites": "No prior computer knowledge is officially required.",
+    "duration": {
+        "value": "",
+        "note": "Course duration varies. Please contact the academy for details."
+    },
+    "fees": {
+        "range": "Varies by course",
+        "note": "Please contact the academy for the latest fee details."
+    },
+    "mode": [
+        "Offline"
+    ],
+    "batch_timings": "Flexible batch timings available.",
+    "teaching_methodology": "Personalized teaching approach with individual attention and practical learning.",
+    "study_material": "Comprehensive study material is provided according to the course requirements.",
+    "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
+    "certificate": "",
+    "placement_support": "",
+    "software_covered": [
+        "Microsoft Word",
+        "Microsoft Excel",
+        "Microsoft PowerPoint",
+        "Notepad",
+        "WordPad",
+        "Paint"
+    ],
+    "skills_you_will_learn": [
+        "Computer Fundamentals",
+        "Windows Basics",
+        "File Management",
+        "Microsoft Word",
+        "Microsoft Excel",
+        "Microsoft PowerPoint",
+        "Advanced Excel Introduction",
+        "English Typing",
+        "Gujarati Typing",
+        "Internet Skills",
+        "Resume Making",
+        "Mailing Format",
+        "Smart Presentation",
+        "Printing",
+        "Smart Shortcut Keys",
+        "Basic AI Awareness"
+    ],
+    "syllabus": {
+        "computer_basics": [
+            "Computer Fundamentals"
+        ],
+        "windows_applications": [
+            "Notepad",
+            "WordPad",
+            "Paint"
+        ],
+        "microsoft_office": [
+            "Microsoft Word",
+            "Microsoft Excel",
+            "Microsoft PowerPoint"
+        ],
+        "advanced_excel": [
+            "Introduction to Advanced Excel"
+        ],
+        "typing": [
+            "English Typing",
+            "Gujarati Typing"
+        ],
+        "internet": [
+            "Internet Skills"
+        ],
+        "professional_skills": [
+            "Resume Making",
+            "Mailing Format",
+            "Smart Presentation"
+        ],
+        "other_topics": [
+            "Printing",
+            "Uses of Smart Shortcut Keys",
+            "Basic AI Concepts"
+        ]
+    },
+    "learning_outcomes": [
+        "Understand computer fundamentals",
+        "Operate a computer confidently",
+        "Create professional documents using Microsoft Word",
+        "Prepare spreadsheets using Microsoft Excel",
+        "Design presentations using Microsoft PowerPoint",
+        "Use the internet effectively",
+        "Type in English and Gujarati",
+        "Prepare resumes and official documents",
+        "Improve productivity using computer shortcut keys",
+        "Develop essential digital skills for education and office work"
+    ],
+    "career_benefits": [
+        "Improved computer literacy",
+        "Better preparation for office work",
+        "Useful computer skills for education and employment",
+        "Improved digital productivity",
+        "Foundation for advanced IT courses"
+    ],
+    "recommended_for": [
+        "Students",
+        "Freshers",
+        "Job Seekers",
+        "Office Staff",
+        "Beginners",
+        "Anyone wanting to learn computers"
+    ],
+    "career_opportunities": [
+        "Computer Operator",
+        "Data Entry Operator",
+        "Office Assistant",
+        "Back Office Executive",
+        "Receptionist",
+        "Administrative Assistant"
+    ],
+    "faqs": [
+        {
+            "question": "Who can join the Advanced CCC course?",
+            "answer": "Anyone interested in learning computer fundamentals, including students, beginners, job seekers, and working professionals."
+        },
+        {
+            "question": "Do I need prior computer knowledge?",
+            "answer": "No. No prior computer knowledge is officially required."
+        },
+        {
+            "question": "Will I learn Microsoft Office?",
+            "answer": "Yes. The course includes Microsoft Word, Microsoft Excel, and Microsoft PowerPoint."
+        },
+        {
+            "question": "Does the course include typing practice?",
+            "answer": "Yes. Both English and Gujarati typing are included."
+        },
+        {
+            "question": "Will I learn resume making?",
+            "answer": "Yes. Resume making and mailing format are covered."
+        },
+        {
+            "question": "Does the course include internet training?",
+            "answer": "Yes. Internet skills are included."
+        },
+        {
+            "question": "Is practical training provided?",
+            "answer": "Yes. The course emphasizes practical learning and hands-on computer usage."
+        },
+        {
+            "question": "Do you provide study material?",
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+        },
+        {
+            "question": "Are flexible batch timings available?",
+            "answer": "Yes. Flexible batch timings are available."
+        },
+        {
+            "question": "How can I know the course duration and fees?",
+            "answer": "The duration and fees vary depending on the course. Please contact the academy for the latest details."
+        }
+    ]
+}

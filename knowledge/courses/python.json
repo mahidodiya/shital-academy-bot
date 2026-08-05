@@ -1,0 +1,126 @@
+{
+    "id": "python",
+    "name": "Python Programming",
+    "category": "Information Technology",
+    "keywords": [
+        "python",
+        "python programming",
+        "python course",
+        "learn python",
+        "python classes",
+        "python training",
+        "coding",
+        "programming",
+        "python developer",
+        "python language",
+        "computer programming"
+    ],
+    "aliases": [
+        "Python",
+        "Python Programming Course",
+        "Learn Python",
+        "Python Coding Course"
+    ],
+    "overview": "The Python Programming course is designed for learners who want to develop practical programming skills using Python.",
+    "description": "The course focuses on hands-on Python programming and helps learners build logical thinking and problem-solving skills. It is suitable for students, beginners, engineering students, job seekers, and professionals interested in software development.",
+    "target_audience": [
+        "School Students",
+        "College Students",
+        "Engineering Students",
+        "Beginners",
+        "Job Seekers",
+        "Working Professionals"
+    ],
+    "eligibility": "Open to anyone interested in learning Python programming.",
+    "prerequisites": "No official prerequisites specified.",
+    "duration": {
+        "value": "",
+        "note": "Course duration varies. Please contact the academy for details."
+    },
+    "fees": {
+        "range": "Varies by course",
+        "note": "Please contact the academy for the latest fee details."
+    },
+    "mode": [
+        "Offline"
+    ],
+    "batch_timings": "Flexible batch timings available.",
+    "teaching_methodology": "Personalized teaching with practical coding sessions, individual attention, and hands-on exercises.",
+    "study_material": "Comprehensive study material is provided according to the course requirements.",
+    "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
+    "certificate": "",
+    "placement_support": "",
+    "programming_language": [
+        "Python"
+    ],
+    "skills_you_will_learn": [
+        "Programming Fundamentals",
+        "Problem Solving",
+        "Logical Thinking",
+        "Code Development",
+        "Debugging",
+        "Practical Programming"
+    ],
+    "software_covered": [
+        "Python"
+    ],
+    "syllabus": {},
+    "practical_training": true,
+    "projects": [],
+    "learning_outcomes": [
+        "Understand Python programming fundamentals",
+        "Write and execute Python programs",
+        "Develop logical thinking and problem-solving skills",
+        "Build confidence in software development",
+        "Prepare for advanced programming technologies"
+    ],
+    "recommended_for": [
+        "Students",
+        "Engineering Students",
+        "Beginners",
+        "Job Seekers",
+        "Anyone interested in programming"
+    ],
+    "career_opportunities": [
+        "Python Developer",
+        "Software Developer",
+        "Programmer",
+        "Automation Developer"
+    ],
+    "career_benefits": [
+        "Strong programming foundation",
+        "Improved logical thinking",
+        "Preparation for software development careers",
+        "Foundation for advanced technologies"
+    ],
+    "faqs": [
+        {
+            "question": "Who can join the Python Programming course?",
+            "answer": "Students, beginners, engineering students, job seekers, and working professionals interested in programming can join."
+        },
+        {
+            "question": "Do I need prior programming knowledge?",
+            "answer": "No official prerequisite has been specified. Please contact the academy for guidance based on your background."
+        },
+        {
+            "question": "Is this course suitable for beginners?",
+            "answer": "Yes. The course is suitable for beginners who want to learn Python programming."
+        },
+        {
+            "question": "Is practical coding included?",
+            "answer": "Yes. The course emphasizes practical programming and hands-on coding exercises."
+        },
+        {
+            "question": "Which programming language is taught?",
+            "answer": "The course focuses on Python programming."
+        },
+        {
+            "question": "Do you provide study material?",
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+        },
+        {
+            "question": "How can I know the course duration and fees?",
+            "answer": "The duration and fees vary depending on the course. Please contact the academy for the latest details."
+        }
+    ]
+}
