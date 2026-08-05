@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shital Academy AI Assistant</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="chat-header">
+
+        <div class="header-left">
+
+            <div class="bot-avatar">
+                🤖
+            </div>
+
+            <div>
+
+                <h1>Shital Academy</h1>
+
+                <p>AI Assistant • Online</p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- ================= CHAT ================= -->
+
+    <main class="chat-box" id="chatBox">
+
+        <!-- Welcome Message -->
+
+        <div class="message bot">
+
+            <div class="avatar">
+                🤖
+            </div>
+
+            <div class="message-content">
+
+                <div class="bubble">
+
+                    <p>👋 Hello! Welcome to <strong>Shital Academy.</strong></p>
+
+                    <p>I'm your AI Assistant.</p>
+
+                    <p>Ask me anything about:</p>
+
+                    <ul>
+
+                        <li>📚 Courses</li>
+
+                        <li>💰 Fees</li>
+
+                        <li>🕒 Batch Timings</li>
+
+                        <li>🎓 Admissions</li>
+
+                        <li>💼 Placements</li>
+
+                        <li>🌍 IELTS</li>
+
+                        <li>💻 Programming Courses</li>
+
+                    </ul>
+
+                    <p>How can I help you today?</p>
+
+                </div>
+
+                <span class="time">Now</span>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ================= TYPING INDICATOR ================= -->
+
+    <div id="typingIndicator" class="typing hidden">
+
+        <div class="avatar">
+            🤖
+        </div>
+
+        <div class="typing-bubble">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </div>
+
+    <!-- ================= LEAD FORM ================= -->
+
+    <div id="leadModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <h2>Let's Stay Connected</h2>
+
+            <p>
+                Before we continue, please share your details.
+            </p>
+
+            <form id="leadForm">
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Full Name"
+                    required>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Email Address"
+                    required>
+
+                <input
+                    type="tel"
+                    id="mobile"
+                    placeholder="Mobile Number"
+                    required>
+
+                <button type="submit">
+                    Continue Chat
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- ================= INPUT ================= -->
+
+    <footer class="chat-footer">
+
+        <textarea
+            id="messageInput"
+            placeholder="Type your message..."
+            rows="1"></textarea>
+
+        <button id="sendButton">
+            Send
+        </button>
+
+    </footer>
+
+</div>
+
+<!-- JavaScript -->
+
+<script src="/static/script.js"></script>
+
+</body>
+
+</html>
