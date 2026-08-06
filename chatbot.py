@@ -6,7 +6,16 @@ from datetime import datetime
 
 import spacy as sa
 
-from knowledge_base import shital_academy_knowledge
+from knowledge_loader import (
+    get_knowledge,
+    get_course,
+    get_academy,
+    get_common,
+    get_intents,
+    get_synonyms,
+    get_greetings,
+)
+
 from llm_helper import ask_llm
 
 from session_manager import (
@@ -20,6 +29,12 @@ from session_manager import (
 
 nlp = sa.load("en_core_web_sm")
 
+# ==========================================================
+
+KNOWLEDGE = get_knowledge()
+COURSES = KNOWLEDGE["courses"]
+ACADEMY = KNOWLEDGE["academy"]
+COMMON = KNOWLEDGE["common"]
 
 # ==========================================================
 # CONFIGURATION
