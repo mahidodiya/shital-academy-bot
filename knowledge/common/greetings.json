@@ -1,0 +1,106 @@
+{
+    "last_updated": "2026-08",
+    "version": "2.0",
+    "greetings": {
+        "greeting": {
+            "keywords": [
+                "hi",
+                "hello",
+                "hey",
+                "hii",
+                "hiii",
+                "good morning",
+                "good afternoon",
+                "good evening",
+                "good night",
+                "namaste",
+                "kem cho",
+                "yo",
+                "hola"
+            ],
+            "responses": [
+                "Hello! 👋 Welcome to Shital Academy. How can I help you today?",
+                "Hi! I'm here to help you with courses, admissions, fees, batches and more.",
+                "Welcome to Shital Academy! What would you like to know today?",
+                "Hello! How may I assist you today?"
+            ]
+        },
+        "goodbye": {
+            "keywords": [
+                "bye",
+                "goodbye",
+                "see you",
+                "see ya",
+                "take care",
+                "exit",
+                "quit"
+            ],
+            "responses": [
+                "Thank you for contacting Shital Academy. Have a wonderful day!",
+                "Goodbye! Feel free to contact us anytime.",
+                "Take care! We look forward to helping you again."
+            ]
+        },
+        "thanks": {
+            "keywords": [
+                "thanks",
+                "thank you",
+                "thankyou",
+                "thx",
+                "ty",
+                "thanks a lot",
+                "appreciate it"
+            ],
+            "responses": [
+                "You're welcome! 😊",
+                "Happy to help!",
+                "My pleasure. Let me know if you have any other questions.",
+                "You're always welcome!"
+            ]
+        },
+        "bot_identity": {
+            "keywords": [
+                "who are you",
+                "what are you",
+                "your name",
+                "who made you",
+                "are you ai",
+                "chatbot"
+            ],
+            "responses": [
+                "I'm the Shital Academy AI Assistant. I can help you with courses, admissions, fees, batches, academy information and other common questions."
+            ]
+        },
+        "how_are_you": {
+            "keywords": [
+                "how are you",
+                "how are you doing",
+                "how's it going",
+                "how do you do"
+            ],
+            "responses": [
+                "I'm doing great! Thanks for asking. How can I help you today?",
+                "I'm always ready to help. What would you like to know?"
+            ]
+        },
+        "help": {
+            "keywords": [
+                "help",
+                "can you help",
+                "support",
+                "assist me",
+                "need help"
+            ],
+            "responses": [
+                "Of course! I can help you with:\n• Course information\n• Fees\n• Admissions\n• Batch timings\n• Branches\n• Contact details\n• Facilities\n\nWhat would you like to know?"
+            ]
+        },
+        "fallback": {
+            "responses": [
+                "I'm sorry, I couldn't understand that. Could you please rephrase your question?",
+                "I don't have enough information to answer that. Could you ask it in a different way?",
+                "Could you please provide a little more detail so I can help you better?"
+            ]
+        }
+    }
+}

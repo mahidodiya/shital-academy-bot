@@ -1,0 +1,277 @@
+{
+    "last_updated": "2026-08",
+    "version": "2.0",
+    "intents": [
+        {
+            "id": "greeting",
+            "priority": 100,
+            "keywords": [
+                "hi",
+                "hello",
+                "hey",
+                "hii",
+                "good morning",
+                "good afternoon",
+                "good evening",
+                "namaste",
+                "kem cho"
+            ]
+        },
+        {
+            "id": "goodbye",
+            "priority": 100,
+            "keywords": [
+                "bye",
+                "goodbye",
+                "see you",
+                "take care",
+                "exit",
+                "quit"
+            ]
+        },
+        {
+            "id": "thanks",
+            "priority": 98,
+            "keywords": [
+                "thanks",
+                "thank you",
+                "thankyou",
+                "thx",
+                "ty",
+                "appreciate"
+            ]
+        },
+        {
+            "id": "help",
+            "priority": 97,
+            "keywords": [
+                "help",
+                "support",
+                "assist",
+                "guide me",
+                "need help"
+            ]
+        },
+        {
+            "id": "course_info",
+            "priority": 95,
+            "keywords": [
+                "course",
+                "courses",
+                "information",
+                "details",
+                "syllabus",
+                "overview",
+                "learn"
+            ]
+        },
+        {
+            "id": "course_duration",
+            "priority": 94,
+            "keywords": [
+                "duration",
+                "how long",
+                "months",
+                "weeks",
+                "time",
+                "course duration"
+            ]
+        },
+        {
+            "id": "course_fees",
+            "priority": 94,
+            "keywords": [
+                "fee",
+                "fees",
+                "price",
+                "cost",
+                "charges"
+            ]
+        },
+        {
+            "id": "course_eligibility",
+            "priority": 93,
+            "keywords": [
+                "eligibility",
+                "qualification",
+                "who can join",
+                "requirements",
+                "criteria"
+            ]
+        },
+        {
+            "id": "course_certificate",
+            "priority": 92,
+            "keywords": [
+                "certificate",
+                "certification",
+                "course certificate"
+            ]
+        },
+        {
+            "id": "placement",
+            "priority": 92,
+            "keywords": [
+                "placement",
+                "job",
+                "career",
+                "interview",
+                "employment"
+            ]
+        },
+        {
+            "id": "admission",
+            "priority": 96,
+            "keywords": [
+                "admission",
+                "join",
+                "enroll",
+                "registration",
+                "apply"
+            ]
+        },
+        {
+            "id": "batch",
+            "priority": 90,
+            "keywords": [
+                "batch",
+                "timing",
+                "schedule",
+                "morning",
+                "evening",
+                "weekend"
+            ]
+        },
+        {
+            "id": "faculty",
+            "priority": 88,
+            "keywords": [
+                "faculty",
+                "teacher",
+                "trainer",
+                "mentor",
+                "staff"
+            ]
+        },
+        {
+            "id": "study_material",
+            "priority": 88,
+            "keywords": [
+                "notes",
+                "study material",
+                "books",
+                "materials",
+                "pdf"
+            ]
+        },
+        {
+            "id": "branches",
+            "priority": 89,
+            "keywords": [
+                "branch",
+                "branches",
+                "location",
+                "address",
+                "center"
+            ]
+        },
+        {
+            "id": "contact",
+            "priority": 89,
+            "keywords": [
+                "contact",
+                "phone",
+                "mobile",
+                "call",
+                "email",
+                "whatsapp"
+            ]
+        },
+        {
+            "id": "facilities",
+            "priority": 86,
+            "keywords": [
+                "facility",
+                "lab",
+                "computer",
+                "parking",
+                "wifi",
+                "classroom"
+            ]
+        },
+        {
+            "id": "academy_info",
+            "priority": 90,
+            "keywords": [
+                "about academy",
+                "about shital academy",
+                "academy",
+                "institute",
+                "who are you"
+            ]
+        },
+        {
+            "id": "policy",
+            "priority": 85,
+            "keywords": [
+                "policy",
+                "refund",
+                "attendance",
+                "holiday",
+                "rules"
+            ]
+        },
+        {
+            "id": "english_course",
+            "priority": 91,
+            "keywords": [
+                "spoken english",
+                "foundation english",
+                "rapido english",
+                "ielts",
+                "english"
+            ]
+        },
+        {
+            "id": "computer_course",
+            "priority": 91,
+            "keywords": [
+                "python",
+                "excel",
+                "tally",
+                "ccc",
+                "office executive",
+                "web development",
+                "web designing",
+                "data analytics"
+            ]
+        },
+        {
+            "id": "comparison",
+            "priority": 84,
+            "keywords": [
+                "difference",
+                "compare",
+                "better",
+                "vs",
+                "which is best"
+            ]
+        },
+        {
+            "id": "recommendation",
+            "priority": 84,
+            "keywords": [
+                "recommend",
+                "suggest",
+                "which course",
+                "best course",
+                "confused"
+            ]
+        },
+        {
+            "id": "fallback",
+            "priority": 0,
+            "keywords": []
+        }
+    ]
+}

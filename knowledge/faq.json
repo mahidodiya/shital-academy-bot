@@ -1,10 +1,11 @@
 {
     "last_updated": "2026-08",
-    "version": "1.0",
+    "version": "2.0",
     "faqs": [
         {
             "id": "admission_process",
             "category": "Admissions",
+            "priority": 100,
             "question": "How can I take admission?",
             "keywords": [
                 "admission",
@@ -13,35 +14,135 @@
                 "registration",
                 "apply"
             ],
-            "answer": "You can visit any Shital Academy branch or contact the academy directly to receive admission guidance and complete the enrollment process."
+            "answer": "You can visit any Shital Academy branch or contact the academy directly to complete the admission process.",
+            "follow_up": [
+                "Which course are you interested in?"
+            ],
+            "last_verified": "2026-08"
         },
         {
-            "id": "course_selection",
+            "id": "course_guidance",
             "category": "Admissions",
-            "question": "How do I choose the right course?",
+            "priority": 98,
+            "question": "Can you help me choose the right course?",
             "keywords": [
                 "course suggestion",
                 "recommend",
+                "career guidance",
                 "which course",
-                "guidance"
+                "help me choose"
             ],
-            "answer": "Our counselors help students choose a suitable course based on their education, career goals, and current skill level."
+            "answer": "Yes. Our counselors help students choose the most suitable course according to their education, interests and career goals.",
+            "follow_up": [
+                "What is your education and career goal?"
+            ],
+            "last_verified": "2026-08"
         },
         {
-            "id": "demo_lecture",
+            "id": "documents_required",
             "category": "Admissions",
-            "question": "Do you provide demo lectures?",
+            "priority": 96,
+            "question": "What documents are required for admission?",
+            "keywords": [
+                "documents",
+                "photo",
+                "id proof",
+                "admission documents"
+            ],
+            "answer": "The required documents may vary. Please contact the academy for the latest admission requirements.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "eligibility",
+            "category": "Admissions",
+            "priority": 95,
+            "question": "Who can join Shital Academy?",
+            "keywords": [
+                "eligibility",
+                "qualification",
+                "who can join"
+            ],
+            "answer": "Eligibility depends on the selected course. Please refer to the course details or contact the academy.",
+            "follow_up": [
+                "Which course are you interested in?"
+            ],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "age_limit",
+            "category": "Admissions",
+            "priority": 92,
+            "question": "Is there any age limit?",
+            "keywords": [
+                "age",
+                "minimum age",
+                "maximum age"
+            ],
+            "answer": "Most courses are open to learners of different age groups. Please contact the academy for course-specific eligibility.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "admission_open",
+            "category": "Admissions",
+            "priority": 90,
+            "question": "Are admissions open?",
+            "keywords": [
+                "admission open",
+                "new admission",
+                "enrollment"
+            ],
+            "answer": "Admissions depend on course and batch availability. Please contact the academy for current admission status.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "join_anytime",
+            "category": "Admissions",
+            "priority": 88,
+            "question": "Can I join anytime?",
+            "keywords": [
+                "join anytime",
+                "late admission"
+            ],
+            "answer": "Joining depends on the availability of batches. Please contact the academy for confirmation.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "demo_class",
+            "category": "Admissions",
+            "priority": 86,
+            "question": "Do you provide demo classes?",
             "keywords": [
                 "demo",
                 "trial",
                 "sample class",
-                "free lecture"
+                "free demo"
             ],
-            "answer": "Please contact the academy to know whether demo lectures are currently available."
+            "answer": "Please contact the academy to know whether demo classes are available for your selected course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "id": "fees",
+            "id": "registration_process",
+            "category": "Admissions",
+            "priority": 84,
+            "question": "How do I register?",
+            "keywords": [
+                "registration",
+                "register",
+                "enrollment"
+            ],
+            "answer": "You can register by visiting the academy or contacting the academy directly.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "fees_information",
             "category": "Fees",
+            "priority": 100,
             "question": "How can I know the course fees?",
             "keywords": [
                 "fees",
@@ -50,195 +151,545 @@
                 "cost",
                 "charges"
             ],
-            "answer": "Course fees vary depending on the selected course. Please contact the academy for the latest fee details."
+            "answer": "Course fees vary depending on the selected course. Please contact the academy for the latest fee details.",
+            "follow_up": [
+                "Which course are you asking about?"
+            ],
+            "last_verified": "2026-08"
         },
         {
-            "id": "payment",
+            "id": "installment_payment",
             "category": "Fees",
-            "question": "What payment options are available?",
+            "priority": 97,
+            "question": "Can I pay fees in installments?",
             "keywords": [
-                "payment",
-                "upi",
-                "cash",
-                "online payment"
+                "installment",
+                "emi",
+                "monthly payment",
+                "partial payment"
             ],
-            "answer": "Please contact the academy to know the currently accepted payment methods."
+            "answer": "Please contact the academy to know whether installment options are available.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "id": "duration",
-            "category": "Courses",
-            "question": "How long are the courses?",
+            "id": "payment_methods",
+            "category": "Fees",
+            "priority": 95,
+            "question": "Which payment methods are accepted?",
             "keywords": [
-                "duration",
-                "months",
-                "weeks",
-                "course length"
+                "cash",
+                "upi",
+                "bank transfer",
+                "card",
+                "payment"
             ],
-            "answer": "Course duration varies depending on the selected program."
+            "answer": "Please contact the academy for the currently accepted payment methods.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "discounts",
+            "category": "Fees",
+            "priority": 92,
+            "question": "Do you offer discounts?",
+            "keywords": [
+                "discount",
+                "offer",
+                "scholarship",
+                "concession"
+            ],
+            "answer": "Please contact the academy to know about any available discounts or promotional offers.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "refund_policy",
+            "category": "Fees",
+            "priority": 90,
+            "question": "Is the course fee refundable?",
+            "keywords": [
+                "refund",
+                "cancel admission",
+                "money back"
+            ],
+            "answer": "Please contact the academy for the latest refund policy.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "fee_receipt",
+            "category": "Fees",
+            "priority": 88,
+            "question": "Will I receive a fee receipt?",
+            "keywords": [
+                "receipt",
+                "invoice",
+                "payment proof"
+            ],
+            "answer": "Yes. Students can obtain a payment receipt after successful fee payment.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
             "id": "batch_timings",
-            "category": "Batches",
-            "question": "Are flexible batches available?",
+            "category": "Classes",
+            "priority": 100,
+            "question": "What are the batch timings?",
             "keywords": [
                 "batch",
                 "timing",
+                "schedule",
                 "morning",
                 "evening",
-                "weekend"
+                "class timing"
             ],
-            "answer": "Yes. Flexible batch timings are available for most courses."
+            "answer": "Flexible batch timings are available for most courses. Please contact the academy for the latest batch schedule.",
+            "follow_up": [
+                "Which course are you interested in?"
+            ],
+            "last_verified": "2026-08"
         },
         {
-            "id": "study_material",
-            "category": "Learning",
-            "question": "Do you provide study material?",
+            "id": "weekend_batches",
+            "category": "Classes",
+            "priority": 97,
+            "question": "Do you have weekend batches?",
             "keywords": [
-                "notes",
-                "books",
-                "study material",
-                "material"
+                "weekend",
+                "saturday",
+                "sunday",
+                "weekend classes"
             ],
-            "answer": "Yes. Study material is provided according to the course requirements."
-        },
-        {
-            "id": "faculty",
-            "category": "Faculty",
-            "question": "How are the faculty members?",
-            "keywords": [
-                "teacher",
-                "trainer",
-                "faculty",
-                "mentor"
-            ],
-            "answer": "The academy has qualified, experienced, patient, and supportive faculty members who provide personalized guidance."
-        },
-        {
-            "id": "certificate",
-            "category": "Certificates",
-            "question": "Do you provide certificates?",
-            "keywords": [
-                "certificate",
-                "certification",
-                "completion certificate"
-            ],
-            "answer": "Please contact the academy for information about certificate availability for your selected course."
-        },
-        {
-            "id": "placement",
-            "category": "Career",
-            "question": "Do you provide placement support?",
-            "keywords": [
-                "placement",
-                "job",
-                "career",
-                "interview"
-            ],
-            "answer": "Please contact the academy to know the placement support available for your chosen course."
+            "answer": "Weekend batches may be available depending on the course and branch. Please contact the academy for the latest schedule.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
             "id": "online_classes",
-            "category": "Learning",
+            "category": "Classes",
+            "priority": 95,
             "question": "Are online classes available?",
             "keywords": [
                 "online",
                 "virtual",
-                "zoom",
-                "remote"
+                "remote",
+                "online course"
             ],
-            "answer": "Please contact the academy to know whether online classes are available for your preferred course."
+            "answer": "Please contact the academy to know whether online classes are currently available for your preferred course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
             "id": "offline_classes",
-            "category": "Learning",
+            "category": "Classes",
+            "priority": 94,
             "question": "Are offline classes available?",
             "keywords": [
                 "offline",
-                "classroom"
+                "classroom",
+                "physical classes"
             ],
-            "answer": "Yes. Courses are primarily conducted through offline classroom training."
+            "answer": "Yes. Most courses are conducted through offline classroom training.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "id": "branches",
-            "category": "Academy",
-            "question": "How many branches does Shital Academy have?",
+            "id": "batch_change",
+            "category": "Classes",
+            "priority": 91,
+            "question": "Can I change my batch later?",
             "keywords": [
-                "branch",
-                "branches",
-                "location",
-                "center"
+                "change batch",
+                "batch transfer",
+                "shift batch"
             ],
-            "answer": "Shital Academy has multiple branches. Please ask for a specific branch or check the contact information."
+            "answer": "Batch changes depend on seat availability and academy policy. Please contact your branch for assistance.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "id": "contact",
-            "category": "Academy",
-            "question": "How can I contact the academy?",
+            "id": "missed_class",
+            "category": "Classes",
+            "priority": 89,
+            "question": "What happens if I miss a class?",
+            "keywords": [
+                "miss class",
+                "absence",
+                "leave",
+                "miss lecture"
+            ],
+            "answer": "If you miss a class, please discuss it with your faculty or branch to know the available options.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "faculty_experience",
+            "category": "Faculty",
+            "priority": 96,
+            "question": "Are your faculty members experienced?",
+            "keywords": [
+                "faculty",
+                "trainer",
+                "teacher",
+                "experience"
+            ],
+            "answer": "Yes. Shital Academy has qualified, experienced, patient and supportive faculty members.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "individual_attention",
+            "category": "Faculty",
+            "priority": 94,
+            "question": "Do students receive individual attention?",
+            "keywords": [
+                "individual attention",
+                "personal guidance",
+                "one to one",
+                "support"
+            ],
+            "answer": "Yes. The academy follows a personalized teaching approach with individual attention for every student.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "study_material",
+            "category": "Learning",
+            "priority": 95,
+            "question": "Do you provide study material?",
+            "keywords": [
+                "study material",
+                "notes",
+                "books",
+                "learning material"
+            ],
+            "answer": "Yes. Comprehensive study material is provided according to the requirements of the selected course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "practical_training",
+            "category": "Learning",
+            "priority": 94,
+            "question": "Do courses include practical training?",
+            "keywords": [
+                "practical",
+                "hands on",
+                "lab",
+                "practice"
+            ],
+            "answer": "Yes. Most technical and professional courses focus on practical learning along with theory.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "certificate",
+            "category": "Certificates",
+            "priority": 90,
+            "question": "Will I receive a certificate after completing the course?",
+            "keywords": [
+                "certificate",
+                "completion certificate",
+                "course certificate"
+            ],
+            "answer": "Certificate availability depends on the selected course. Please contact the academy for course-specific information.",
+            "follow_up": [
+                "Which course are you asking about?"
+            ],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "placement_support",
+            "category": "Career",
+            "priority": 89,
+            "question": "Do you provide placement support?",
+            "keywords": [
+                "placement",
+                "job",
+                "career support",
+                "job assistance"
+            ],
+            "answer": "Placement support depends on the selected course. Please contact the academy for the latest information.",
+            "follow_up": [
+                "Which course are you interested in?"
+            ],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "internship",
+            "category": "Career",
+            "priority": 85,
+            "question": "Do you provide internships?",
+            "keywords": [
+                "internship",
+                "training",
+                "industrial training"
+            ],
+            "answer": "Internship opportunities vary depending on the course. Please contact the academy for current availability.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "about_academy",
+            "category": "General",
+            "priority": 93,
+            "question": "What is Shital Academy?",
+            "keywords": [
+                "about academy",
+                "academy",
+                "institute",
+                "about shital academy"
+            ],
+            "answer": "Shital Academy is a training institute that offers career-oriented courses with practical learning, experienced faculty and personalized guidance.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "why_choose_academy",
+            "category": "General",
+            "priority": 92,
+            "question": "Why should I choose Shital Academy?",
+            "keywords": [
+                "why choose",
+                "benefits",
+                "advantages",
+                "best academy"
+            ],
+            "answer": "Shital Academy focuses on practical learning, experienced faculty, flexible batches, personalized guidance and career-oriented training.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "contact_information",
+            "category": "Contact",
+            "priority": 95,
+            "question": "How can I contact Shital Academy?",
             "keywords": [
                 "contact",
                 "phone",
                 "mobile",
                 "email",
+                "reach",
                 "call"
             ],
-            "answer": "You can contact the academy using the phone numbers, email addresses, or branch contact details provided by Shital Academy."
+            "answer": "You can contact Shital Academy using the phone numbers, email address, or by visiting your nearest branch. Please refer to the contact information provided by the academy.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "id": "parking",
+            "id": "branch_locations",
+            "category": "Branches",
+            "priority": 94,
+            "question": "Where are your branches located?",
+            "keywords": [
+                "branch",
+                "location",
+                "address",
+                "center",
+                "office"
+            ],
+            "answer": "Shital Academy has multiple branches. Please check the branch information or contact the academy to find the nearest branch.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "parking_facility",
             "category": "Facilities",
+            "priority": 82,
             "question": "Is parking available?",
             "keywords": [
                 "parking",
                 "vehicle",
-                "bike",
-                "car"
+                "bike parking",
+                "car parking"
             ],
-            "answer": "Please contact the respective branch for parking availability."
+            "answer": "Parking availability may vary by branch. Please contact your preferred branch for details.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "id": "age_limit",
-            "category": "Admissions",
-            "question": "Is there any age limit?",
+            "id": "computer_lab",
+            "category": "Facilities",
+            "priority": 91,
+            "question": "Do you have computer labs?",
             "keywords": [
-                "age",
-                "minimum age",
-                "maximum age"
+                "computer lab",
+                "lab",
+                "systems",
+                "computers"
             ],
-            "answer": "Most courses are open to learners of different age groups. Please contact the academy for course-specific eligibility."
+            "answer": "Computer-related courses include practical learning using the academy's lab facilities.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "id": "personal_attention",
-            "category": "Learning",
-            "question": "Do students receive individual attention?",
+            "id": "attendance",
+            "category": "Policies",
+            "priority": 87,
+            "question": "Is attendance compulsory?",
             "keywords": [
-                "personal attention",
-                "individual attention",
-                "one to one"
+                "attendance",
+                "present",
+                "minimum attendance"
             ],
-            "answer": "Yes. The academy follows a personalized teaching approach with individual attention."
+            "answer": "Attendance requirements may differ depending on the course. Please contact the academy for specific guidelines.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "id": "language",
-            "category": "Learning",
+            "id": "holiday_classes",
+            "category": "Policies",
+            "priority": 84,
+            "question": "Are classes conducted on public holidays?",
+            "keywords": [
+                "holiday",
+                "festival",
+                "public holiday",
+                "vacation"
+            ],
+            "answer": "Class schedules during holidays may vary. Please contact your branch for the latest schedule.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "leave_policy",
+            "category": "Policies",
+            "priority": 82,
+            "question": "Can I take leave during the course?",
+            "keywords": [
+                "leave",
+                "vacation",
+                "absence"
+            ],
+            "answer": "If you need leave, please inform your faculty or branch in advance whenever possible.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "language_of_instruction",
+            "category": "General",
+            "priority": 90,
             "question": "In which language are classes conducted?",
             "keywords": [
                 "language",
                 "english",
+                "hindi",
                 "gujarati",
-                "hindi"
+                "teaching language"
             ],
-            "answer": "Please contact the academy for the language of instruction for your selected course."
+            "answer": "The language of instruction may vary depending on the course and faculty. Please contact the academy for details.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "id": "holiday",
+            "id": "beginner_friendly",
             "category": "General",
-            "question": "What are the academy holidays?",
+            "priority": 89,
+            "question": "Are your courses suitable for beginners?",
             "keywords": [
-                "holiday",
-                "vacation",
-                "closed"
+                "beginner",
+                "no experience",
+                "new learner",
+                "freshers"
             ],
-            "answer": "Please contact your branch for the latest holiday schedule."
+            "answer": "Yes. Many courses are designed specifically for beginners and are taught step by step.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "working_professionals",
+            "category": "General",
+            "priority": 87,
+            "question": "Can working professionals join?",
+            "keywords": [
+                "working professional",
+                "office job",
+                "employee",
+                "working person"
+            ],
+            "answer": "Yes. Flexible batch timings are available for many courses to suit students and working professionals.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "course_duration",
+            "category": "Courses",
+            "priority": 93,
+            "question": "How long does a course take to complete?",
+            "keywords": [
+                "duration",
+                "course length",
+                "months",
+                "weeks",
+                "time"
+            ],
+            "answer": "Course duration varies depending on the selected course. Please refer to the course details or contact the academy.",
+            "follow_up": [
+                "Which course are you asking about?"
+            ],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "course_mode",
+            "category": "Courses",
+            "priority": 88,
+            "question": "Are all courses offline?",
+            "keywords": [
+                "offline",
+                "online",
+                "mode",
+                "class mode"
+            ],
+            "answer": "Most courses are offered through offline classroom training. Please contact the academy for course-specific availability.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "student_support",
+            "category": "Support",
+            "priority": 86,
+            "question": "Do students receive support during the course?",
+            "keywords": [
+                "support",
+                "help",
+                "guidance",
+                "mentor",
+                "assistance"
+            ],
+            "answer": "Yes. Faculty members provide guidance and support throughout the learning process.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "doubt_solving",
+            "category": "Support",
+            "priority": 84,
+            "question": "Can I ask doubts during the course?",
+            "keywords": [
+                "doubt",
+                "questions",
+                "clarification",
+                "help in class"
+            ],
+            "answer": "Yes. Students are encouraged to ask questions, and faculty members provide doubt-solving support.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "academy_services",
+            "category": "General",
+            "priority": 83,
+            "question": "What services does Shital Academy provide?",
+            "keywords": [
+                "services",
+                "training",
+                "courses",
+                "education"
+            ],
+            "answer": "Shital Academy offers career-oriented training programs, practical learning, experienced faculty, flexible batches, and personalized guidance across multiple courses.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }

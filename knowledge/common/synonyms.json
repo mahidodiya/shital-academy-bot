@@ -1,0 +1,232 @@
+{
+    "last_updated": "2026-08",
+    "version": "2.0",
+    "synonyms": {
+        "admission": [
+            "join",
+            "enroll",
+            "enrol",
+            "registration",
+            "register",
+            "apply",
+            "admission process",
+            "take admission",
+            "new admission"
+        ],
+        "course": [
+            "class",
+            "training",
+            "program",
+            "programming course",
+            "course",
+            "classes",
+            "learning"
+        ],
+        "fees": [
+            "fee",
+            "cost",
+            "price",
+            "charges",
+            "payment",
+            "tuition",
+            "course fee"
+        ],
+        "duration": [
+            "time",
+            "months",
+            "weeks",
+            "length",
+            "course duration",
+            "how long"
+        ],
+        "batch": [
+            "timing",
+            "schedule",
+            "class timing",
+            "slot",
+            "morning batch",
+            "evening batch",
+            "weekend batch"
+        ],
+        "faculty": [
+            "teacher",
+            "trainer",
+            "mentor",
+            "instructor",
+            "staff",
+            "sir",
+            "madam"
+        ],
+        "certificate": [
+            "certification",
+            "completion certificate",
+            "course certificate",
+            "completion"
+        ],
+        "placement": [
+            "job",
+            "jobs",
+            "career",
+            "employment",
+            "job assistance",
+            "placement support",
+            "interview support"
+        ],
+        "contact": [
+            "phone",
+            "mobile",
+            "number",
+            "call",
+            "email",
+            "mail",
+            "whatsapp"
+        ],
+        "branch": [
+            "branches",
+            "center",
+            "centre",
+            "office",
+            "location",
+            "address"
+        ],
+        "study_material": [
+            "notes",
+            "book",
+            "books",
+            "pdf",
+            "material",
+            "study notes",
+            "learning material"
+        ],
+        "practical": [
+            "hands on",
+            "practice",
+            "lab",
+            "practical training",
+            "real project"
+        ],
+        "beginner": [
+            "fresher",
+            "new learner",
+            "no experience",
+            "starting",
+            "basic"
+        ],
+        "online": [
+            "virtual",
+            "remote",
+            "internet class",
+            "online learning"
+        ],
+        "offline": [
+            "classroom",
+            "physical class",
+            "institute",
+            "center"
+        ],
+        "computer": [
+            "pc",
+            "desktop",
+            "system",
+            "computer basics"
+        ],
+        "python": [
+            "python programming",
+            "learn python",
+            "python course",
+            "python classes"
+        ],
+        "excel": [
+            "advanced excel",
+            "ms excel",
+            "excel course",
+            "microsoft excel"
+        ],
+        "tally": [
+            "tally prime",
+            "accounting software",
+            "gst tally"
+        ],
+        "ccc": [
+            "advanced ccc",
+            "computer basics",
+            "computer course"
+        ],
+        "web_development": [
+            "website development",
+            "web programming",
+            "full stack",
+            "frontend",
+            "backend",
+            "php",
+            "javascript"
+        ],
+        "web_designing": [
+            "web design",
+            "website design",
+            "ui",
+            "html",
+            "css"
+        ],
+        "data_analytics": [
+            "data analysis",
+            "data analyst",
+            "analytics",
+            "business analytics",
+            "power bi",
+            "sql"
+        ],
+        "spoken_english": [
+            "english speaking",
+            "spoken english",
+            "communication english",
+            "english communication"
+        ],
+        "foundation_english": [
+            "basic english",
+            "beginner english",
+            "english basics"
+        ],
+        "rapido_english": [
+            "rapid english",
+            "fast english",
+            "quick english"
+        ],
+        "ielts": [
+            "ielts preparation",
+            "ielts coaching",
+            "ielts training",
+            "study abroad english"
+        ],
+        "yes": [
+            "yeah",
+            "yup",
+            "sure",
+            "okay",
+            "ok",
+            "alright",
+            "of course"
+        ],
+        "no": [
+            "nope",
+            "not",
+            "never"
+        ],
+        "thanks": [
+            "thank you",
+            "thanks",
+            "thx",
+            "ty",
+            "thankyou"
+        ],
+        "greeting": [
+            "hi",
+            "hello",
+            "hey",
+            "namaste",
+            "kem cho",
+            "good morning",
+            "good evening"
+        ]
+    }
+}
