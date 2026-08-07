@@ -46,7 +46,6 @@
             "priority": 97,
             "keywords": [
                 "help",
-                "support",
                 "assist",
                 "guide me",
                 "need help"
@@ -56,13 +55,13 @@
             "id": "course_info",
             "priority": 95,
             "keywords": [
-                "course",
-                "courses",
                 "information",
                 "details",
-                "syllabus",
                 "overview",
-                "learn"
+                "about course",
+                "course overview",
+                "tell me about the course",
+                "course description"
             ]
         },
         {
@@ -96,7 +95,8 @@
                 "qualification",
                 "who can join",
                 "requirements",
-                "criteria"
+                "criteria",
+                "eligible"
             ]
         },
         {
@@ -116,7 +116,11 @@
                 "job",
                 "career",
                 "interview",
-                "employment"
+                "employment",
+                "placement",
+                "placement support",
+                "job assistance",
+                "career support"
             ]
         },
         {
@@ -124,7 +128,6 @@
             "priority": 96,
             "keywords": [
                 "admission",
-                "join",
                 "enroll",
                 "registration",
                 "apply"
@@ -272,6 +275,32 @@
             "id": "fallback",
             "priority": 0,
             "keywords": []
+        },
+        {
+            "id": "course_modules",
+            "priority": 93,
+            "keywords": [
+                "topics",
+                "topics covered",
+                "modules",
+                "curriculum",
+                "syllabus",
+                "course content",
+                "what will i learn"
+            ]
+        },
+        {
+            "id": "learning_outcomes",
+            "priority": 94,
+            "keywords": [
+                "what will i learn",
+                "what do i learn",
+                "what can i learn",
+                "learning outcomes",
+                "skills",
+                "gain skills",
+                "after course"
+            ]
         }
     ]
 }
