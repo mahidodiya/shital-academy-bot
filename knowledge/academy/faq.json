@@ -63,7 +63,7 @@
                 "qualification",
                 "who can join"
             ],
-            "answer": "Eligibility depends on the selected course. Please refer to the course details or contact the academy.",
+            "answer": "Eligibility depends on the selected course.",
             "follow_up": [
                 "Which course are you interested in?"
             ],
@@ -79,7 +79,7 @@
                 "minimum age",
                 "maximum age"
             ],
-            "answer": "Most courses are open to learners of different age groups. Please contact the academy for course-specific eligibility.",
+            "answer": "Most courses are open to learners of different age groups.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -93,7 +93,7 @@
                 "new admission",
                 "enrollment"
             ],
-            "answer": "Admissions depend on course and batch availability. Please contact the academy for current admission status.",
+            "answer": "Yes, Admissions are open. It depend on course and batch availability.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -106,22 +106,23 @@
                 "join anytime",
                 "late admission"
             ],
-            "answer": "Joining depends on the availability of batches. Please contact the academy for confirmation.",
+            "answer": "Joining depends on the availability of batches.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
         {
             "id": "demo_class",
-            "category": "Admissions",
+            "category": "demo_class",
             "priority": 86,
             "question": "Do you provide demo classes?",
             "keywords": [
                 "demo",
                 "trial",
                 "sample class",
-                "free demo"
+                "free demo",
+                "demo class"
             ],
-            "answer": "Please contact the academy to know whether demo classes are available for your selected course.",
+            "answer": "demo classes are avaliable based on your selected course.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -151,7 +152,7 @@
                 "cost",
                 "charges"
             ],
-            "answer": "Course fees vary depending on the selected course. Please contact the academy for the latest fee details.",
+            "answer": "Course fees vary depending on the selected course.Our fess range from 6,500 to 25,000.",
             "follow_up": [
                 "Which course are you asking about?"
             ],
@@ -213,7 +214,7 @@
                 "cancel admission",
                 "money back"
             ],
-            "answer": "Please contact the academy for the latest refund policy.",
+            "answer": "No refund policy:Once payment is made,it cannot be refunded.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -244,7 +245,7 @@
                 "evening",
                 "class timing"
             ],
-            "answer": "Flexible batch timings are available for most courses. Please contact the academy for the latest batch schedule.",
+            "answer": "Flexible batch timings are available.from 7:00 a.m. to 8:00 p.m.",
             "follow_up": [
                 "Which course are you interested in?"
             ],
@@ -261,7 +262,7 @@
                 "sunday",
                 "weekend classes"
             ],
-            "answer": "Weekend batches may be available depending on the course and branch. Please contact the academy for the latest schedule.",
+            "answer": "Weekend batches may be available depending on the course and branch.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -304,7 +305,7 @@
                 "batch transfer",
                 "shift batch"
             ],
-            "answer": "Batch changes depend on seat availability and academy policy. Please contact your branch for assistance.",
+            "answer": "Batch changes depend on seat availability and academy policy.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -393,7 +394,7 @@
                 "completion certificate",
                 "course certificate"
             ],
-            "answer": "Certificate availability depends on the selected course. Please contact the academy for course-specific information.",
+            "answer": "Certificate availability depends on the selected course.",
             "follow_up": [
                 "Which course are you asking about?"
             ],
@@ -410,7 +411,7 @@
                 "career support",
                 "job assistance"
             ],
-            "answer": "Placement support depends on the selected course. Please contact the academy for the latest information.",
+            "answer": "Placement support depends on the selected course.",
             "follow_up": [
                 "Which course are you interested in?"
             ],
@@ -473,7 +474,7 @@
                 "reach",
                 "call"
             ],
-            "answer": "You can contact Shital Academy using the phone numbers, email address, or by visiting your nearest branch. Please refer to the contact information provided by the academy.",
+            "answer": "You can contact Shital Academy using the phone numbers, email address, or by visiting your nearest branch.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -533,7 +534,7 @@
                 "present",
                 "minimum attendance"
             ],
-            "answer": "Attendance requirements may differ depending on the course. Please contact the academy for specific guidelines.",
+            "answer": "Attendance requirements may differ depending on the course.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -548,7 +549,7 @@
                 "public holiday",
                 "vacation"
             ],
-            "answer": "Class schedules during holidays may vary. Please contact your branch for the latest schedule.",
+            "answer": "Class schedules during holidays may vary.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -578,7 +579,7 @@
                 "gujarati",
                 "teaching language"
             ],
-            "answer": "The language of instruction may vary depending on the course and faculty. Please contact the academy for details.",
+            "answer": "The language of instruction may vary depending on the course and faculty.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -624,7 +625,7 @@
                 "weeks",
                 "time"
             ],
-            "answer": "Course duration varies depending on the selected course. Please refer to the course details or contact the academy.",
+            "answer": "Course duration varies depending on the selected course.",
             "follow_up": [
                 "Which course are you asking about?"
             ],
@@ -641,7 +642,7 @@
                 "mode",
                 "class mode"
             ],
-            "answer": "Most courses are offered through offline classroom training. Please contact the academy for course-specific availability.",
+            "answer": "Most courses are offered through offline classroom training.",
             "follow_up": [],
             "last_verified": "2026-08"
         },

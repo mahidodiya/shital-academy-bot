@@ -301,6 +301,19 @@
                 "gain skills",
                 "after course"
             ]
+        },
+        {
+            "id": "demo_class",
+            "priority": 93,
+            "keywords": [
+                "demo",
+                "demo class",
+                "demo classes",
+                "trial class",
+                "sample class",
+                "free demo",
+                "demo session"
+            ]
         }
     ]
 }
