@@ -88,18 +88,6 @@
             ]
         },
         {
-            "id": "course_eligibility",
-            "priority": 93,
-            "keywords": [
-                "eligibility",
-                "qualification",
-                "who can join",
-                "requirements",
-                "criteria",
-                "eligible"
-            ]
-        },
-        {
             "id": "course_certificate",
             "priority": 92,
             "keywords": [
@@ -313,6 +301,30 @@
                 "sample class",
                 "free demo",
                 "demo session"
+            ]
+        },
+        {
+            "id": "course_eligibility",
+            "priority": 94,
+            "keywords": [
+                "eligibility",
+                "qualification",
+                "who can join",
+                "requirements",
+                "criteria",
+                "eligible"
+            ]
+        },
+        {
+            "id": "beginner_friendly",
+            "priority": 94,
+            "keywords": [
+                "beginner",
+                "beginners",
+                "suitable for beginners",
+                "good for beginners",
+                "can beginners join",
+                "is this suitable for beginners"
             ]
         }
     ]

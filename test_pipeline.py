@@ -10,14 +10,21 @@ from logics.response_builder import build_response
 
 TEST_MESSAGES = [
 
-    "Who can join?",
-    "How can I take admission?",
-    "What are the fees?",
-    "Can I pay fees in installments?",
-    "Do you provide demo classes?",
-    "Is placement available?",
-    "What is the duration?",
-    "Do you provide certificate?"
+    "Tell me about Python",
+    "What are the fees for Python?",
+    "What is the duration of Python?",
+    "Who can join Python?",
+    "Does Python course provide a certificate?",
+    "What will I learn in Python?",
+
+    "Tell me about Advanced Excel",
+    "What are the fees for Advanced Excel?",
+
+    "What will I learn in IELTS?",
+    "Who can join IELTS?",
+
+    "I want to learn web development",
+    "Is web development suitable for beginners?"
 ]
 
 
@@ -62,15 +69,20 @@ def process_message(message):
     # something that should be answered by an FAQ.
 
     FAQ_INTENTS = {
-        "admission",
-        "course_eligibility",
-        "course_certificate",
-        "placement",
-        "course_fees",
-        "course_duration",
-        "course_modules",
-        "recommendation",
+            "admission",
+            "placement",
+            "recommendation",
+            "course_info",
+            "academy_info",
+            "contact",
+            "help",
+            "demo_class",
     }
+    
+    # -----------------------------------------------------
+    # Search academy FAQ only when course data should NOT
+    # be the primary source.
+    # -----------------------------------------------------
 
     if intent in FAQ_INTENTS:
 

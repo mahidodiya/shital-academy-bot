@@ -590,9 +590,14 @@
             "question": "Are your courses suitable for beginners?",
             "keywords": [
                 "beginner",
+                "beginners",
                 "no experience",
                 "new learner",
-                "freshers"
+                "freshers",
+                "suitable for beginners",
+                "good for beginners",
+                "can beginners join",
+                "is this suitable for beginners"
             ],
             "answer": "Yes. Many courses are designed specifically for beginners and are taught step by step.",
             "follow_up": [],

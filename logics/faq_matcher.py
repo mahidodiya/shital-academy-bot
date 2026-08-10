@@ -67,7 +67,7 @@ FAQ_INTENTS = {
     "leave_policy": "academy_info",
 
     "language_of_instruction": "academy_info",
-    "beginner_friendly": "course_eligibility",
+    "beginner_friendly": "beginner_friendly",
     "working_professionals": "course_eligibility",
 
     "course_duration": "course_duration",
@@ -114,7 +114,6 @@ def _calculate_score(query, candidate):
 # =========================================================
 # Find Best FAQ
 # =========================================================
-
 def _find_best_match(query, faqs, intent=None):
     """
     Search FAQ list and return the best matching FAQ.
@@ -132,7 +131,6 @@ def _find_best_match(query, faqs, intent=None):
     for faq in faqs:
 
         faq_id = faq.get("id")
-
         priority = faq.get("priority", 0)
 
         faq_intent = FAQ_INTENTS.get(faq_id)
@@ -166,7 +164,7 @@ def _find_best_match(query, faqs, intent=None):
         # Exact question
         if query == question:
 
-            score = 100
+            score = 120
 
         # Question contained in user text
         elif re.search(
@@ -174,7 +172,7 @@ def _find_best_match(query, faqs, intent=None):
             query
         ):
 
-            score = 99
+            score = 115
 
         else:
 
@@ -185,7 +183,9 @@ def _find_best_match(query, faqs, intent=None):
 
             score -= 5
 
-        final_score = min(100,score + intent_bonus)
+        # IMPORTANT:
+        # Do NOT cap this score at 100.
+        final_score = score + intent_bonus
 
         # -------------------------------------------------
         # Update best question match
@@ -231,7 +231,7 @@ def _find_best_match(query, faqs, intent=None):
 
                 score -= 2
 
-            final_score = min(100,score + intent_bonus)
+            final_score = score + intent_bonus
 
             if (
                 final_score > best_score
@@ -250,11 +250,9 @@ def _find_best_match(query, faqs, intent=None):
     # -----------------------------------------------------
 
     if best_score < MIN_CONFIDENCE:
-        return None, best_score
+        return None, min(100, best_score)
 
-    return best_faq, best_score
-
-
+    return best_faq, min(100, best_score)
 # =========================================================
 # Academy FAQ
 # =========================================================

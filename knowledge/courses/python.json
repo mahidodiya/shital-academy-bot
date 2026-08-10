@@ -44,7 +44,7 @@
     "teaching_methodology": "Personalized teaching with practical coding sessions, individual attention, and hands-on exercises.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
-    "certificate": "",
+    "certificate": "Yes. Students receive a certificate after successfully completing the Python Programming course.",
     "placement_support": "",
     "programming_language": [
         "Python"
@@ -96,7 +96,7 @@
         },
         {
             "question": "Do I need prior programming knowledge?",
-            "answer": "No official prerequisite has been specified. Please contact the academy for guidance based on your background."
+            "answer": "No official prerequisite has been specified."
         },
         {
             "question": "Is this course suitable for beginners?",
@@ -113,10 +113,6 @@
         {
             "question": "Do you provide study material?",
             "answer": "Yes. Comprehensive study material is provided according to the course requirements."
-        },
-        {
-            "question": "How can I know the course duration and fees?",
-            "answer": "The duration and fees vary depending on the course. Please contact the academy for the latest details."
         }
     ]
 }

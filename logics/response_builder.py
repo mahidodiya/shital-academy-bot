@@ -45,7 +45,11 @@ def build_response(
         # Course Information
         # -----------------------------------------------------
 
-        if intent == "course_info":
+        if intent in {
+            "course_info",
+            "computer_course",
+            "english_course"
+        }:
 
             description = course.get("description")
 
@@ -160,6 +164,24 @@ def build_response(
             if certificate:
                 return certificate
 
+            # If course has no certificate information,
+            # check the course FAQ.
+            faqs = course.get("faqs", [])
+
+            for item in faqs:
+
+                question = item.get(
+                    "question",
+                    ""
+                ).lower()
+
+                if "certificate" in question:
+
+                    answer = item.get("answer")
+
+                    if answer:
+                        return answer
+
         # -----------------------------------------------------
         # Course Modules
         # -----------------------------------------------------
@@ -188,6 +210,105 @@ def build_response(
                     f"{course_name}:\n\n"
                     f"{modules}"
                 )
+
+        # -----------------------------------------------------
+        # Learning Outcomes
+        # -----------------------------------------------------
+
+        if intent == "learning_outcomes":
+
+            outcomes = course.get("learning_outcomes")
+
+            if outcomes:
+
+                if isinstance(outcomes, list):
+
+                    outcome_text = "\n".join(
+                        f"• {outcome}"
+                        for outcome in outcomes
+                    )
+
+                    return (
+                        f"What you will learn in "
+                        f"{course_name}:\n\n"
+                        f"{outcome_text}"
+                    )
+
+                return (
+                    f"What you will learn in "
+                    f"{course_name}:\n\n"
+                    f"{outcomes}"
+                )
+
+        # -----------------------------------------------------
+        # Beginner Friendly
+        # -----------------------------------------------------
+
+        if intent == "beginner_friendly":
+
+            # First check course-specific FAQs
+            faqs = course.get("faqs", [])
+
+            for item in faqs:
+
+                question = item.get(
+                    "question",
+                    ""
+                ).lower()
+
+                if (
+                    "beginner" in question
+                    or "suitable for beginners" in question
+                ):
+
+                    answer = item.get("answer")
+
+                    if answer:
+                        return answer
+
+            # Check recommended audience
+            recommended_for = course.get(
+                "recommended_for",
+                []
+            )
+
+            if isinstance(recommended_for, list):
+
+                beginner_found = any(
+                    "beginner" in str(item).lower()
+                    for item in recommended_for
+                )
+
+                if beginner_found:
+                    return (
+                        f"Yes. {course_name} is suitable "
+                        f"for beginners."
+                    )
+
+            # Check target audience
+            target_audience = course.get(
+                "target_audience",
+                []
+            )
+
+            if isinstance(target_audience, list):
+
+                beginner_found = any(
+                    "beginner" in str(item).lower()
+                    for item in target_audience
+                )
+
+                if beginner_found:
+                    return (
+                        f"Yes. {course_name} is suitable "
+                        f"for beginners."
+                    )
+
+            # Final fallback
+            return (
+                f"Yes. {course_name} is suitable "
+                f"for beginners."
+            )
 
     # =========================================================
     # 3. GENERAL KNOWLEDGE
