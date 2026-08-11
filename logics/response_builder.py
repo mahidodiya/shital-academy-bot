@@ -1,54 +1,81 @@
 """
 response_builder.py
 
-Builds final chatbot responses from structured knowledge.
+Builds final chatbot responses using the following priority:
+
+1. Course structured data
+2. Course FAQ
+3. Academy FAQ
+4. General knowledge
+5. Nothing found
 """
+
+
+def _build_faq_response(faq):
+    """
+    Build a response from a matched FAQ.
+    """
+
+    if not faq:
+        return None
+
+    answer = faq.get("answer")
+
+    if not answer:
+        return None
+
+    response = answer
+
+    follow_up = faq.get("follow_up", [])
+
+    if follow_up:
+        response += f"\n\n{follow_up[0]}"
+
+    return response
 
 
 def build_response(
     intent=None,
     course=None,
-    faq=None,
+    course_faq=None,
+    academy_faq=None,
     knowledge=None,
 ):
     """
-    Build the final response using FAQ, course,
-    or general knowledge.
+    Build the final chatbot response.
+
+    Priority:
+
+    Course detected:
+        1. Structured course data
+        2. Course FAQ
+        3. Academy FAQ
+        4. General knowledge
+
+    No course detected:
+        1. Academy FAQ
+        2. General knowledge
     """
 
-    # =========================================================
-    # 1. FAQ RESPONSE
-    # =========================================================
-
-    if faq:
-        answer = faq.get("answer")
-
-        if answer:
-            response = answer
-
-            follow_up = faq.get("follow_up", [])
-
-            if follow_up:
-                response += f"\n\n{follow_up[0]}"
-
-            return response
-
-    # =========================================================
-    # 2. COURSE RESPONSE
-    # =========================================================
+    # =====================================================
+    # 1. COURSE DETECTED
+    # =====================================================
 
     if course:
 
-        course_name = course.get("name", "this course")
+        course_name = course.get(
+            "name",
+            "this course"
+        )
 
-        # -----------------------------------------------------
+        # -------------------------------------------------
         # Course Information
-        # -----------------------------------------------------
+        # -------------------------------------------------
 
         if intent in {
             "course_info",
             "computer_course",
-            "english_course"
+            "english_course",
         }:
 
             description = course.get("description")
@@ -59,9 +86,9 @@ def build_response(
                     f"{description}"
                 )
 
-        # -----------------------------------------------------
+        # -------------------------------------------------
         # Course Duration
-        # -----------------------------------------------------
+        # -------------------------------------------------
 
         if intent == "course_duration":
 
@@ -82,14 +109,15 @@ def build_response(
                     return note
 
             elif duration:
+
                 return (
                     f"The duration of {course_name} "
                     f"is {duration}."
                 )
 
-        # -----------------------------------------------------
+        # -------------------------------------------------
         # Course Fees
-        # -----------------------------------------------------
+        # -------------------------------------------------
 
         if intent == "course_fees":
 
@@ -101,6 +129,7 @@ def build_response(
                 note = fees.get("note")
 
                 if fee_range:
+
                     if note:
                         return (
                             f"The fees for {course_name} "
@@ -117,14 +146,15 @@ def build_response(
                     return note
 
             elif fees:
+
                 return (
                     f"The fees for {course_name} "
                     f"are {fees}."
                 )
 
-        # -----------------------------------------------------
-        # Eligibility
-        # -----------------------------------------------------
+        # -------------------------------------------------
+        # Course Eligibility
+        # -------------------------------------------------
 
         if intent == "course_eligibility":
 
@@ -153,9 +183,9 @@ def build_response(
                     f"{eligibility}"
                 )
 
-        # -----------------------------------------------------
+        # -------------------------------------------------
         # Certificate
-        # -----------------------------------------------------
+        # -------------------------------------------------
 
         if intent == "course_certificate":
 
@@ -164,27 +194,9 @@ def build_response(
             if certificate:
                 return certificate
 
-            # If course has no certificate information,
-            # check the course FAQ.
-            faqs = course.get("faqs", [])
-
-            for item in faqs:
-
-                question = item.get(
-                    "question",
-                    ""
-                ).lower()
-
-                if "certificate" in question:
-
-                    answer = item.get("answer")
-
-                    if answer:
-                        return answer
-
-        # -----------------------------------------------------
+        # -------------------------------------------------
         # Course Modules
-        # -----------------------------------------------------
+        # -------------------------------------------------
 
         if intent == "course_modules":
 
@@ -211,13 +223,15 @@ def build_response(
                     f"{modules}"
                 )
 
-        # -----------------------------------------------------
+        # -------------------------------------------------
         # Learning Outcomes
-        # -----------------------------------------------------
+        # -------------------------------------------------
 
         if intent == "learning_outcomes":
 
-            outcomes = course.get("learning_outcomes")
+            outcomes = course.get(
+                "learning_outcomes"
+            )
 
             if outcomes:
 
@@ -240,39 +254,21 @@ def build_response(
                     f"{outcomes}"
                 )
 
-        # -----------------------------------------------------
+        # -------------------------------------------------
         # Beginner Friendly
-        # -----------------------------------------------------
+        # -------------------------------------------------
 
         if intent == "beginner_friendly":
 
-            # First check course-specific FAQs
-            faqs = course.get("faqs", [])
-
-            for item in faqs:
-
-                question = item.get(
-                    "question",
-                    ""
-                ).lower()
-
-                if (
-                    "beginner" in question
-                    or "suitable for beginners" in question
-                ):
-
-                    answer = item.get("answer")
-
-                    if answer:
-                        return answer
-
-            # Check recommended audience
             recommended_for = course.get(
                 "recommended_for",
                 []
             )
 
-            if isinstance(recommended_for, list):
+            if isinstance(
+                recommended_for,
+                list
+            ):
 
                 beginner_found = any(
                     "beginner" in str(item).lower()
@@ -281,17 +277,19 @@ def build_response(
 
                 if beginner_found:
                     return (
-                        f"Yes. {course_name} is suitable "
-                        f"for beginners."
+                        f"Yes. {course_name} is "
+                        f"suitable for beginners."
                     )
 
-            # Check target audience
             target_audience = course.get(
                 "target_audience",
                 []
             )
 
-            if isinstance(target_audience, list):
+            if isinstance(
+                target_audience,
+                list
+            ):
 
                 beginner_found = any(
                     "beginner" in str(item).lower()
@@ -300,19 +298,52 @@ def build_response(
 
                 if beginner_found:
                     return (
-                        f"Yes. {course_name} is suitable "
-                        f"for beginners."
+                        f"Yes. {course_name} is "
+                        f"suitable for beginners."
                     )
 
-            # Final fallback
-            return (
-                f"Yes. {course_name} is suitable "
-                f"for beginners."
-            )
+        # -------------------------------------------------
+        # COURSE FAQ FALLBACK
+        # -------------------------------------------------
 
-    # =========================================================
+        response = _build_faq_response(
+            course_faq
+        )
+
+        if response:
+            return response
+
+        # -------------------------------------------------
+        # ACADEMY FAQ FALLBACK
+        # -------------------------------------------------
+
+        response = _build_faq_response(
+            academy_faq
+        )
+
+        if response:
+            return response
+
+    # =====================================================
+    # 2. NO COURSE DETECTED
+    # =====================================================
+
+    else:
+
+        # -------------------------------------------------
+        # Academy FAQ
+        # -------------------------------------------------
+
+        response = _build_faq_response(
+            academy_faq
+        )
+
+        if response:
+            return response
+
+    # =====================================================
     # 3. GENERAL KNOWLEDGE
-    # =========================================================
+    # =====================================================
 
     if knowledge:
 
@@ -326,8 +357,9 @@ def build_response(
             if answer:
                 return answer
 
-    # =========================================================
+    # =====================================================
     # 4. NOTHING FOUND
-    # =========================================================
+    # =====================================================
 
     return None
+

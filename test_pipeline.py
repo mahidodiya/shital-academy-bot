@@ -1,30 +1,28 @@
 from logics.intent_detector import detect_intent
 from logics.course_detector import detect_course
-from logics.faq_matcher import search_faq
 from logics.response_builder import build_response
-
-
+from logics.faq_matcher import (
+    search_course_faq,
+    search_academy_faq
+)
 # =========================================================
 # End-to-End Pipeline Test
 # =========================================================
 
 TEST_MESSAGES = [
 
-    "Tell me about Python",
+    "Who can join?",
+    "How can I take admission?",
+    "What are the fees?",
+    "Can I pay fees in installments?",
+    "Do you provide demo classes?",
+    "Is placement available?",
+    "What is the duration?",
+    "Do you provide certificate?",
     "What are the fees for Python?",
     "What is the duration of Python?",
-    "Who can join Python?",
-    "Does Python course provide a certificate?",
-    "What will I learn in Python?",
-
-    "Tell me about Advanced Excel",
-    "What are the fees for Advanced Excel?",
-
-    "What will I learn in IELTS?",
-    "Who can join IELTS?",
-
-    "I want to learn web development",
-    "Is web development suitable for beginners?"
+    "Does Python provide a certificate?",
+    "Is Python suitable for beginners?"
 ]
 
 
@@ -61,36 +59,31 @@ def process_message(message):
     # -----------------------------------------------------
     # 4. FAQ search
     # -----------------------------------------------------
+    course_faq = None
+    course_faq_score = 0
 
-    faq = None
-    faq_score = 0
-
-    # Only search FAQ when the intent is actually
-    # something that should be answered by an FAQ.
-
-    FAQ_INTENTS = {
-            "admission",
-            "placement",
-            "recommendation",
-            "course_info",
-            "academy_info",
-            "contact",
-            "help",
-            "demo_class",
-    }
-    
+    academy_faq = None
+    academy_faq_score = 0 
     # -----------------------------------------------------
-    # Search academy FAQ only when course data should NOT
-    # be the primary source.
+    # Course FAQ
     # -----------------------------------------------------
 
-    if intent in FAQ_INTENTS:
+    if course_id:
 
-        faq, faq_score = search_faq(
-            message,
+        course_faq, course_faq_score = search_course_faq(
             course_id,
+            message,
             intent
         )
+
+    # -----------------------------------------------------
+    # Academy FAQ
+    # -----------------------------------------------------
+
+    academy_faq, academy_faq_score = search_academy_faq(
+        message,
+        intent
+    )
 
     # -----------------------------------------------------
     # 5. Build response
@@ -99,17 +92,34 @@ def process_message(message):
     response = build_response(
         intent=intent,
         course=course,
-        faq=faq,
+        course_faq=course_faq,
+        academy_faq=academy_faq,
         knowledge=knowledge
     )
 
     return {
         "intent": intent,
         "intent_score": intent_score,
+
         "course": course_id,
         "course_score": course_score,
-        "faq": faq.get("id") if faq else None,
-        "faq_score": faq_score,
+
+        "course_faq": (
+            course_faq.get("id")
+            if course_faq
+            else None
+        ),
+
+        "course_faq_score": course_faq_score,
+
+        "academy_faq": (
+            academy_faq.get("id")
+            if academy_faq
+            else None
+        ),
+
+        "academy_faq_score": academy_faq_score,
+
         "response": response
     }
 
@@ -131,7 +141,16 @@ for message in TEST_MESSAGES:
 
     print(f"INTENT : {result['intent']} ({result['intent_score']:.2f})")
     print(f"COURSE : {result['course']} ({result['course_score']:.2f})")
-    print(f"FAQ    : {result['faq']} ({result['faq_score']:.2f})")
+    print(
+        f"COURSE FAQ : "
+        f"{result['course_faq']} "
+        f"({result['course_faq_score']:.2f})"
+    )
 
+    print(
+        f"ACADEMY FAQ: "
+        f"{result['academy_faq']} "
+        f"({result['academy_faq_score']:.2f})"
+    )
     print("\nBOT:")
     print(result["response"])

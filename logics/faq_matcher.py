@@ -3,7 +3,6 @@ import re
 
 from knowledge_loader import get_knowledge
 
-
 KNOWLEDGE = get_knowledge()
 
 ACADEMY_FAQS = KNOWLEDGE["academy"]["faq"]["faqs"]
@@ -114,15 +113,118 @@ def _calculate_score(query, candidate):
 # =========================================================
 # Find Best FAQ
 # =========================================================
+
 def _find_best_match(query, faqs, intent=None):
     """
     Search FAQ list and return the best matching FAQ.
 
-    If an intent is supplied, FAQs belonging to that intent
-    receive a strong preference.
+    Uses:
+    1. Detected intent
+    2. FAQ-specific keywords
+    3. FAQ question similarity
+    4. FAQ priority
     """
 
     query = _normalize(query)
+
+    # -----------------------------------------------------
+    # Intent → FAQ → keywords
+    # -----------------------------------------------------
+
+    intent_keywords = {
+
+        "course_fees": {
+            "fees_information": [
+                "fee", "fees", "price", "cost", "charges"
+            ],
+            "installment_payment": [
+                "installment", "installments", "emi",
+                "monthly payment", "partial payment"
+            ],
+            "payment_methods": [
+                "payment", "cash", "upi", "card",
+                "bank transfer"
+            ],
+            "discounts": [
+                "discount", "offer", "scholarship",
+                "concession"
+            ],
+            "refund_policy": [
+                "refund", "cancel", "money back"
+            ],
+            "fee_receipt": [
+                "receipt", "invoice", "payment proof"
+            ],
+        },
+
+        "course_duration": {
+            "course_duration": [
+                "duration", "how long", "months",
+                "weeks", "time"
+            ],
+        },
+
+        "course_certificate": {
+            "certificate": [
+                "certificate", "certification"
+            ],
+        },
+
+        "course_eligibility": {
+            "eligibility": [
+                "eligibility", "qualification",
+                "who can join"
+            ],
+            "beginner_friendly": [
+                "beginner", "beginners",
+                "no experience"
+            ],
+            "working_professionals": [
+                "working professional",
+                "employee"
+            ],
+        },
+
+        "admission": {
+            "admission_process": [
+                "admission", "join", "enroll",
+                "registration", "apply"
+            ],
+            "documents_required": [
+                "documents", "id proof", "photo"
+            ],
+            "admission_open": [
+                "admission open", "enrollment"
+            ],
+            "join_anytime": [
+                "join anytime", "late admission"
+            ],
+            "registration_process": [
+                "register", "registration",
+                "enrollment"
+            ],
+        },
+
+        "demo_class": {
+            "demo_class": [
+                "demo", "trial", "sample class"
+            ],
+        },
+
+        "placement": {
+            "placement_support": [
+                "placement", "job", "career"
+            ],
+            "internship": [
+                "internship",
+                "industrial training"
+            ],
+        },
+    }
+
+    # -----------------------------------------------------
+    # Find best FAQ
+    # -----------------------------------------------------
 
     best_faq = None
     best_score = 0
@@ -143,12 +245,41 @@ def _find_best_match(query, faqs, intent=None):
 
         if intent:
 
-            # Ignore FAQs belonging to another intent
-            if faq_intent and faq_intent != intent:
-                continue
+            # If FAQ has a mapped intent,
+            # only allow matching intent.
+            if faq_intent:
 
-            if faq_intent == intent:
+                if faq_intent != intent:
+                    continue
+
                 intent_bonus = 20
+
+        # -------------------------------------------------
+        # FAQ-specific keyword bonus
+        # -------------------------------------------------
+
+        faq_keyword_bonus = 0
+
+        if intent in intent_keywords:
+
+            faq_keywords = intent_keywords[intent].get(
+                faq_id,
+                []
+            )
+
+            for keyword in faq_keywords:
+
+                keyword = _normalize(keyword)
+
+                if not keyword:
+                    continue
+
+                if re.search(
+                    r"\b" + re.escape(keyword) + r"\b",
+                    query
+                ):
+                    faq_keyword_bonus = 40
+                    break
 
         # -------------------------------------------------
         # Question
@@ -166,7 +297,7 @@ def _find_best_match(query, faqs, intent=None):
 
             score = 120
 
-        # Question contained in user text
+        # Complete FAQ question inside query
         elif re.search(
             r"\b" + re.escape(question) + r"\b",
             query
@@ -183,12 +314,14 @@ def _find_best_match(query, faqs, intent=None):
 
             score -= 5
 
-        # IMPORTANT:
-        # Do NOT cap this score at 100.
-        final_score = score + intent_bonus
+        final_score = (
+            score
+            + intent_bonus
+            + faq_keyword_bonus
+        )
 
         # -------------------------------------------------
-        # Update best question match
+        # Question score
         # -------------------------------------------------
 
         if (
@@ -204,7 +337,7 @@ def _find_best_match(query, faqs, intent=None):
             best_faq = faq
 
         # -------------------------------------------------
-        # Keywords
+        # FAQ keywords
         # -------------------------------------------------
 
         for keyword in faq.get("keywords", []):
@@ -231,7 +364,11 @@ def _find_best_match(query, faqs, intent=None):
 
                 score -= 2
 
-            final_score = score + intent_bonus
+            final_score = (
+                score
+                + intent_bonus
+                + faq_keyword_bonus
+            )
 
             if (
                 final_score > best_score
@@ -298,7 +435,7 @@ def search_faq(query, course_id=None, intent=None):
     Search course FAQ first when a course is detected,
     then academy FAQ.
 
-    Intent is used to prevent unrelated FAQs from winning.
+    Course-specific FAQs have priority over academy FAQs.
     """
 
     # -----------------------------------------------------

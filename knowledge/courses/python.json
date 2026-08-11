@@ -31,10 +31,10 @@
     "prerequisites": "No official prerequisites specified.",
     "duration": {
         "value": "",
-        "note": "Course duration varies. Please contact the academy for details."
+        "note": "python,Course duration varies. Please contact the academy for details."
     },
     "fees": {
-        "range": "Varies by course",
+        "range": "Varies by course,python",
         "note": "Please contact the academy for the latest fee details."
     },
     "mode": [
@@ -44,7 +44,7 @@
     "teaching_methodology": "Personalized teaching with practical coding sessions, individual attention, and hands-on exercises.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
-    "certificate": "Yes. Students receive a certificate after successfully completing the Python Programming course.",
+    "certificate": "Yes. Students receive a certificate after successfully completing the Python Programming course.xoxo",
     "placement_support": "",
     "programming_language": [
         "Python"
@@ -91,16 +91,39 @@
     ],
     "faqs": [
         {
+            "id": "python_eligibility",
+            "category": "Course",
+            "priority": 95,
             "question": "Who can join the Python Programming course?",
-            "answer": "Students, beginners, engineering students, job seekers, and working professionals interested in programming can join."
+            "keywords": [
+                "who can join",
+                "eligibility",
+                "beginner",
+                "students",
+                "working professionals"
+            ],
+            "answer": "Students, beginners, engineering students, job seekers, and working professionals interested in programming can join.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
             "question": "Do I need prior programming knowledge?",
             "answer": "No official prerequisite has been specified."
         },
         {
+            "id": "python_beginner_friendly",
+            "category": "Course",
+            "priority": 94,
             "question": "Is this course suitable for beginners?",
-            "answer": "Yes. The course is suitable for beginners who want to learn Python programming."
+            "keywords": [
+                "beginner",
+                "beginners",
+                "no experience",
+                "suitable for beginners"
+            ],
+            "answer": "Yes. The course is suitable for beginners who want to learn Python programming.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
             "question": "Is practical coding included?",
