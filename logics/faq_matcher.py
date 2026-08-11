@@ -406,7 +406,6 @@ def search_academy_faq(query, intent=None):
 # =========================================================
 # Course FAQ
 # =========================================================
-
 def search_course_faq(course_id, query, intent=None):
 
     course = COURSES.get(course_id)
@@ -419,12 +418,90 @@ def search_course_faq(course_id, query, intent=None):
     if not faqs:
         return None, 0
 
-    return _find_best_match(
-        query,
-        faqs,
-        intent
-    )
+    query = _normalize(query)
 
+    best_faq = None
+    best_score = 0
+
+    for faq in faqs:
+
+        question = _normalize(
+            faq.get("question", "")
+        )
+
+        answer = faq.get("answer", "")
+
+        if not question:
+            continue
+
+        # ---------------------------------------------
+        # Question similarity
+        # ---------------------------------------------
+
+        score = _calculate_score(
+            query,
+            question
+        )
+
+        # ---------------------------------------------
+        # Intent-based bonus
+        # ---------------------------------------------
+
+        intent_bonus = 0
+
+        question_lower = question
+
+        if intent == "beginner_friendly":
+            if "beginner" in question_lower:
+                intent_bonus = 30
+
+        elif intent == "course_certificate":
+            if "certificate" in question_lower:
+                intent_bonus = 30
+
+        elif intent == "course_duration":
+            if (
+                "duration" in question_lower
+                or "long" in question_lower
+            ):
+                intent_bonus = 30
+
+        elif intent == "course_fees":
+            if (
+                "fee" in question_lower
+                or "cost" in question_lower
+                or "price" in question_lower
+            ):
+                intent_bonus = 30
+
+        elif intent == "course_eligibility":
+            if (
+                "join" in question_lower
+                or "eligible" in question_lower
+                or "prerequisite" in question_lower
+                or "beginner" in question_lower
+            ):
+                intent_bonus = 30
+
+        # ---------------------------------------------
+        # Final score
+        # ---------------------------------------------
+
+        final_score = score + intent_bonus
+
+        if final_score > best_score:
+
+            best_score = final_score
+            best_faq = faq
+
+    # ---------------------------------------------
+    # Confidence
+    # ---------------------------------------------
+
+    if best_score < MIN_CONFIDENCE:
+        return None, min(100, best_score)
+
+    return best_faq, min(100, best_score)
 
 # =========================================================
 # Main FAQ Search

@@ -9,6 +9,139 @@ Builds final chatbot responses using the following priority:
 4. General knowledge
 5. Nothing found
 """
+def can_answer_from_course(course, intent):
+    """
+    Check whether the structured course data can directly
+    answer the requested intent.
+
+    IMPORTANT:
+    This function checks ONLY structured course fields.
+    It does NOT check course FAQs.
+    """
+
+    if not course:
+        return False
+
+    # -----------------------------------------------------
+    # Course Information
+    # -----------------------------------------------------
+
+    if intent in {
+        "course_info",
+        "computer_course",
+        "english_course",
+    }:
+        return bool(course.get("description"))
+
+    # -----------------------------------------------------
+    # Course Duration
+    # -----------------------------------------------------
+
+    if intent == "course_duration":
+
+        duration = course.get("duration")
+
+        if isinstance(duration, dict):
+            return bool(
+                duration.get("value")
+                or duration.get("note")
+            )
+
+        return bool(duration)
+
+    # -----------------------------------------------------
+    # Course Fees
+    # -----------------------------------------------------
+
+    if intent == "course_fees":
+
+        fees = course.get("fees")
+
+        if isinstance(fees, dict):
+            return bool(
+                fees.get("range")
+                or fees.get("note")
+            )
+
+        return bool(fees)
+
+    # -----------------------------------------------------
+    # Eligibility
+    # -----------------------------------------------------
+
+    if intent == "course_eligibility":
+
+        eligibility = course.get("eligibility")
+
+        if isinstance(eligibility, dict):
+            return bool(
+                eligibility.get("value")
+                or eligibility.get("note")
+            )
+
+        return bool(eligibility)
+
+    # -----------------------------------------------------
+    # Certificate
+    # -----------------------------------------------------
+
+    if intent == "course_certificate":
+
+        return bool(course.get("certificate"))
+
+    # -----------------------------------------------------
+    # Course Modules
+    # -----------------------------------------------------
+
+    if intent == "course_modules":
+
+        return bool(course.get("modules"))
+
+    # -----------------------------------------------------
+    # Learning Outcomes
+    # -----------------------------------------------------
+
+    if intent == "learning_outcomes":
+
+        return bool(course.get("learning_outcomes"))
+
+    # -----------------------------------------------------
+    # Beginner Friendly
+    # -----------------------------------------------------
+
+    if intent == "beginner_friendly":
+
+        recommended_for = course.get(
+            "recommended_for",
+            []
+        )
+
+        if isinstance(recommended_for, list):
+
+            if any(
+                "beginner" in str(item).lower()
+                for item in recommended_for
+            ):
+                return True
+
+        target_audience = course.get(
+            "target_audience",
+            []
+        )
+
+        if isinstance(target_audience, list):
+
+            if any(
+                "beginner" in str(item).lower()
+                for item in target_audience
+            ):
+                return True
+
+    # -----------------------------------------------------
+    # No structured answer available
+    # -----------------------------------------------------
+
+    return False
 
 
 def _build_faq_response(faq):

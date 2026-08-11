@@ -1,6 +1,9 @@
 from logics.intent_detector import detect_intent
 from logics.course_detector import detect_course
-from logics.response_builder import build_response
+from logics.response_builder import (
+    build_response,
+    can_answer_from_course,
+)
 from logics.faq_matcher import (
     search_course_faq,
     search_academy_faq
@@ -22,7 +25,9 @@ TEST_MESSAGES = [
     "What are the fees for Python?",
     "What is the duration of Python?",
     "Does Python provide a certificate?",
-    "Is Python suitable for beginners?"
+    "Is Python suitable for beginners?",
+    "Do I need prior programming knowledge?",
+    "Do you provide demo classes for Python?"
 ]
 
 
@@ -57,18 +62,32 @@ def process_message(message):
         course = knowledge["courses"].get(course_id)
 
     # -----------------------------------------------------
-    # 4. FAQ search
+    # 4.FAQ SEARCH
     # -----------------------------------------------------
+
     course_faq = None
     course_faq_score = 0
 
     academy_faq = None
-    academy_faq_score = 0 
+    academy_faq_score = 0
+
     # -----------------------------------------------------
-    # Course FAQ
+    # Check structured course data first
     # -----------------------------------------------------
 
-    if course_id:
+    course_can_answer = False
+
+    if course:
+        course_can_answer = can_answer_from_course(
+            course,
+            intent
+        )
+
+    # -----------------------------------------------------
+    # Course FAQ fallback
+    # -----------------------------------------------------
+
+    if course and not course_can_answer:
 
         course_faq, course_faq_score = search_course_faq(
             course_id,
@@ -77,32 +96,42 @@ def process_message(message):
         )
 
     # -----------------------------------------------------
-    # Academy FAQ
+    # Academy FAQ fallback
     # -----------------------------------------------------
 
-    academy_faq, academy_faq_score = search_academy_faq(
-        message,
-        intent
-    )
+    # Search academy FAQ only when:
+    # - no course was detected, OR
+    # - structured course data cannot answer, OR
+    # - course FAQ could not answer.
 
+    if not course_can_answer:
+
+        if not course_faq:
+
+            academy_faq, academy_faq_score = search_academy_faq(
+                message,
+                intent
+            )
     # -----------------------------------------------------
     # 5. Build response
     # -----------------------------------------------------
 
     response = build_response(
-        intent=intent,
-        course=course,
-        course_faq=course_faq,
-        academy_faq=academy_faq,
-        knowledge=knowledge
-    )
-
+    intent=intent,
+    course=course,
+    course_faq=course_faq,
+    academy_faq=academy_faq,
+    knowledge=knowledge
+)
+        
     return {
         "intent": intent,
         "intent_score": intent_score,
 
         "course": course_id,
         "course_score": course_score,
+
+        "course_can_answer": course_can_answer,
 
         "course_faq": (
             course_faq.get("id")
@@ -122,7 +151,6 @@ def process_message(message):
 
         "response": response
     }
-
 # =========================================================
 # Run Tests
 # =========================================================
@@ -141,6 +169,10 @@ for message in TEST_MESSAGES:
 
     print(f"INTENT : {result['intent']} ({result['intent_score']:.2f})")
     print(f"COURSE : {result['course']} ({result['course_score']:.2f})")
+    print(
+    f"STRUCTURED : "
+    f"{result['course_can_answer']}"
+    )
     print(
         f"COURSE FAQ : "
         f"{result['course_faq']} "
