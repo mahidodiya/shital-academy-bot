@@ -9,6 +9,15 @@ Builds final chatbot responses using the following priority:
 4. General knowledge
 5. Nothing found
 """
+UNAVAILABLE_COURSE_NAMES = {
+    "c": "C",
+    "cpp": "C++",
+    "java": "Java",
+    "html": "HTML",
+    "bootstrap": "Bootstrap",
+    "customized_english": "Customized English Courses",
+}
+
 def can_answer_from_course(course, intent):
     """
     Check whether the structured course data can directly
@@ -170,6 +179,7 @@ def _build_faq_response(faq):
 def build_response(
     intent=None,
     course=None,
+    course_id=None,
     course_faq=None,
     academy_faq=None,
     knowledge=None,
@@ -189,6 +199,21 @@ def build_response(
         1. Academy FAQ
         2. General knowledge
     """
+    # =====================================================
+    # COURSE DETECTED BUT DETAILS NOT AVAILABLE
+    # =====================================================
+
+    if course_id and not course:
+
+        course_name = UNAVAILABLE_COURSE_NAMES.get(
+            course_id,
+            course_id.replace("_", " ").title()
+        )
+
+        return (
+            f"I don't have detailed information about "
+            f"{course_name} yet."
+        )
 
     # =====================================================
     # 1. COURSE DETECTED
@@ -456,6 +481,25 @@ def build_response(
 
         if response:
             return response
+        
+        # -------------------------------------------------
+        # COURSE INFORMATION UNAVAILABLE
+        # -------------------------------------------------
+        unavailable_messages = {
+            "placement": f"I don't have placement information for {course_name} yet.",
+            "demo_class": f"I don't have demo class information for {course_name} yet.",
+            "admission": f"I don't have admission information specific to {course_name} yet.",
+            "course_fees": f"I don't have fee information for {course_name} yet.",
+            "course_duration": f"I don't have duration information for {course_name} yet.",
+            "course_certificate": f"I don't have certificate information for {course_name} yet.",
+            "course_modules": f"I don't have module information for {course_name} yet.",
+            "course_eligibility": f"I don't have eligibility information for {course_name} yet.",
+        }
+
+        return unavailable_messages.get(
+            intent,
+            f"I don't have information about {course_name} for this question yet."
+        )
 
     # =====================================================
     # 2. NO COURSE DETECTED
@@ -494,5 +538,10 @@ def build_response(
     # 4. NOTHING FOUND
     # =====================================================
 
-    return None
+    if intent:
+        return (
+            f"I don't have information about "
+            f"{intent.replace('_', ' ')} yet."
+        )
 
+    return "I'm sorry, I don't have that information yet."

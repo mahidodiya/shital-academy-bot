@@ -1,3 +1,7 @@
+from logics.course_listing import (
+    detect_course_listing,
+    format_course_listing,
+)
 from logics.intent_detector import detect_intent
 from logics.course_detector import detect_course
 from logics.response_builder import (
@@ -8,29 +12,53 @@ from logics.faq_matcher import (
     search_course_faq,
     search_academy_faq
 )
+from conversation import ConversationContext
+context = ConversationContext()
 # =========================================================
 # End-to-End Pipeline Test
 # =========================================================
 
 TEST_MESSAGES = [
 
-    "Who can join?",
+    #====================================
+    # 8. ACADEMY QUESTIONS
+    # Should NOT be treated as course listing
+    # =========================================================
+
+    "Tell me about Shital Academy",
+    "What is Shital Academy?",
+    "Where are your branches?",
+    "What are your timings?",
+    "How can I contact the academy?",
     "How can I take admission?",
-    "What are the fees?",
-    "Can I pay fees in installments?",
     "Do you provide demo classes?",
-    "Is placement available?",
-    "What is the duration?",
-    "Do you provide certificate?",
-    "What are the fees for Python?",
-    "What is the duration of Python?",
-    "Does Python provide a certificate?",
-    "Is Python suitable for beginners?",
-    "Do I need prior programming knowledge?",
-    "Do you provide demo classes for Python?"
+    "Do you provide placement?",
+
+
 ]
+# =========================================================
+# Conversation Routing Rules
+# =========================================================
 
+COURSE_CONTEXT_INTENTS = {
+    "course_info",
+    "course_fees",
+    "course_duration",
+    "course_eligibility",
+    "course_certificate",
+    "course_modules",
+    "learning_outcomes",
+    "beginner_friendly"
+}
 
+ACADEMY_INTENTS = {
+    "admission",
+    "placement",
+    "demo_class",
+    "academy_info",
+    "contact",
+    "help",
+}
 # =========================================================
 # Pipeline
 # =========================================================
@@ -47,7 +75,64 @@ def process_message(message):
     # -----------------------------------------------------
 
     course_id, course_score = detect_course(message)
+    
+    # -----------------------------------------------------
+    # 2A. Check if user is asking for course listing
+    # -----------------------------------------------------
 
+    course_listing = detect_course_listing(message)
+
+    if course_listing:
+
+        response = format_course_listing(course_listing)
+
+        return {
+            "intent": "course_listing",
+            "intent_score": 100.0,
+
+            "course": None,
+            "course_score": 0.0,
+
+            "course_can_answer": False,
+
+            "course_faq": None,
+            "course_faq_score": 0.0,
+
+            "academy_faq": None,
+            "academy_faq_score": 0.0,
+
+            "course_from_context": False,
+
+            "response": response
+        }
+    #------------------------------------------------------
+    # Use conversation context when no course is detected
+    #------------------------------------------------------
+    course_from_context = False
+    
+    if course_id:
+        # Course explicitly mentioned in current message
+        context.set_course(course_id)
+
+    else:
+
+        # Use previous course context ONLY for course-specific intents
+        if intent in COURSE_CONTEXT_INTENTS:
+            course_id = context.get_course()
+
+            if course_id:
+                course_from_context = True
+                course_score = 100.0
+        else:
+            course_id = None
+    # -----------------------------------------------------
+    # Determine course context
+    # -----------------------------------------------------
+
+    use_course_context = False
+
+    if course_id and intent in COURSE_CONTEXT_INTENTS:
+        use_course_context = True
     # -----------------------------------------------------
     # 3. Load knowledge
     # -----------------------------------------------------
@@ -57,10 +142,50 @@ def process_message(message):
     knowledge = get_knowledge()
 
     course = None
+    course_offered = False
 
     if course_id:
+
+        # Detailed course data exists
         course = knowledge["courses"].get(course_id)
 
+        # Course may be officially offered even without
+        # detailed knowledge-base data
+        if not course:
+            for data in knowledge.get("academy", {}).values():
+
+                if not isinstance(data, dict):
+                    continue
+
+                courses_offered = data.get(
+                    "courses_offered",
+                    {}
+                )
+
+                if not isinstance(courses_offered, dict):
+                    continue
+
+                for course_list in courses_offered.values():
+
+                    if not isinstance(course_list, list):
+                        continue
+
+                    for offered_course in course_list:
+
+                        offered_id = offered_course.lower().replace(
+                            " ",
+                            "_"
+                        )
+
+                        if offered_id == course_id:
+                            course_offered = True
+                            break
+
+                    if course_offered:
+                        break
+
+                if course_offered:
+                    break
     # -----------------------------------------------------
     # 4.FAQ SEARCH
     # -----------------------------------------------------
@@ -77,7 +202,7 @@ def process_message(message):
 
     course_can_answer = False
 
-    if course:
+    if use_course_context and course:
         course_can_answer = can_answer_from_course(
             course,
             intent
@@ -87,31 +212,65 @@ def process_message(message):
     # Course FAQ fallback
     # -----------------------------------------------------
 
-    if course and not course_can_answer:
+    if use_course_context and course and not course_can_answer:
 
         course_faq, course_faq_score = search_course_faq(
             course_id,
             message,
             intent
         )
-
     # -----------------------------------------------------
     # Academy FAQ fallback
     # -----------------------------------------------------
 
-    # Search academy FAQ only when:
-    # - no course was detected, OR
-    # - structured course data cannot answer, OR
-    # - course FAQ could not answer.
+    if not course_can_answer and not course_faq:
 
-    if not course_can_answer:
-
-        if not course_faq:
+        # Do not use Academy FAQ when a specific course
+        # is mentioned with an academy-level question.
+        if not (
+            course_id
+            and intent in ACADEMY_INTENTS
+        ):
 
             academy_faq, academy_faq_score = search_academy_faq(
                 message,
                 intent
             )
+            
+    # -----------------------------------------------------
+    # Course detected but detailed data unavailable
+    # -----------------------------------------------------
+
+    if (
+        course_id
+        and not course
+        and course_offered
+        and intent in COURSE_CONTEXT_INTENTS
+    ):
+        response = (
+            f"I don't have detailed information about "
+            f"{course_id.replace('_', ' ').title()} yet."
+        )
+
+        return {
+            "intent": intent,
+            "intent_score": intent_score,
+
+            "course": course_id,
+            "course_score": course_score,
+
+            "course_can_answer": False,
+
+            "course_faq": None,
+            "course_faq_score": 0,
+
+            "academy_faq": None,
+            "academy_faq_score": 0,
+
+            "course_from_context": course_from_context,
+
+            "response": response
+        }
     # -----------------------------------------------------
     # 5. Build response
     # -----------------------------------------------------
@@ -119,6 +278,7 @@ def process_message(message):
     response = build_response(
     intent=intent,
     course=course,
+    course_id=course_id,
     course_faq=course_faq,
     academy_faq=academy_faq,
     knowledge=knowledge
@@ -148,6 +308,8 @@ def process_message(message):
         ),
 
         "academy_faq_score": academy_faq_score,
+        
+        "course_from_context": course_from_context,
 
         "response": response
     }
@@ -177,6 +339,11 @@ for message in TEST_MESSAGES:
         f"COURSE FAQ : "
         f"{result['course_faq']} "
         f"({result['course_faq_score']:.2f})"
+    )
+    
+    print(
+        f"FROM CONTEXT : "
+        f"{result['course_from_context']}"
     )
 
     print(

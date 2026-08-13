@@ -1,12 +1,35 @@
-from knowledge_loader import get_knowledge
+from conversation import ConversationContext
 
-knowledge = get_knowledge()
 
-python_course = knowledge["courses"].get("python")
+context = ConversationContext()
 
-print("\nPYTHON COURSE:")
-print(python_course)
 
-print("\nPYTHON FAQs:")
-for faq in python_course.get("faqs", []):
-    print(faq)
+print("Initial course:")
+print(context.get_course())
+
+
+print("\nSetting course to Python...")
+context.set_course("python")
+
+
+print("Current course:")
+print(context.get_course())
+
+
+print("\nSetting intent...")
+context.set_intent("course_fees")
+
+
+print("Current intent:")
+print(context.get_intent())
+
+
+print("\nClearing context...")
+context.clear()
+
+
+print("Course after clear:")
+print(context.get_course())
+
+print("Intent after clear:")
+print(context.get_intent())

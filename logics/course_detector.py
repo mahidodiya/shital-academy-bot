@@ -5,6 +5,26 @@ import re
 KNOWLEDGE = get_knowledge()
 COURSES = KNOWLEDGE["courses"]
 
+# Courses officially offered by the academy
+OFFERED_COURSES = {
+    # IT Courses
+    "java": "java",
+    "python": "python",
+    "c": "c",
+    "c++": "cpp",
+    "html": "html",
+    "bootstrap": "bootstrap",
+    "web development": "web_development",
+    "web designing": "web_designing",
+
+    # English Courses
+    "foundation course": "foundation_english",
+    "rapido english course": "rapido_english",
+    "basic to advanced english course": "spoken_english",
+    "special speaking course for english medium students": "spoken_english",
+    "ielts preparation": "ielts",
+    "customized english courses": "customized_english",
+}
 
 def detect_course(user_text: str):
     """
@@ -17,9 +37,25 @@ def detect_course(user_text: str):
     4. Fuzzy course name
     """
 
-    text = re.sub(r"[^\w\s]", "", user_text.lower()).strip()
+    text = user_text.lower().strip()
+    text = re.sub(r"[.,!?;:()]", "", text)
     words = set(text.split())
-    
+        
+    # -----------------------------------------------------
+    # Academy offered courses
+    # -----------------------------------------------------
+
+    for offered_name, course_id in OFFERED_COURSES.items():
+
+            if " " in offered_name:
+                # Multi-word course
+                if offered_name in text:
+                    return course_id, 100.0
+
+            else:
+                # Single-word course
+                if offered_name in words:
+                    return course_id, 100.0
     corrected_words = []
 
     for word in words:
@@ -132,3 +168,4 @@ def detect_course(user_text: str):
 
 def get_course_data(course_id):
     return COURSES.get(course_id)
+
