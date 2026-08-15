@@ -18,6 +18,56 @@ UNAVAILABLE_COURSE_NAMES = {
     "customized_english": "Customized English Courses",
 }
 
+
+COURSE_FALLBACK_RESPONSES = {
+    "java": (
+        "Java\n\n"
+        "Java is a popular programming language used for software development, "
+        "web applications, enterprise applications, and problem-solving. "
+        "It helps learners develop strong programming and logical thinking skills "
+        "and is suitable for students and beginners.\n\n"
+        "For the detailed syllabus, duration, fees, and batch timings, "
+        "please contact Shital Academy."
+    ),
+
+    "html": (
+        "HTML\n\n"
+        "HTML (HyperText Markup Language) is the standard language used to "
+        "create and structure web pages. It helps learners understand website "
+        "structure and build the foundation for web development.\n\n"
+        "For the detailed syllabus, duration, fees, and batch timings, "
+        "please contact Shital Academy."
+    ),
+
+    "c": (
+        "C\n\n"
+        "C is a foundational programming language widely used for learning "
+        "programming concepts, problem-solving, and logical thinking. "
+        "It provides a strong foundation for understanding programming fundamentals.\n\n"
+        "For the detailed syllabus, duration, fees, and batch timings, "
+        "please contact Shital Academy."
+    ),
+
+    "cpp": (
+        "C++\n\n"
+        "C++ is a powerful programming language commonly used for programming, "
+        "software development, and problem-solving. It helps learners develop "
+        "strong programming and logical thinking skills and is suitable for "
+        "students and beginners.\n\n"
+        "For the detailed syllabus, duration, fees, and batch timings, "
+        "please contact Shital Academy."
+    ),
+
+    "bootstrap": (
+        "Bootstrap\n\n"
+        "Bootstrap is a popular frontend framework used to create responsive "
+        "and mobile-friendly websites. It helps developers build website layouts "
+        "and user interfaces more efficiently.\n\n"
+        "For the detailed syllabus, duration, fees, and batch timings, "
+        "please contact Shital Academy."
+    ),
+}
+
 def can_answer_from_course(course, intent):
     """
     Check whether the structured course data can directly
@@ -204,6 +254,11 @@ def build_response(
     # =====================================================
 
     if course_id and not course:
+        
+        fallback_response = COURSE_FALLBACK_RESPONSES.get(course_id)
+        
+        if fallback_response:
+            return fallback_response
 
         course_name = UNAVAILABLE_COURSE_NAMES.get(
             course_id,
@@ -506,7 +561,90 @@ def build_response(
     # =====================================================
 
     else:
+        # -------------------------------------------------
+        # Academy Contact Information
+        # -------------------------------------------------
 
+        if intent == "contact":
+            return (
+                "You can contact Shital Academy at:\n\n"
+                "• 93 280 90 700\n"
+                "• 97 14 14 77 00"
+            )
+
+        # -------------------------------------------------
+        # Academy Branch Information
+        # -------------------------------------------------
+
+        if intent == "branches":
+            branches = []
+
+            if isinstance(knowledge, dict):
+                academy_data = knowledge.get("academy", {})
+
+                if isinstance(academy_data, dict):
+                    academy_info = academy_data.get("academy", {})
+
+                    if isinstance(academy_info, dict):
+                        branches = academy_info.get("branches", [])
+
+            if branches:
+                branch_text = []
+
+                for branch in branches:
+                    name = branch.get("name", "Branch")
+                    address = branch.get("address", "")
+                    city = branch.get("city", "")
+
+                    location = ", ".join(
+                        part for part in [address, city] if part
+                    )
+
+                    branch_text.append(
+                        f"• {name}\n"
+                        f"  {location}"
+                    )
+
+                return (
+                    "Shital Academy Branches:\n\n"
+                    + "\n\n".join(branch_text)
+                )
+
+            return "I don't have information about branches yet."
+        # -------------------------------------------------
+        # Academy Timing Information
+        # -------------------------------------------------
+
+        if intent == "academy_timings":
+
+            if isinstance(knowledge, dict):
+
+                academy_data = knowledge.get("academy", {})
+
+                if isinstance(academy_data, dict):
+
+                    academy_info = academy_data.get("academy", {})
+
+                    if isinstance(academy_info, dict):
+
+                        timings = academy_info.get(
+                            "office_timings",
+                            {}
+                        )
+
+                        if isinstance(timings, dict):
+
+                            opening = timings.get("opening")
+                            closing = timings.get("closing")
+
+                            if opening and closing:
+                                return (
+                                    "Shital Academy is open from "
+                                    f"{opening} to {closing}."
+                                )
+
+            return "I don't have academy timing information yet."      
+                
         # -------------------------------------------------
         # Academy FAQ
         # -------------------------------------------------

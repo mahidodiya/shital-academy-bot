@@ -126,11 +126,28 @@
             "priority": 90,
             "keywords": [
                 "batch",
-                "timing",
                 "schedule",
                 "morning",
                 "evening",
                 "weekend"
+            ]
+        },
+        {
+            "id": "academy_timings",
+            "priority": 95,
+            "keywords": [
+                "academy timings",
+                "academy timing",
+                "office timings",
+                "office timing",
+                "office hours",
+                "academy hours",
+                "what are your timings",
+                "what are your timing",
+                "when do you open",
+                "when do you close",
+                "opening time",
+                "closing time"
             ]
         },
         {
@@ -168,14 +185,24 @@
         },
         {
             "id": "contact",
-            "priority": 89,
+            "priority": 99,
             "keywords": [
                 "contact",
-                "phone",
-                "mobile",
-                "call",
-                "email",
-                "whatsapp"
+                "contact academy",
+                "contact shital academy",
+                "how can i contact",
+                "how can i contact the academy",
+                "how do i contact",
+                "how do i contact the academy",
+                "contact number",
+                "phone number",
+                "academy phone number",
+                "academy contact number",
+                "mobile number",
+                "call academy",
+                "call the academy",
+                "whatsapp",
+                "email"
             ]
         },
         {

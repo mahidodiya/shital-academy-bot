@@ -19,23 +19,9 @@ context = ConversationContext()
 # =========================================================
 
 TEST_MESSAGES = [
-
-    #====================================
-    # 8. ACADEMY QUESTIONS
-    # Should NOT be treated as course listing
-    # =========================================================
-
-    "Tell me about Shital Academy",
-    "What is Shital Academy?",
-    "Where are your branches?",
+    "What are the batch timings?",
     "What are your timings?",
-    "How can I contact the academy?",
-    "How can I take admission?",
-    "Do you provide demo classes?",
-    "Do you provide placement?",
-
-
-]
+    ]
 # =========================================================
 # Conversation Routing Rules
 # =========================================================
@@ -57,7 +43,9 @@ ACADEMY_INTENTS = {
     "demo_class",
     "academy_info",
     "contact",
+    "timings",
     "help",
+    "academy_timings",
 }
 # =========================================================
 # Pipeline
@@ -237,40 +225,6 @@ def process_message(message):
                 intent
             )
             
-    # -----------------------------------------------------
-    # Course detected but detailed data unavailable
-    # -----------------------------------------------------
-
-    if (
-        course_id
-        and not course
-        and course_offered
-        and intent in COURSE_CONTEXT_INTENTS
-    ):
-        response = (
-            f"I don't have detailed information about "
-            f"{course_id.replace('_', ' ').title()} yet."
-        )
-
-        return {
-            "intent": intent,
-            "intent_score": intent_score,
-
-            "course": course_id,
-            "course_score": course_score,
-
-            "course_can_answer": False,
-
-            "course_faq": None,
-            "course_faq_score": 0,
-
-            "academy_faq": None,
-            "academy_faq_score": 0,
-
-            "course_from_context": course_from_context,
-
-            "response": response
-        }
     # -----------------------------------------------------
     # 5. Build response
     # -----------------------------------------------------

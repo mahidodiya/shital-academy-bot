@@ -67,6 +67,11 @@ def detect_course_listing(user_text: str):
         "courses offered",
         "courses available",
         "courses do you provide",
+        "what courses are offered",
+        "which courses are offered",
+        "what courses does the academy offer",
+        "which courses does the academy offer",
+        "what courses does shital academy offer",
     ]
 
     for pattern in all_patterns:

@@ -24,12 +24,12 @@
     "branches": [
         {
             "name": "Branch 1",
-            "address": "2nd Floor, Omkar Complex, Between Sanskar Mandal and Pangli Gate, Near Solanki Restaurant",
+            "address": "2nd Floor, Omkar Complex, Between Sanskar Mandal and Ram Mantra Mandir Road, Near Solanki Restaurant",
             "city": "Bhavnagar"
         },
         {
             "name": "Branch 2",
-            "address": "2nd Floor, Hardik Complex, Besides Suraj Sofa",
+            "address": "2nd Floor, Hardik Complex, Besides Suraj Sofa, Vitthalwadi",
             "city": "Bhavnagar"
         }
     ],
@@ -59,5 +59,9 @@
     },
     "duration": {
         "note": "The duration varies according to the course.Our counsellors will guide you in selecting the most suitable course based on your learning goals."
-    }
+    },
+    "contact_numbers": [
+        "93 280 90 700",
+        "97 14 14 77 00"
+    ]
 }
