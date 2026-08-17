@@ -19,9 +19,14 @@ context = ConversationContext()
 # =========================================================
 
 TEST_MESSAGES = [
-    "What are the batch timings?",
-    "What are your timings?",
-    ]
+    "where are you located",
+    "where is your branch",
+    "where are your branches",
+    "what is your address",
+    "where can I find Shital Academy",
+    "how can I reach you",
+    "what is your location",
+]
 # =========================================================
 # Conversation Routing Rules
 # =========================================================

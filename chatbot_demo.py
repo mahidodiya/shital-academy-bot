@@ -18,35 +18,33 @@ called from here, in a defined order:
 
 chatbot.py's own job is orchestration only:
 - deciding WHICH logic runs, in WHAT order, for a given message
-- holding per-session conversation state
-- passing data between the individual logic modules
-- shaping the final dictionary returned to the frontend/API
+- holding per-session conversation state (ConversationContext,
+  session_manager) and passing it to the logic that needs it
+- shaping the final dict returned to the frontend/API
+
+Individual NLP/FAQ/response/validation/email logic remains inside the
+logics/ package - if the behavior of any step needs to change, that's
+where the change belongs, not here.
 """
 
 from logics.course_listing import (
     detect_course_listing,
     format_course_listing,
 )
-
 from logics.intent_detector import detect_intent
-
 from logics.course_detector import detect_course
-
 from logics.response_builder import (
     build_response,
     can_answer_from_course,
 )
-
 from logics.faq_matcher import (
     search_course_faq,
     search_academy_faq,
 )
-
 from logics.greeting_detector import (
     greetings,
     goodbye,
 )
-
 from logics.lead_capture import (
     validate_email,
     validate_mobile,
@@ -61,7 +59,6 @@ from session_manager import (
     create_session,
     get_lead,
     get_conversation,
-    update_activity,
 )
 
 
@@ -108,9 +105,14 @@ ACADEMY_INTENTS = {
 # CONVERSATION CONTEXT
 # =========================================================
 
-# One ConversationContext per session.
+# One context object per session.
 #
-# This prevents course context from leaking between users.
+# IMPORTANT:
+# ConversationContext itself stores the currently selected course. We
+# create one per chatbot session rather than using one global context
+# for every user, so User A's course context never leaks into User B's
+# conversation.
+
 _contexts = {}
 
 
@@ -139,7 +141,7 @@ def clear_context(session_id):
 
 def save_message(session_id, sender, message):
     """
-    Save a conversation message to the session transcript.
+    Save a conversation message.
     """
 
     conversation = get_conversation(session_id)
@@ -153,8 +155,8 @@ def save_message(session_id, sender, message):
 
 def is_course_offered(course_id, knowledge):
     """
-    Check whether a course is officially offered by the academy
-    even if detailed course JSON does not exist.
+    Check whether a course is officially offered by the academy even
+    if detailed course JSON does not exist.
     """
 
     if not course_id:
@@ -197,12 +199,7 @@ def is_course_offered(course_id, knowledge):
 # COURSE CONTEXT
 # =========================================================
 
-def resolve_course_context(
-    session_id,
-    course_id,
-    course_score,
-    intent,
-):
+def resolve_course_context(session_id, course_id, course_score, intent):
     """
     Resolve explicit course detection or previous course context.
     """
@@ -219,17 +216,11 @@ def resolve_course_context(
 
         context.set_course(course_id)
 
-        return (
-            course_id,
-            course_score,
-            course_from_context,
-        )
+        return (course_id, course_score, course_from_context)
 
     # -----------------------------------------------------
-    # No explicit course.
-    #
-    # Fall back to previous course only when the intent is
-    # course-specific.
+    # No explicit course - fall back to previous context, but
+    # only for course-specific intents
     # -----------------------------------------------------
 
     if intent in COURSE_CONTEXT_INTENTS:
@@ -242,17 +233,9 @@ def resolve_course_context(
             course_id = previous_course
             course_score = 100.0
 
-            return (
-                course_id,
-                course_score,
-                course_from_context,
-            )
+            return (course_id, course_score, course_from_context)
 
-    return (
-        None,
-        0.0,
-        False,
-    )
+    return (None, 0.0, False)
 
 
 # =========================================================
@@ -261,7 +244,8 @@ def resolve_course_context(
 
 def should_trigger_lead_form(session_id):
     """
-    Determine whether the frontend should display the lead form.
+    Determine whether the frontend should display the lead-capture
+    form.
     """
 
     lead = get_lead(session_id)
@@ -277,12 +261,7 @@ def submit_lead(session_id, name, email, mobile):
     Save lead details and notify the academy.
     """
 
-    result = save_lead(
-        session_id,
-        name,
-        email,
-        mobile,
-    )
+    result = save_lead(session_id, name, email, mobile)
 
     if not result["success"]:
         return result
@@ -291,61 +270,10 @@ def submit_lead(session_id, name, email, mobile):
 
     return {
         "success": True,
-        "message": (
-            f"Thank you, {name.strip()}. Let's continue."
-        ),
+        "message": f"Thank you, {name.strip()}. Let's continue.",
     }
 
-# =========================================================
-# SESSION CLEANUP
-# =========================================================
 
-def cleanup_expired_sessions():
-    """
-    Find inactive sessions and send captured leads
-    to the academy before removing the sessions.
-    """
-
-    from session_manager import (
-        get_expired_sessions,
-        clear_session,
-    )
-
-    expired_sessions = get_expired_sessions()
-
-    for session_id in expired_sessions:
-
-        lead = get_lead(session_id)
-
-        # -------------------------------------------------
-        # Send captured lead if it has not been sent
-        # -------------------------------------------------
-
-        if (
-            lead.get("captured")
-            and not lead.get("email_sent")
-        ):
-
-            print(
-                f"[session] Sending abandoned lead: "
-                f"{session_id}"
-            )
-
-            send_transcript_to_academy(
-                session_id
-            )
-
-        # -------------------------------------------------
-        # Remove session
-        # -------------------------------------------------
-
-        clear_session(session_id)
-
-        clear_context(session_id)
-
-        print(
-            f"[session] Expired: {session_id}"
-        )
 # =========================================================
 # MAIN CHAT PROCESSOR
 # =========================================================
@@ -354,16 +282,15 @@ def process_message(message, session_id=None):
     """
     Main production chatbot entry point.
 
-    Returns a dictionary that can directly be used by a
-    web frontend / FastAPI API layer.
+    Returns a dictionary that can directly be used by a web
+    frontend / API layer.
     """
 
-    # =====================================================
-    # 0. VALIDATE MESSAGE
-    # =====================================================
+    # -----------------------------------------------------
+    # Validate message
+    # -----------------------------------------------------
 
     if not isinstance(message, str):
-
         return {
             "response": "Please enter a valid message.",
             "session_id": session_id,
@@ -374,7 +301,6 @@ def process_message(message, session_id=None):
     message = message.strip()
 
     if not message:
-
         return {
             "response": "Please enter a message.",
             "session_id": session_id,
@@ -382,114 +308,31 @@ def process_message(message, session_id=None):
             "end_session": False,
         }
 
-    # =====================================================
-    # 1. CREATE SESSION IF NECESSARY
-    # =====================================================
+    # -----------------------------------------------------
+    # Create session if necessary
+    # -----------------------------------------------------
 
     if session_id is None:
         session_id = create_session()
-    update_activity(session_id)
-    # =====================================================
-    # 2. SAVE USER MESSAGE
-    # =====================================================
 
-    save_message(
-        session_id,
-        "User",
-        message,
-    )
+    # -----------------------------------------------------
+    # Save user message
+    # -----------------------------------------------------
+
+    save_message(session_id, "User", message)
 
     normalized_message = message.lower()
 
     # =====================================================
-    # 3. COURSE LISTING
-    # =====================================================
-    #
-    # IMPORTANT:
-    #
-    # This MUST happen before goodbye/greeting/normal intent
-    # detection.
-    #
-    # The general intent detector uses fuzzy matching and may
-    # incorrectly classify:
-    #
-    #     "What course do you provide?"
-    #
-    # as "goodbye".
-    #
-    # Course listing is a higher-priority deterministic route.
-    #
-    # Therefore:
-    #
-    #     detect_course_listing()
-    #
-    # gets the first opportunity to handle the message.
-    # =====================================================
-
-    course_listing = detect_course_listing(message)
-
-    if course_listing:
-
-        response = format_course_listing(
-            course_listing
-        )
-
-        save_message(
-            session_id,
-            "Bot",
-            response,
-        )
-
-        return {
-            "response": response,
-            "session_id": session_id,
-
-            "intent": "course_listing",
-            "intent_score": 100.0,
-
-            "course": None,
-            "course_score": 0.0,
-
-            "course_from_context": False,
-            "course_can_answer": False,
-
-            "course_faq": None,
-            "course_faq_score": 0.0,
-
-            "academy_faq": None,
-            "academy_faq_score": 0.0,
-
-            "course_offered": False,
-
-            "trigger_lead_form": (
-                should_trigger_lead_form(session_id)
-            ),
-
-            "end_session": False,
-        }
-
-    # =====================================================
-    # 4. GOODBYE
-    # =====================================================
-    #
-    # Goodbye is checked before greeting so "bye" cannot be
-    # swallowed by a greeting fuzzy match.
-    #
-    # Course listing was intentionally checked first.
+    # GOODBYE (checked before greeting - "bye" must never
+    # be swallowed by a greeting false-positive)
     # =====================================================
 
     if goodbye(normalized_message):
 
-        response = (
-            "Goodbye! Thank you for contacting "
-            "Shital Academy."
-        )
+        response = "Goodbye! Thank you for contacting Shital Academy."
 
-        save_message(
-            session_id,
-            "Bot",
-            response,
-        )
+        save_message(session_id, "Bot", response)
 
         # Send transcript if a lead was already captured.
         lead = get_lead(session_id)
@@ -502,117 +345,115 @@ def process_message(message, session_id=None):
         return {
             "response": response,
             "session_id": session_id,
-
             "intent": "goodbye",
             "intent_score": 100.0,
-
             "course": None,
             "course_score": 0.0,
-
             "course_from_context": False,
             "course_can_answer": False,
-
             "course_faq": None,
             "course_faq_score": 0.0,
-
             "academy_faq": None,
             "academy_faq_score": 0.0,
-
             "course_offered": False,
-
             "trigger_lead_form": False,
-
             "end_session": True,
         }
 
     # =====================================================
-    # 5. GREETING
+    # GREETING
     # =====================================================
 
     if greetings(normalized_message):
 
-        response = (
-            "Hello! How can I help you today?"
-        )
+        response = "Hello! How can I help you today?"
 
-        save_message(
-            session_id,
-            "Bot",
-            response,
-        )
+        save_message(session_id, "Bot", response)
 
         return {
             "response": response,
             "session_id": session_id,
-
             "intent": "greeting",
             "intent_score": 100.0,
-
             "course": None,
             "course_score": 0.0,
-
             "course_from_context": False,
             "course_can_answer": False,
-
             "course_faq": None,
             "course_faq_score": 0.0,
-
             "academy_faq": None,
             "academy_faq_score": 0.0,
-
             "course_offered": False,
-
-            # Greeting does NOT increase question_count.
-            "trigger_lead_form": (
-                should_trigger_lead_form(session_id)
-            ),
-
+            "trigger_lead_form": should_trigger_lead_form(session_id),
             "end_session": False,
         }
 
     # =====================================================
-    # 6. COUNT REAL QUESTION
+    # COUNT REAL QUESTION
     # =====================================================
 
     lead = get_lead(session_id)
 
-    lead["question_count"] = (
-        lead.get("question_count", 0) + 1
-    )
+    lead["question_count"] = lead.get("question_count", 0) + 1
 
     # =====================================================
-    # 7. DETECT INTENT
+    # 1. COURSE LISTING
+    # =====================================================
+    # Checked BEFORE normal intent detection so questions such as
+    # "What courses do you provide?" are handled by the course-listing
+    # logic instead of being incorrectly classified by the general
+    # intent detector.
+
+    course_listing = detect_course_listing(message)
+
+    if course_listing:
+
+        response = format_course_listing(course_listing)
+
+        save_message(session_id, "Bot", response)
+
+        return {
+            "response": response,
+            "session_id": session_id,
+            "intent": "course_listing",
+            "intent_score": 100.0,
+            "course": None,
+            "course_score": 0.0,
+            "course_from_context": False,
+            "course_can_answer": False,
+            "course_faq": None,
+            "course_faq_score": 0.0,
+            "academy_faq": None,
+            "academy_faq_score": 0.0,
+            "course_offered": False,
+            "trigger_lead_form": should_trigger_lead_form(session_id),
+            "end_session": False,
+        }
+
+    # =====================================================
+    # 2. DETECT INTENT
     # =====================================================
 
-    intent, intent_score = detect_intent(
-        message
-    )
+    intent, intent_score = detect_intent(message)
 
     # =====================================================
-    # 8. DETECT COURSE
+    # 3. DETECT COURSE
     # =====================================================
 
-    course_id, course_score = detect_course(
-        message
-    )
+    course_id, course_score = detect_course(message)
 
     # =====================================================
-    # 9. RESOLVE COURSE CONTEXT
+    # 4. RESOLVE COURSE CONTEXT
     # =====================================================
 
     (
         course_id,
         course_score,
         course_from_context,
-    ) = resolve_course_context(
-        session_id=session_id,
-        course_id=course_id,
-        course_score=course_score,
-        intent=intent,
-    )
+    ) = resolve_course_context(session_id, course_id, course_score, intent)
 
     # =====================================================
-    # 10. LOAD KNOWLEDGE
+    # 5. LOAD KNOWLEDGE
     # =====================================================
 
     knowledge = get_knowledge()
@@ -622,32 +463,19 @@ def process_message(message, session_id=None):
 
     if course_id:
 
-        course = (
-            knowledge
-            .get("courses", {})
-            .get(course_id)
-        )
+        course = knowledge.get("courses", {}).get(course_id)
 
-        # Course may be officially offered even when detailed
-        # course knowledge is unavailable.
         if not course:
-
-            course_offered = is_course_offered(
-                course_id,
-                knowledge,
-            )
+            course_offered = is_course_offered(course_id, knowledge)
 
     # =====================================================
-    # 11. DETERMINE COURSE CONTEXT
+    # 6. DETERMINE COURSE CONTEXT
     # =====================================================
 
-    use_course_context = (
-        bool(course_id)
-        and intent in COURSE_CONTEXT_INTENTS
-    )
+    use_course_context = bool(course_id) and intent in COURSE_CONTEXT_INTENTS
 
     # =====================================================
-    # 12. INITIALIZE FAQ RESULTS
+    # 7. STRUCTURED COURSE DATA
     # =====================================================
 
     course_faq = None
@@ -658,62 +486,38 @@ def process_message(message, session_id=None):
 
     course_can_answer = False
 
-    # =====================================================
-    # 13. STRUCTURED COURSE DATA
-    # =====================================================
-
     if use_course_context and course:
-
-        course_can_answer = can_answer_from_course(
-            course,
-            intent,
-        )
+        course_can_answer = can_answer_from_course(course, intent)
 
     # =====================================================
-    # 14. COURSE FAQ
+    # 8. COURSE FAQ
     # =====================================================
 
-    if (
-        use_course_context
-        and course
-        and not course_can_answer
-    ):
+    if use_course_context and course and not course_can_answer:
 
-        (
-            course_faq,
-            course_faq_score,
-        ) = search_course_faq(
+        course_faq, course_faq_score = search_course_faq(
             course_id,
             message,
             intent,
         )
 
     # =====================================================
-    # 15. ACADEMY FAQ
+    # 9. ACADEMY FAQ
     # =====================================================
 
-    if (
-        not course_can_answer
-        and not course_faq
-    ):
+    if not course_can_answer and not course_faq:
 
-        # Do not let an academy-level FAQ override a
-        # course-specific academy question.
-        if not (
-            course_id
-            and intent in ACADEMY_INTENTS
-        ):
+        # Do not let an academy FAQ override a course-specific,
+        # academy-level question.
+        if not (course_id and intent in ACADEMY_INTENTS):
 
-            (
-                academy_faq,
-                academy_faq_score,
-            ) = search_academy_faq(
+            academy_faq, academy_faq_score = search_academy_faq(
                 message,
                 intent,
             )
 
     # =====================================================
-    # 16. BUILD FINAL RESPONSE
+    # 10. BUILD FINAL RESPONSE
     # =====================================================
 
     response = build_response(
@@ -726,17 +530,13 @@ def process_message(message, session_id=None):
     )
 
     # =====================================================
-    # 17. SAVE BOT RESPONSE
+    # 11. SAVE BOT RESPONSE
     # =====================================================
 
-    save_message(
-        session_id,
-        "Bot",
-        response,
-    )
+    save_message(session_id, "Bot", response)
 
     # =====================================================
-    # 18. RETURN API-FRIENDLY RESULT
+    # 12. RETURN API-FRIENDLY RESULT
     # =====================================================
 
     return {
@@ -752,178 +552,99 @@ def process_message(message, session_id=None):
         "course_from_context": course_from_context,
         "course_can_answer": course_can_answer,
 
-        "course_faq": (
-            course_faq.get("id")
-            if course_faq
-            else None
-        ),
-
+        "course_faq": course_faq.get("id") if course_faq else None,
         "course_faq_score": course_faq_score,
 
-        "academy_faq": (
-            academy_faq.get("id")
-            if academy_faq
-            else None
-        ),
-
+        "academy_faq": academy_faq.get("id") if academy_faq else None,
         "academy_faq_score": academy_faq_score,
 
         "course_offered": course_offered,
 
-        "trigger_lead_form": (
-            should_trigger_lead_form(session_id)
-        ),
+        "trigger_lead_form": should_trigger_lead_form(session_id),
 
         "end_session": False,
     }
 
 
 # =========================================================
-# CONSOLE LEAD CAPTURE
+# CONSOLE MODE
 # =========================================================
 
 def _console_capture_lead(session_id):
     """
-    Blocking console prompt used only by run().
-
-    A real frontend should call submit_lead() directly.
+    Blocking console prompt used only by run(), for local testing.
+    A real frontend calls submit_lead() directly instead.
     """
 
-    print(
-        "\nBot: Before we continue, "
-        "I'd like to know a few details."
-    )
-
-    # -----------------------------------------------------
-    # Name
-    # -----------------------------------------------------
+    print("\nBot: Before we continue, I'd like to know a few details.")
 
     while True:
-
         name = input("Your Name : ").strip()
-
         if name:
             break
-
-        print(
-            "Bot: Name cannot be empty."
-        )
-
-    # -----------------------------------------------------
-    # Email
-    # -----------------------------------------------------
+        print("Bot: Name cannot be empty.")
 
     while True:
-
         email = input("Your Email : ").strip()
-
         if validate_email(email):
             break
-
-        print(
-            "Bot: Please enter a valid email address."
-        )
-
-    # -----------------------------------------------------
-    # Mobile
-    # -----------------------------------------------------
+        print("Bot: Please enter a valid email address.")
 
     while True:
-
         mobile = input("Your Mobile : ").strip()
-
         if validate_mobile(mobile):
             break
+        print("Bot: Please enter a valid mobile number.")
 
-        print(
-            "Bot: Please enter a valid mobile number."
-        )
+    result = submit_lead(session_id, name, email, mobile)
+    print(f"\nBot: {result['message']}\n")
 
-    # -----------------------------------------------------
-    # Submit
-    # -----------------------------------------------------
-
-    result = submit_lead(
-        session_id,
-        name,
-        email,
-        mobile,
-    )
-
-    print(
-        f"\nBot: {result['message']}\n"
-    )
-
-
-# =========================================================
-# CONSOLE MODE
-# =========================================================
 
 def run():
     """
     Simple console interface for local testing.
 
-    A real deployment calls process_message() and
-    submit_lead() directly.
+    A real deployment (FastAPI, etc.) calls process_message() and
+    submit_lead() directly instead of using this function.
     """
 
     session_id = create_session()
 
     print("=" * 60)
-    print(
-        "Bot: Namaste! Welcome to Shital Academy."
-    )
-    print(
-        "Bot: I'm here to answer your questions."
-    )
-    print(
-        "Bot: Type 'bye' anytime to exit."
-    )
+    print("Bot: Namaste! Welcome to Shital Academy.")
+    print("Bot: I'm here to answer your questions.")
+    print("Bot: Type 'bye' anytime to exit.")
     print("=" * 60)
 
     try:
 
         while True:
 
-            message = input(
-                "\nYou : "
-            ).strip()
+            message = input("\nYou : ").strip()
 
             if not message:
                 continue
 
-            result = process_message(
-                message,
-                session_id,
-            )
+            result = process_message(message, session_id)
 
-            print(
-                f"\nBot: {result['response']}"
-            )
+            print(f"\nBot: {result['response']}")
 
             if result["trigger_lead_form"]:
-
-                _console_capture_lead(
-                    session_id
-                )
+                _console_capture_lead(session_id)
 
             if result["end_session"]:
                 break
 
     except KeyboardInterrupt:
 
-        print(
-            "\n\nBot: Chat ended."
-        )
+        print("\n\nBot: Chat ended.")
 
     finally:
 
         lead = get_lead(session_id)
 
         if lead.get("captured"):
-            send_transcript_to_academy(
-                session_id
-            )
+            send_transcript_to_academy(session_id)
 
         clear_context(session_id)
 
