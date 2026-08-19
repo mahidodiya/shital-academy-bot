@@ -53,7 +53,7 @@
     "teaching_methodology": "Personalized teaching with practical coding sessions, live website development, and individual attention.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
-    "certificate": "",
+    "certificate": "Yes. Students receive a certificate after successfully completing the Web Development course.",
     "placement_support": "",
     "technologies": [],
     "software_covered": [],
@@ -104,32 +104,117 @@
     ],
     "faqs": [
         {
+            "id": "web_development_eligibility",
+            "category": "Course",
+            "priority": 97,
             "question": "Who can join the Web Development course?",
-            "answer": "Students, beginners, job seekers, working professionals, freelancers, and anyone interested in website development can join."
+            "keywords": [
+                "who can join",
+                "eligibility",
+                "web development eligibility",
+                "who should join",
+                "students",
+                "beginners",
+                "job seekers",
+                "working professionals",
+                "freelancers"
+            ],
+            "answer": "Students, beginners, job seekers, working professionals, freelancers, and anyone interested in website development can join.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "web_development_programming_knowledge",
+            "category": "Course",
+            "priority": 97,
             "question": "Do I need programming knowledge before joining?",
-            "answer": "No official prerequisite has been specified. Basic computer knowledge is recommended."
+            "keywords": [
+                "programming knowledge",
+                "prior programming knowledge",
+                "programming experience",
+                "coding knowledge",
+                "coding experience",
+                "prior coding",
+                "web development prerequisites",
+                "prerequisites",
+                "need coding"
+            ],
+            "answer": "No official prerequisite has been specified. Basic computer knowledge is recommended.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "web_development_beginner_friendly",
+            "category": "Course",
+            "priority": 96,
             "question": "Is this course suitable for beginners?",
-            "answer": "Yes. The course is suitable for beginners who want to start learning web development."
+            "keywords": [
+                "beginner",
+                "beginners",
+                "suitable for beginners",
+                "beginner friendly",
+                "no experience",
+                "new to web development",
+                "starting web development"
+            ],
+            "answer": "Yes. The course is suitable for beginners who want to start learning web development.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "web_development_practical_training",
+            "category": "Course",
+            "priority": 95,
             "question": "Is practical training included?",
-            "answer": "Yes. The course emphasizes practical coding and hands-on website development."
+            "keywords": [
+                "practical training",
+                "web development practical",
+                "practical coding",
+                "hands on",
+                "hands-on",
+                "coding practice",
+                "practical learning",
+                "website development practice"
+            ],
+            "answer": "Yes. The course emphasizes practical coding and hands-on website development.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "web_development_projects",
+            "category": "Course",
+            "priority": 96,
             "question": "Will I work on projects?",
-            "answer": "Yes. Practical website development is an important part of the learning process."
+            "keywords": [
+                "projects",
+                "web development projects",
+                "website projects",
+                "project work",
+                "practical projects",
+                "build websites",
+                "website development"
+            ],
+            "answer": "Yes. Practical website development is an important part of the learning process.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "web_development_study_material",
+            "category": "Course",
+            "priority": 96,
             "question": "Do you provide study material?",
-            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
-        },
-        {
-            "question": "How can I know the course duration and fees?",
-            "answer": "Please contact the academy for the latest duration and fee details."
+            "keywords": [
+                "study material",
+                "web development study material",
+                "web development notes",
+                "course material",
+                "learning material",
+                "notes provided",
+                "study notes"
+            ],
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }

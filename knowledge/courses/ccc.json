@@ -49,7 +49,7 @@
     "teaching_methodology": "Personalized teaching approach with individual attention and practical learning.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
-    "certificate": "yes . we provide certificate for ccc",
+    "certificate": "Yes. Students receive a certificate after successfully completing the ccc.",
     "placement_support": "yes . ccc we provide placement",
     "software_covered": [
         "Microsoft Word",
@@ -149,44 +149,167 @@
     ],
     "faqs": [
         {
+            "id": "advanced_ccc_eligibility",
+            "category": "Course",
+            "priority": 96,
             "question": "Who can join the Advanced CCC course?",
-            "answer": "Anyone interested in learning computer fundamentals, including students, beginners, job seekers, and working professionals."
+            "keywords": [
+                "advanced ccc eligibility",
+                "who can join advanced ccc",
+                "advanced ccc for beginners",
+                "advanced ccc for students",
+                "advanced ccc for job seekers",
+                "advanced ccc for working professionals",
+                "advanced ccc eligibility criteria"
+            ],
+            "answer": "Anyone interested in learning computer fundamentals can join the Advanced CCC course, including students, beginners, job seekers, and working professionals.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Do I need prior computer knowledge?",
-            "answer": "No. No prior computer knowledge is officially required."
+            "id": "advanced_ccc_prior_knowledge",
+            "category": "Course",
+            "priority": 96,
+            "question": "Do I need prior computer knowledge for Advanced CCC?",
+            "keywords": [
+                "advanced ccc prior knowledge",
+                "advanced ccc computer knowledge",
+                "advanced ccc prerequisites",
+                "advanced ccc requirements",
+                "need computer knowledge",
+                "need prior computer knowledge",
+                "computer experience required"
+            ],
+            "answer": "No. No prior computer knowledge is officially required for the Advanced CCC course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Will I learn Microsoft Office?",
-            "answer": "Yes. The course includes Microsoft Word, Microsoft Excel, and Microsoft PowerPoint."
+            "id": "advanced_ccc_microsoft_office",
+            "category": "Course",
+            "priority": 95,
+            "question": "Will I learn Microsoft Office in Advanced CCC?",
+            "keywords": [
+                "advanced ccc microsoft office",
+                "advanced ccc ms office",
+                "advanced ccc word",
+                "advanced ccc excel",
+                "advanced ccc powerpoint",
+                "learn microsoft word",
+                "learn microsoft excel",
+                "learn microsoft powerpoint"
+            ],
+            "answer": "Yes. The Advanced CCC course includes Microsoft Word, Microsoft Excel, and Microsoft PowerPoint.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Does the course include typing practice?",
-            "answer": "Yes. Both English and Gujarati typing are included."
+            "id": "advanced_ccc_typing_practice",
+            "category": "Course",
+            "priority": 94,
+            "question": "Does Advanced CCC include typing practice?",
+            "keywords": [
+                "advanced ccc typing",
+                "advanced ccc typing practice",
+                "typing practice",
+                "english typing",
+                "gujarati typing",
+                "english and gujarati typing",
+                "typing course advanced ccc"
+            ],
+            "answer": "Yes. The Advanced CCC course includes both English and Gujarati typing practice.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Will I learn resume making?",
-            "answer": "Yes. Resume making and mailing format are covered."
+            "id": "advanced_ccc_resume_making",
+            "category": "Course",
+            "priority": 93,
+            "question": "Will I learn resume making in Advanced CCC?",
+            "keywords": [
+                "advanced ccc resume",
+                "advanced ccc resume making",
+                "resume making",
+                "resume preparation",
+                "create resume",
+                "mailing format",
+                "resume and mailing format"
+            ],
+            "answer": "Yes. The Advanced CCC course covers resume making and mailing format.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Does the course include internet training?",
-            "answer": "Yes. Internet skills are included."
+            "id": "advanced_ccc_internet_training",
+            "category": "Course",
+            "priority": 93,
+            "question": "Does Advanced CCC include internet training?",
+            "keywords": [
+                "advanced ccc internet",
+                "advanced ccc internet training",
+                "internet training",
+                "internet skills",
+                "learn internet",
+                "internet usage",
+                "internet course advanced ccc"
+            ],
+            "answer": "Yes. Internet skills and basic internet usage are included in the Advanced CCC course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Is practical training provided?",
-            "answer": "Yes. The course emphasizes practical learning and hands-on computer usage."
+            "id": "advanced_ccc_practical_training",
+            "category": "Course",
+            "priority": 95,
+            "question": "Is practical training provided in Advanced CCC?",
+            "keywords": [
+                "advanced ccc practical",
+                "advanced ccc practical training",
+                "advanced ccc hands on",
+                "practical training",
+                "hands on computer training",
+                "computer practical",
+                "practical learning advanced ccc"
+            ],
+            "answer": "Yes. The Advanced CCC course emphasizes practical learning and hands-on computer usage.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Do you provide study material?",
-            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+            "id": "advanced_ccc_study_material",
+            "category": "Course",
+            "priority": 94,
+            "question": "Do you provide study material for Advanced CCC?",
+            "keywords": [
+                "advanced ccc study material",
+                "advanced ccc notes",
+                "advanced ccc books",
+                "study material advanced ccc",
+                "advanced ccc learning material",
+                "notes for advanced ccc",
+                "advanced ccc course material"
+            ],
+            "answer": "Yes. Comprehensive study material is provided according to the requirements of the Advanced CCC course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Are flexible batch timings available?",
-            "answer": "Yes. Flexible batch timings are available."
-        },
-        {
-            "question": "How can I know the course duration and fees?",
-            "answer": "The duration and fees vary depending on the course. Please contact the academy for the latest details."
+            "id": "advanced_ccc_batch_timings",
+            "category": "Course",
+            "priority": 94,
+            "question": "Are flexible batch timings available for Advanced CCC?",
+            "keywords": [
+                "advanced ccc batch timing",
+                "advanced ccc timings",
+                "advanced ccc flexible timing",
+                "advanced ccc batch schedule",
+                "advanced ccc morning batch",
+                "advanced ccc evening batch",
+                "flexible batch timings"
+            ],
+            "answer": "Yes. Flexible batch timings are available for the Advanced CCC course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }

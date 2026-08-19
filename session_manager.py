@@ -1,3 +1,4 @@
+import threading
 from uuid import uuid4
 from datetime import datetime, timedelta
 
@@ -9,16 +10,33 @@ from datetime import datetime, timedelta
 # After this much inactivity, the session is considered
 # abandoned/inactive.
 #
-# For testing, 1 minute is convenient.
-# For production, we can later change this to 15-30 minutes.
-SESSION_TIMEOUT_MINUTES = 1
+# NOTE: bumped from the old testing value of 1 minute.
+# 1 minute meant that any user who took longer than a minute
+# to type a reply had their session silently wiped and
+# recreated from scratch (lost lead-capture state, question
+# count, and transcript) the next time they sent a message.
+# 20 minutes is a safer production default; tune as needed.
+SESSION_TIMEOUT_MINUTES = 20
 
 
 # ==========================================================
 # In-memory Session Storage
 # ==========================================================
+#
+# NOTE: this dict lives in a single process's memory. If the
+# app is ever run with multiple worker processes / replicas
+# behind a load balancer, each worker has its own `sessions`
+# dict, so a session created on one worker will not be found
+# on another -> users would randomly appear to "lose" their
+# session. For multi-worker/multi-instance deployments, back
+# this with a shared store (e.g. Redis) instead.
 
 sessions = {}
+
+# Guards read-modify-write access to `sessions` so concurrent
+# requests (FastAPI runs sync endpoints in a thread pool) can't
+# race on the same session dict.
+_lock = threading.Lock()
 
 
 # ==========================================================
@@ -62,7 +80,8 @@ def create_session():
 
     session_id = str(uuid4())
 
-    sessions[session_id] = _new_session()
+    with _lock:
+        sessions[session_id] = _new_session()
 
     return session_id
 
@@ -78,10 +97,11 @@ def get_session(session_id):
     If the session does not exist, create a new one.
     """
 
-    if session_id not in sessions:
-        sessions[session_id] = _new_session()
+    with _lock:
+        if session_id not in sessions:
+            sessions[session_id] = _new_session()
 
-    return sessions[session_id]
+        return sessions[session_id]
 
 
 # ==========================================================
@@ -131,18 +151,25 @@ def clear_session(session_id):
     Delete a session after the chat has finished.
     """
 
-    if session_id in sessions:
-        del sessions[session_id]
+    with _lock:
+        if session_id in sessions:
+            del sessions[session_id]
 
 
 # ==========================================================
 # Find Expired Sessions
 # ==========================================================
 
-def get_expired_sessions():
+def get_expired_sessions(exclude_session_id=None):
     """
     Return session IDs that have been inactive longer than
     SESSION_TIMEOUT_MINUTES.
+
+    `exclude_session_id` lets a caller protect the session it
+    is about to use right now from being swept up as "expired"
+    (e.g. a request that arrives just past the timeout for its
+    own session shouldn't have that session deleted out from
+    under it before it gets processed).
     """
 
     now = datetime.now()
@@ -153,7 +180,15 @@ def get_expired_sessions():
 
     expired = []
 
-    for session_id, session in sessions.items():
+    # Snapshot with a lock so we're not iterating a dict that
+    # another thread is mutating at the same time.
+    with _lock:
+        items = list(sessions.items())
+
+    for session_id, session in items:
+
+        if session_id == exclude_session_id:
+            continue
 
         last_activity = session.get(
             "last_activity",

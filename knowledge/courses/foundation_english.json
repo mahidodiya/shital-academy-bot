@@ -47,7 +47,7 @@
     "teaching_methodology": "Personalized teaching with individual attention, interactive classroom activities, and practical language exercises.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Highly qualified, experienced, patient, and supportive faculty members guide students throughout the learning journey.",
-    "certificate": "",
+    "certificate": "Yes. Students receive a certificate after successfully completing the Foundation English course.",
     "placement_support": "",
     "skills_you_will_learn": [
         "Basic English Grammar",
@@ -100,36 +100,126 @@
     ],
     "faqs": [
         {
+            "id": "foundation_english_eligibility",
+            "category": "Course",
+            "priority": 95,
             "question": "Who should join the Foundation English Course?",
-            "answer": "Anyone who wants to build a strong foundation in English, including students, beginners, job seekers, and working professionals."
+            "keywords": [
+                "who should join",
+                "who can join",
+                "eligibility",
+                "students",
+                "beginners",
+                "job seekers",
+                "working professionals"
+            ],
+            "answer": "Anyone who wants to build a strong foundation in English, including students, beginners, job seekers, and working professionals.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "foundation_english_beginner_friendly",
+            "category": "Course",
+            "priority": 96,
             "question": "Is this course suitable for complete beginners?",
-            "answer": "Yes. It is specially designed for learners with little or no English knowledge."
+            "keywords": [
+                "beginner",
+                "beginners",
+                "complete beginner",
+                "no english knowledge",
+                "little english knowledge",
+                "no experience",
+                "suitable for beginners"
+            ],
+            "answer": "Yes. It is specially designed for learners with little or no English knowledge.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "foundation_english_grammar",
+            "category": "Course",
+            "priority": 94,
             "question": "Will I learn grammar?",
-            "answer": "Yes. The course includes basic English grammar along with vocabulary, pronunciation, reading, writing, and speaking practice."
+            "keywords": [
+                "grammar",
+                "english grammar",
+                "learn grammar",
+                "grammar topics",
+                "basic grammar"
+            ],
+            "answer": "Yes. The course includes basic English grammar along with vocabulary, pronunciation, reading, writing, and speaking practice.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "foundation_english_speaking_practice",
+            "category": "Course",
+            "priority": 95,
             "question": "Does the course include speaking practice?",
-            "answer": "Yes. Students participate in practical speaking activities to build confidence."
+            "keywords": [
+                "speaking practice",
+                "english speaking",
+                "speaking skills",
+                "spoken english",
+                "conversation practice",
+                "speaking activities"
+            ],
+            "answer": "Yes. Students participate in practical speaking activities to build confidence.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "foundation_english_study_material",
+            "category": "Course",
+            "priority": 96,
             "question": "Do you provide study material?",
-            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+            "keywords": [
+                "study material",
+                "english study material",
+                "english notes",
+                "course material",
+                "learning material",
+                "notes provided"
+            ],
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "foundation_english_batch_timings",
+            "category": "Course",
+            "priority": 93,
             "question": "Are flexible batch timings available?",
-            "answer": "Yes. Flexible batch timings are available."
+            "keywords": [
+                "batch timings",
+                "flexible timings",
+                "class timings",
+                "batch time",
+                "class schedule",
+                "flexible batch"
+            ],
+            "answer": "Yes. Flexible batch timings are available.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "foundation_english_teaching_methodology",
+            "category": "Course",
+            "priority": 92,
             "question": "What teaching methodology do you follow?",
-            "answer": "We follow a personalized teaching approach with individual attention, practical activities, and interactive classroom sessions."
-        },
-        {
-            "question": "How can I know the course duration and fees?",
-            "answer": "Please contact the academy for the latest duration and fee details."
+            "keywords": [
+                "teaching methodology",
+                "teaching method",
+                "how do you teach",
+                "teaching approach",
+                "learning method",
+                "individual attention",
+                "interactive classes",
+                "practical activities"
+            ],
+            "answer": "We follow a personalized teaching approach with individual attention, practical activities, and interactive classroom sessions.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }

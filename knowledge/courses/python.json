@@ -44,7 +44,7 @@
     "teaching_methodology": "Personalized teaching with practical coding sessions, individual attention, and hands-on exercises.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
-    "certificate": "Yes. Students receive a certificate after successfully completing the Python Programming course.xoxo",
+    "certificate": "Yes. Students receive a certificate after successfully completing the Python Programming course.",
     "placement_support": "",
     "programming_language": [
         "Python"
@@ -96,19 +96,37 @@
             "priority": 95,
             "question": "Who can join the Python Programming course?",
             "keywords": [
-                "who can join",
-                "eligibility",
-                "beginner",
-                "students",
-                "working professionals"
+                "python beginner",
+                "python for beginners",
+                "python beginners",
+                "python no experience",
+                "python suitable for beginners",
+                "python good for beginners",
+                "beginner python",
+                "start learning python"
             ],
             "answer": "Students, beginners, engineering students, job seekers, and working professionals interested in programming can join.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
         {
-            "question": "Do I need prior programming knowledge?",
-            "answer": "No official prerequisite has been specified."
+            "id": "python_prior_programming_knowledge",
+            "category": "Course",
+            "priority": 96,
+            "question": "Do I need prior programming knowledge for the Python course?",
+            "keywords": [
+                "python prior knowledge",
+                "python programming knowledge",
+                "python prerequisites",
+                "prior programming knowledge",
+                "programming experience required",
+                "python experience required",
+                "need coding experience",
+                "beginner python"
+            ],
+            "answer": "No official prerequisite or prior programming knowledge is required for the Python course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
             "id": "python_beginner_friendly",
@@ -126,16 +144,59 @@
             "last_verified": "2026-08"
         },
         {
-            "question": "Is practical coding included?",
-            "answer": "Yes. The course emphasizes practical programming and hands-on coding exercises."
+            "id": "python_practical_coding",
+            "category": "Course",
+            "priority": 95,
+            "question": "Is practical coding included in the Python course?",
+            "keywords": [
+                "python practical",
+                "python practical coding",
+                "python coding practice",
+                "python hands on",
+                "python hands-on exercises",
+                "practical programming",
+                "coding exercises",
+                "python practice"
+            ],
+            "answer": "Yes. The Python course emphasizes practical programming and hands-on coding exercises.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Which programming language is taught?",
-            "answer": "The course focuses on Python programming."
+            "id": "python_programming_language",
+            "category": "Course",
+            "priority": 97,
+            "question": "Which programming language is taught in the course?",
+            "keywords": [
+                "programming language",
+                "which language",
+                "language taught",
+                "python language",
+                "is python taught",
+                "learn python",
+                "course programming language"
+            ],
+            "answer": "The course focuses on Python programming.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Do you provide study material?",
-            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+            "id": "python_study_material",
+            "category": "Course",
+            "priority": 96,
+            "question": "Do you provide study material for the Python course?",
+            "keywords": [
+                "python study material",
+                "python notes",
+                "python course material",
+                "python learning material",
+                "python books",
+                "study material for python",
+                "python notes provided"
+            ],
+            "answer": "Yes. Comprehensive study material is provided according to the requirements of the Python course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }

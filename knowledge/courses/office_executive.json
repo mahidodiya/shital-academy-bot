@@ -49,7 +49,7 @@
     "teaching_methodology": "Personalized teaching with practical sessions, real office scenarios, and individual attention.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
-    "certificate": "",
+    "certificate": "Yes. Students receive a certificate after successfully completing the Office Executive course.",
     "placement_support": "",
     "software": [
         "Microsoft Word",
@@ -140,40 +140,145 @@
     ],
     "faqs": [
         {
+            "id": "office_executive_eligibility",
+            "category": "Course",
+            "priority": 95,
             "question": "Who can join the Office Executive course?",
-            "answer": "Students, graduates, job seekers, working professionals, and anyone interested in office-based careers can join."
+            "keywords": [
+                "who can join",
+                "eligibility",
+                "students",
+                "graduates",
+                "job seekers",
+                "working professionals",
+                "office career",
+                "office jobs"
+            ],
+            "answer": "Students, graduates, job seekers, working professionals, and anyone interested in office-based careers can join.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "office_executive_beginner_friendly",
+            "category": "Course",
+            "priority": 96,
             "question": "Is this course suitable for beginners?",
-            "answer": "Yes. The course is suitable for beginners interested in developing office and computer skills."
+            "keywords": [
+                "beginner",
+                "beginners",
+                "no experience",
+                "suitable for beginners",
+                "beginner friendly",
+                "new to office work"
+            ],
+            "answer": "Yes. The course is suitable for beginners interested in developing office and computer skills.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "office_executive_microsoft_office",
+            "category": "Course",
+            "priority": 97,
             "question": "Does the course include Microsoft Office?",
-            "answer": "Yes. Microsoft Office applications are part of the course."
+            "keywords": [
+                "microsoft office",
+                "ms office",
+                "office applications",
+                "word",
+                "excel",
+                "powerpoint",
+                "microsoft word",
+                "microsoft excel",
+                "microsoft powerpoint"
+            ],
+            "answer": "Yes. Microsoft Office applications are part of the course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "office_executive_tally_prime",
+            "category": "Course",
+            "priority": 97,
             "question": "Will I learn Tally Prime?",
-            "answer": "Yes. Tally Prime is included as part of the Office Executive program."
+            "keywords": [
+                "tally",
+                "tally prime",
+                "learn tally",
+                "tally course",
+                "accounting software",
+                "tally training"
+            ],
+            "answer": "Yes. Tally Prime is included as part of the Office Executive program.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "office_executive_communication_skills",
+            "category": "Course",
+            "priority": 95,
             "question": "Does the course include communication skills?",
-            "answer": "Yes. The program includes spoken English and professional communication training."
+            "keywords": [
+                "communication skills",
+                "communication",
+                "spoken english",
+                "professional communication",
+                "english communication",
+                "speaking skills"
+            ],
+            "answer": "Yes. The program includes spoken English and professional communication training.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "office_executive_personality_development",
+            "category": "Course",
+            "priority": 95,
             "question": "Is personality development included?",
-            "answer": "Yes. Personality development is included to help learners prepare for professional workplaces."
+            "keywords": [
+                "personality development",
+                "personality",
+                "professional development",
+                "professional skills",
+                "workplace preparation"
+            ],
+            "answer": "Yes. Personality development is included to help learners prepare for professional workplaces.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "office_executive_practical_training",
+            "category": "Course",
+            "priority": 95,
             "question": "Is practical training provided?",
-            "answer": "Yes. The course focuses on practical learning through hands-on office tasks and computer applications."
+            "keywords": [
+                "practical training",
+                "practical learning",
+                "hands-on training",
+                "hands on",
+                "office tasks",
+                "computer applications",
+                "practical work"
+            ],
+            "answer": "Yes. The course focuses on practical learning through hands-on office tasks and computer applications.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "office_executive_study_material",
+            "category": "Course",
+            "priority": 96,
             "question": "Do you provide study material?",
-            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
-        },
-        {
-            "question": "How can I know the course duration and fees?",
-            "answer": "The duration and fees vary depending on the course. Please contact the academy for the latest details."
+            "keywords": [
+                "study material",
+                "office executive study material",
+                "course material",
+                "learning material",
+                "notes",
+                "study notes"
+            ],
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }

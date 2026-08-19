@@ -47,7 +47,7 @@
     "teaching_methodology": "Personalized teaching with practical assignments and individual attention.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Highly qualified and experienced faculty members.",
-    "certificate": "",
+    "certificate": "Yes. Students receive a certificate after successfully completing the excel course.",
     "placement_support": "",
     "software_covered": [
         "Microsoft Excel"
@@ -140,44 +140,166 @@
     ],
     "faqs": [
         {
-            "question": "Is this course suitable for beginners?",
-            "answer": "Basic computer knowledge is recommended before joining Advanced Excel."
+            "id": "advanced_excel_beginner_friendly",
+            "category": "Course",
+            "priority": 95,
+            "question": "Is the Advanced Excel course suitable for beginners?",
+            "keywords": [
+                "advanced excel beginners",
+                "advanced excel for beginners",
+                "excel beginner",
+                "beginner excel",
+                "advanced excel suitable for beginners",
+                "basic computer knowledge",
+                "excel no experience"
+            ],
+            "answer": "Basic computer knowledge is recommended before joining the Advanced Excel course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Will I learn Pivot Tables?",
-            "answer": "Yes. Pivot Tables and Pivot Charts are included in the course."
+            "id": "advanced_excel_pivot_tables",
+            "category": "Course",
+            "priority": 96,
+            "question": "Will I learn Pivot Tables in Advanced Excel?",
+            "keywords": [
+                "advanced excel pivot table",
+                "pivot tables",
+                "pivot table",
+                "excel pivot table",
+                "advanced excel pivot charts",
+                "pivot charts",
+                "learn pivot table"
+            ],
+            "answer": "Yes. Pivot Tables and Pivot Charts are included in the Advanced Excel course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Does the course include formulas and functions?",
-            "answer": "Yes. The course covers formulas along with mathematical, logical, text, date/time, and lookup functions."
+            "id": "advanced_excel_formulas_functions",
+            "category": "Course",
+            "priority": 97,
+            "question": "Does Advanced Excel include formulas and functions?",
+            "keywords": [
+                "advanced excel formulas",
+                "advanced excel functions",
+                "excel formulas",
+                "excel functions",
+                "mathematical functions",
+                "logical functions",
+                "text functions",
+                "date time functions",
+                "lookup functions",
+                "excel lookup"
+            ],
+            "answer": "Yes. The Advanced Excel course covers formulas along with mathematical, logical, text, date/time, and lookup functions.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Will I learn charts?",
-            "answer": "Yes. Different types of charts are covered."
+            "id": "advanced_excel_charts",
+            "category": "Course",
+            "priority": 94,
+            "question": "Will I learn charts in Advanced Excel?",
+            "keywords": [
+                "advanced excel charts",
+                "excel charts",
+                "learn excel charts",
+                "charts in excel",
+                "different types of charts",
+                "excel chart training",
+                "chart creation excel"
+            ],
+            "answer": "Yes. Different types of charts are covered in the Advanced Excel course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Is Conditional Formatting included?",
-            "answer": "Yes. Conditional Formatting is part of the syllabus."
+            "id": "advanced_excel_conditional_formatting",
+            "category": "Course",
+            "priority": 94,
+            "question": "Is Conditional Formatting included in Advanced Excel?",
+            "keywords": [
+                "advanced excel conditional formatting",
+                "conditional formatting",
+                "excel conditional formatting",
+                "conditional formatting excel",
+                "learn conditional formatting"
+            ],
+            "answer": "Yes. Conditional Formatting is part of the Advanced Excel course syllabus.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Will I learn Data Validation?",
-            "answer": "Yes. Data Validation is included."
+            "id": "advanced_excel_data_validation",
+            "category": "Course",
+            "priority": 93,
+            "question": "Will I learn Data Validation in Advanced Excel?",
+            "keywords": [
+                "advanced excel data validation",
+                "data validation",
+                "excel data validation",
+                "data validation in excel",
+                "learn data validation",
+                "excel validation"
+            ],
+            "answer": "Yes. Data Validation is included in the Advanced Excel course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Does the course include dashboard creation?",
-            "answer": "Yes. Dashboard basics are included."
+            "id": "advanced_excel_dashboard",
+            "category": "Course",
+            "priority": 95,
+            "question": "Does Advanced Excel include dashboard creation?",
+            "keywords": [
+                "advanced excel dashboard",
+                "excel dashboard",
+                "dashboard creation",
+                "create dashboard in excel",
+                "excel dashboard training",
+                "dashboard basics",
+                "learn excel dashboard"
+            ],
+            "answer": "Yes. Dashboard basics are included in the Advanced Excel course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Is practical training provided?",
-            "answer": "Yes. The course focuses on practical Excel exercises and real-world applications."
+            "id": "advanced_excel_practical_training",
+            "category": "Course",
+            "priority": 95,
+            "question": "Is practical training provided in Advanced Excel?",
+            "keywords": [
+                "advanced excel practical",
+                "advanced excel practical training",
+                "excel practical training",
+                "excel hands on",
+                "excel exercises",
+                "practical excel",
+                "real world excel applications"
+            ],
+            "answer": "Yes. The Advanced Excel course focuses on practical Excel exercises and real-world applications.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Do you provide study material?",
-            "answer": "Yes. Comprehensive study material is provided."
-        },
-        {
-            "question": "How can I know the course duration and fees?",
-            "answer": "Please contact the academy for the latest duration and fee details."
+            "id": "advanced_excel_study_material",
+            "category": "Course",
+            "priority": 94,
+            "question": "Do you provide study material for Advanced Excel?",
+            "keywords": [
+                "advanced excel study material",
+                "advanced excel notes",
+                "excel course material",
+                "excel study material",
+                "advanced excel learning material",
+                "excel notes",
+                "study material for excel"
+            ],
+            "answer": "Yes. Comprehensive study material is provided for the Advanced Excel course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }

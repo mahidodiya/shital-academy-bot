@@ -49,7 +49,7 @@
     "teaching_methodology": "Personalized teaching with practical accounting exercises and individual attention.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Highly qualified and experienced faculty members provide practical accounting training.",
-    "certificate": "",
+    "certificate": "Yes. Students receive a certificate after successfully completing the Tally course.",
     "placement_support": "",
     "software_covered": [
         "Tally Prime",
@@ -135,40 +135,146 @@
     ],
     "faqs": [
         {
+            "id": "tally_gst",
+            "category": "Course",
+            "priority": 97,
             "question": "Will I learn GST in this course?",
-            "answer": "Yes. GST is included as part of the Tally Prime course."
+            "keywords": [
+                "gst",
+                "learn gst",
+                "gst in tally",
+                "tally gst",
+                "gst course",
+                "gst included"
+            ],
+            "answer": "Yes. GST is included as part of the Tally Prime course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "tally_version",
+            "category": "Course",
+            "priority": 97,
             "question": "Which version of Tally is taught?",
-            "answer": "The course covers Tally Prime and also references Tally ERP 9."
+            "keywords": [
+                "tally version",
+                "which tally",
+                "tally prime",
+                "tally erp 9",
+                "version of tally",
+                "tally software",
+                "tally taught"
+            ],
+            "answer": "The course covers Tally Prime and also references Tally ERP 9.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "tally_payroll",
+            "category": "Course",
+            "priority": 96,
             "question": "Does the course include payroll?",
-            "answer": "Yes. Payroll management is part of the syllabus."
+            "keywords": [
+                "payroll",
+                "payroll management",
+                "tally payroll",
+                "salary",
+                "employee payroll",
+                "payroll in tally"
+            ],
+            "answer": "Yes. Payroll management is part of the syllabus.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "tally_inventory",
+            "category": "Course",
+            "priority": 96,
             "question": "Will I learn inventory management?",
-            "answer": "Yes. Inventory creation and management are included."
+            "keywords": [
+                "inventory",
+                "inventory management",
+                "tally inventory",
+                "stock management",
+                "stock",
+                "inventory creation",
+                "inventory in tally"
+            ],
+            "answer": "Yes. Inventory creation and management are included.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "tally_tds",
+            "category": "Course",
+            "priority": 96,
             "question": "Is TDS covered?",
-            "answer": "Yes. TDS is included in the course."
+            "keywords": [
+                "tds",
+                "tally tds",
+                "tds in tally",
+                "tax deducted at source",
+                "tds included"
+            ],
+            "answer": "Yes. TDS is included in the course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "tally_company_creation",
+            "category": "Course",
+            "priority": 96,
             "question": "Will I learn company creation?",
-            "answer": "Yes. Company creation is one of the core topics."
+            "keywords": [
+                "company creation",
+                "create company",
+                "creating company",
+                "tally company creation",
+                "company setup",
+                "create company in tally"
+            ],
+            "answer": "Yes. Company creation is one of the core topics.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "tally_practical_training",
+            "category": "Course",
+            "priority": 95,
             "question": "Is practical training provided?",
-            "answer": "Yes. The course emphasizes practical accounting using Tally Prime."
+            "keywords": [
+                "practical training",
+                "tally practical",
+                "practical accounting",
+                "hands on",
+                "hands-on",
+                "tally practice",
+                "practical learning"
+            ],
+            "answer": "Yes. The course emphasizes practical accounting using Tally Prime.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "tally_eligibility",
+            "category": "Course",
+            "priority": 97,
             "question": "Who can join this course?",
-            "answer": "Students, commerce graduates, accountants, business owners, job seekers, and working professionals can join."
-        },
-        {
-            "question": "How can I know the course duration and fees?",
-            "answer": "Please contact the academy for the latest duration and fee details."
+            "keywords": [
+                "who can join",
+                "eligibility",
+                "tally eligibility",
+                "who should join",
+                "students",
+                "commerce graduates",
+                "accountants",
+                "business owners",
+                "job seekers",
+                "working professionals"
+            ],
+            "answer": "Students, commerce graduates, accountants, business owners, job seekers, and working professionals can join.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }

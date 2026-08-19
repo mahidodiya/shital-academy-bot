@@ -50,7 +50,7 @@
     "teaching_methodology": "Personalized teaching with individual attention, interactive speaking practice, group discussions, and practical communication activities.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Experienced, well-trained, patient, and supportive faculty members guide students throughout the course.",
-    "certificate": "",
+    "certificate": "Yes. Students receive a certificate after successfully completing the Spoken English course.",
     "placement_support": "",
     "skills_you_will_learn": [
         "English Speaking",
@@ -100,40 +100,146 @@
     ],
     "faqs": [
         {
+            "id": "spoken_english_eligibility",
+            "category": "Course",
+            "priority": 95,
             "question": "Who can join the Spoken English course?",
-            "answer": "Students, job seekers, working professionals, business owners, and anyone who wants to improve spoken English can join."
+            "keywords": [
+                "who can join",
+                "eligibility",
+                "students",
+                "job seekers",
+                "working professionals",
+                "business owners",
+                "spoken english",
+                "improve spoken english"
+            ],
+            "answer": "Students, job seekers, working professionals, business owners, and anyone who wants to improve spoken English can join.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "spoken_english_beginner_friendly",
+            "category": "Course",
+            "priority": 96,
             "question": "Is this course suitable for beginners?",
-            "answer": "Yes. The course is designed for learners who want to improve their spoken English, including beginners."
+            "keywords": [
+                "beginner",
+                "beginners",
+                "beginner friendly",
+                "suitable for beginners",
+                "no experience",
+                "spoken english beginner"
+            ],
+            "answer": "Yes. The course is designed for learners who want to improve their spoken English, including beginners.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "spoken_english_speaking_practice",
+            "category": "Course",
+            "priority": 97,
             "question": "Will I get speaking practice?",
-            "answer": "Yes. The course includes practical speaking activities, conversations, and interactive communication exercises."
+            "keywords": [
+                "speaking practice",
+                "english speaking",
+                "conversation practice",
+                "speaking activities",
+                "spoken english practice",
+                "communication exercises",
+                "interactive communication"
+            ],
+            "answer": "Yes. The course includes practical speaking activities, conversations, and interactive communication exercises.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "spoken_english_interview_skills",
+            "category": "Course",
+            "priority": 96,
             "question": "Does the course improve interview skills?",
-            "answer": "Yes. The course helps improve communication confidence for interviews, presentations, and workplace conversations."
+            "keywords": [
+                "interview skills",
+                "interview preparation",
+                "interview confidence",
+                "communication confidence",
+                "presentation skills",
+                "workplace communication",
+                "job interview"
+            ],
+            "answer": "Yes. The course helps improve communication confidence for interviews, presentations, and workplace conversations.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "spoken_english_grammar",
+            "category": "Course",
+            "priority": 95,
             "question": "Will grammar also be covered?",
-            "answer": "Yes. Grammar fundamentals are taught to support better spoken English."
+            "keywords": [
+                "grammar",
+                "english grammar",
+                "grammar fundamentals",
+                "learn grammar",
+                "spoken english grammar",
+                "grammar covered"
+            ],
+            "answer": "Yes. Grammar fundamentals are taught to support better spoken English.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "spoken_english_study_material",
+            "category": "Course",
+            "priority": 96,
             "question": "Do you provide study material?",
-            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+            "keywords": [
+                "study material",
+                "spoken english study material",
+                "english notes",
+                "course material",
+                "learning material",
+                "study notes"
+            ],
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "spoken_english_batch_timings",
+            "category": "Course",
+            "priority": 93,
             "question": "Are flexible batch timings available?",
-            "answer": "Yes. Flexible batch timings are available."
+            "keywords": [
+                "batch timings",
+                "flexible timings",
+                "class timings",
+                "batch time",
+                "class schedule",
+                "flexible batch"
+            ],
+            "answer": "Yes. Flexible batch timings are available.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "spoken_english_faculty_experience",
+            "category": "Course",
+            "priority": 94,
             "question": "How experienced are the faculty members?",
-            "answer": "Faculty members are experienced, well-trained, patient, supportive, and focused on helping every student improve their communication skills."
-        },
-        {
-            "question": "How can I know the course duration and fees?",
-            "answer": "Please contact the academy for the latest duration and fee details."
+            "keywords": [
+                "faculty experience",
+                "experienced faculty",
+                "faculty members",
+                "teachers experience",
+                "experienced teachers",
+                "well trained faculty",
+                "supportive faculty",
+                "patient teachers"
+            ],
+            "answer": "Faculty members are experienced, well-trained, patient, supportive, and focused on helping every student improve their communication skills.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }

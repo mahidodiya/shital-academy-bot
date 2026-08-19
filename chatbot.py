@@ -300,10 +300,14 @@ def submit_lead(session_id, name, email, mobile):
 # SESSION CLEANUP
 # =========================================================
 
-def cleanup_expired_sessions():
+def cleanup_expired_sessions(exclude_session_id=None):
     """
     Find inactive sessions and send captured leads
     to the academy before removing the sessions.
+
+    `exclude_session_id` should be the session about to handle
+    the current request, so it never gets deleted out from
+    under the message that's about to use it.
     """
 
     from session_manager import (
@@ -311,7 +315,9 @@ def cleanup_expired_sessions():
         clear_session,
     )
 
-    expired_sessions = get_expired_sessions()
+    expired_sessions = get_expired_sessions(
+        exclude_session_id=exclude_session_id
+    )
 
     for session_id in expired_sessions:
 

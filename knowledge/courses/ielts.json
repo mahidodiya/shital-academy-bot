@@ -48,7 +48,7 @@
     "teaching_methodology": "Personalized teaching with individual attention, regular practice sessions, mock tests, and performance feedback.",
     "study_material": "Comprehensive IELTS study material is provided according to the course requirements.",
     "faculty": "Highly qualified, experienced, patient, and supportive faculty members provide personalized guidance throughout the course.",
-    "certificate": "",
+    "certificate": "Yes. Students receive a certificate after successfully completing the IELTS course.",
     "placement_support": "",
     "modules": [
         "Listening",
@@ -92,32 +92,109 @@
     ],
     "faqs": [
         {
+            "id": "ielts_eligibility",
+            "category": "Course",
+            "priority": 95,
             "question": "Who can join the IELTS Preparation course?",
-            "answer": "Anyone planning to prepare for the IELTS examination, including students, professionals, and immigration applicants, can join."
+            "keywords": [
+                "who can join",
+                "eligibility",
+                "ielts eligibility",
+                "students",
+                "professionals",
+                "immigration applicants",
+                "ielts preparation"
+            ],
+            "answer": "Anyone planning to prepare for the IELTS examination, including students, professionals, and immigration applicants, can join.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "ielts_modules",
+            "category": "Course",
+            "priority": 97,
             "question": "Which IELTS modules are covered?",
-            "answer": "The course covers Listening, Reading, Writing, and Speaking."
+            "keywords": [
+                "ielts modules",
+                "modules covered",
+                "ielts sections",
+                "listening",
+                "reading",
+                "writing",
+                "speaking",
+                "four modules"
+            ],
+            "answer": "The course covers Listening, Reading, Writing, and Speaking.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "ielts_mock_tests",
+            "category": "Course",
+            "priority": 96,
             "question": "Are mock tests included?",
-            "answer": "Yes. Regular practice exercises and mock tests are conducted as part of the preparation process."
+            "keywords": [
+                "mock test",
+                "mock tests",
+                "practice tests",
+                "ielts tests",
+                "practice exercises",
+                "test practice"
+            ],
+            "answer": "Yes. Regular practice exercises and mock tests are conducted as part of the preparation process.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "ielts_study_material",
+            "category": "Course",
+            "priority": 96,
             "question": "Will I receive study material?",
-            "answer": "Yes. Comprehensive IELTS study material is provided according to the course requirements."
+            "keywords": [
+                "study material",
+                "ielts study material",
+                "ielts notes",
+                "course material",
+                "learning material",
+                "study notes"
+            ],
+            "answer": "Yes. Comprehensive IELTS study material is provided according to the course requirements.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "ielts_personalized_guidance",
+            "category": "Course",
+            "priority": 95,
             "question": "Is personalized guidance provided?",
-            "answer": "Yes. The course follows a personalized teaching approach with individual attention and performance feedback."
+            "keywords": [
+                "personalized guidance",
+                "personal guidance",
+                "individual attention",
+                "performance feedback",
+                "personalized teaching",
+                "individual guidance"
+            ],
+            "answer": "Yes. The course follows a personalized teaching approach with individual attention and performance feedback.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "ielts_batch_timings",
+            "category": "Course",
+            "priority": 93,
             "question": "Are flexible batch timings available?",
-            "answer": "Yes. Flexible batch timings are available."
-        },
-        {
-            "question": "How can I know the course duration and fees?",
-            "answer": "Please contact the academy for the latest duration and fee details."
+            "keywords": [
+                "batch timings",
+                "flexible timings",
+                "class timings",
+                "batch time",
+                "class schedule",
+                "flexible batch"
+            ],
+            "answer": "Yes. Flexible batch timings are available.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }

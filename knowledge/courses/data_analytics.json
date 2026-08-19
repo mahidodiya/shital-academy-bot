@@ -52,7 +52,7 @@
     "teaching_methodology": "Personalized teaching with practical exercises, real-world datasets, and individual attention.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
-    "certificate": "",
+    "certificate": "Yes. Students receive a certificate after successfully completing the data analytics.",
     "placement_support": "",
     "tools": [],
     "skills_you_will_learn": [
@@ -98,32 +98,113 @@
     ],
     "faqs": [
         {
+            "id": "data_analytics_eligibility",
+            "category": "Course",
+            "priority": 96,
             "question": "Who can join the Data Analytics course?",
-            "answer": "College students, graduates, engineering students, working professionals, and job seekers interested in data analytics can join the course."
+            "keywords": [
+                "data analytics eligibility",
+                "who can join data analytics",
+                "data analytics for students",
+                "data analytics for graduates",
+                "data analytics for engineering students",
+                "data analytics for working professionals",
+                "data analytics for job seekers",
+                "data analytics requirements"
+            ],
+            "answer": "College students, graduates, engineering students, working professionals, and job seekers interested in data analytics can join the course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Do I need programming knowledge before joining?",
-            "answer": "No official programming prerequisite has been specified. Basic computer knowledge is recommended."
+            "id": "data_analytics_prior_programming",
+            "category": "Course",
+            "priority": 96,
+            "question": "Do I need programming knowledge before joining the Data Analytics course?",
+            "keywords": [
+                "data analytics programming knowledge",
+                "data analytics prerequisites",
+                "prior programming knowledge",
+                "programming experience required",
+                "coding knowledge required",
+                "data analytics requirements",
+                "basic computer knowledge",
+                "need programming for data analytics"
+            ],
+            "answer": "No official programming prerequisite has been specified. Basic computer knowledge is recommended before joining the Data Analytics course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Is this course suitable for beginners?",
-            "answer": "Yes. Beginners with an interest in data analysis and reporting can join the course."
+            "id": "data_analytics_beginner_friendly",
+            "category": "Course",
+            "priority": 96,
+            "question": "Is the Data Analytics course suitable for beginners?",
+            "keywords": [
+                "data analytics for beginners",
+                "data analytics beginner",
+                "beginner data analytics",
+                "data analysis for beginners",
+                "new to data analytics",
+                "no data analytics experience"
+            ],
+            "answer": "Yes. Beginners with an interest in data analysis and reporting can join the Data Analytics course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Is practical training provided?",
-            "answer": "Yes. The course emphasizes practical learning through exercises and real-world data analysis activities."
+            "id": "data_analytics_practical_training",
+            "category": "Course",
+            "priority": 95,
+            "question": "Is practical training provided in the Data Analytics course?",
+            "keywords": [
+                "data analytics practical",
+                "data analytics practical training",
+                "data analysis practical",
+                "hands on data analytics",
+                "data analytics exercises",
+                "real world data analysis",
+                "practical data analysis"
+            ],
+            "answer": "Yes. The Data Analytics course emphasizes practical learning through exercises and real-world data analysis activities.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Will I work on projects?",
-            "answer": "The course includes practical learning."
+            "id": "data_analytics_projects",
+            "category": "Course",
+            "priority": 93,
+            "question": "Will I work on projects in the Data Analytics course?",
+            "keywords": [
+                "data analytics projects",
+                "data analysis projects",
+                "data analytics project",
+                "practical projects",
+                "projects in data analytics",
+                "data analytics hands on projects",
+                "real world data projects"
+            ],
+            "answer": "The Data Analytics course includes practical learning through exercises and real-world data analysis activities.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
-            "question": "Do you provide study material?",
-            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
-        },
-        {
-            "question": "How can I know the course duration and fees?",
-            "answer": "Please contact the academy for the latest duration and fee details."
+            "id": "data_analytics_study_material",
+            "category": "Course",
+            "priority": 96,
+            "question": "Do you provide study material for the Data Analytics course?",
+            "keywords": [
+                "data analytics study material",
+                "data analytics notes",
+                "data analytics course material",
+                "data analytics learning material",
+                "data analysis notes",
+                "study material for data analytics",
+                "data analytics books"
+            ],
+            "answer": "Yes. Comprehensive study material is provided according to the requirements of the Data Analytics course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }

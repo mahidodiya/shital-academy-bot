@@ -41,7 +41,7 @@
     "teaching_methodology": "Personalized teaching with individual attention, conversation practice, interactive classroom activities, and confidence-building exercises.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Experienced, qualified, patient, and supportive faculty members guide students throughout the course.",
-    "certificate": "",
+    "certificate": "Yes. Students receive a certificate after successfully completing the Rapido English course.",
     "placement_support": "",
     "skills_you_will_learn": [
         "English Speaking",
@@ -96,36 +96,129 @@
     ],
     "faqs": [
         {
+            "id": "rapido_english_eligibility",
+            "category": "Course",
+            "priority": 95,
             "question": "Who can join the Rapido English Course?",
-            "answer": "Students, professionals, job seekers, and anyone interested in improving English communication skills can join."
+            "keywords": [
+                "who can join",
+                "eligibility",
+                "students",
+                "professionals",
+                "job seekers",
+                "english learners",
+                "improve english",
+                "english communication"
+            ],
+            "answer": "Students, professionals, job seekers, and anyone interested in improving English communication skills can join.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "rapido_english_beginner_suitability",
+            "category": "Course",
+            "priority": 96,
             "question": "Is the course suitable for beginners?",
-            "answer": "Please contact the academy to determine whether this course or another English course is most suitable for your current English level."
+            "keywords": [
+                "beginner",
+                "beginners",
+                "beginner friendly",
+                "suitable for beginners",
+                "english level",
+                "basic english",
+                "no english knowledge"
+            ],
+            "answer": "Please contact the academy to determine whether this course or another English course is most suitable for your current English level.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "rapido_english_speaking_practice",
+            "category": "Course",
+            "priority": 97,
             "question": "Will I get speaking practice?",
-            "answer": "Yes. The course emphasizes practical speaking, conversation practice, and interactive communication activities."
+            "keywords": [
+                "speaking practice",
+                "english speaking",
+                "conversation practice",
+                "speaking skills",
+                "spoken english",
+                "communication practice",
+                "interactive communication"
+            ],
+            "answer": "Yes. The course emphasizes practical speaking, conversation practice, and interactive communication activities.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "rapido_english_interview_confidence",
+            "category": "Course",
+            "priority": 96,
             "question": "Does the course improve interview confidence?",
-            "answer": "Yes. The course helps learners build confidence for interviews, presentations, and professional communication."
+            "keywords": [
+                "interview confidence",
+                "interview preparation",
+                "interview skills",
+                "confidence",
+                "presentation skills",
+                "professional communication",
+                "job interview"
+            ],
+            "answer": "Yes. The course helps learners build confidence for interviews, presentations, and professional communication.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "rapido_english_study_material",
+            "category": "Course",
+            "priority": 96,
             "question": "Do you provide study material?",
-            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
+            "keywords": [
+                "study material",
+                "english study material",
+                "english notes",
+                "course material",
+                "learning material",
+                "study notes"
+            ],
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "rapido_english_batch_timings",
+            "category": "Course",
+            "priority": 93,
             "question": "Are flexible batch timings available?",
-            "answer": "Yes. Flexible batch timings are available."
+            "keywords": [
+                "batch timings",
+                "flexible timings",
+                "class timings",
+                "batch time",
+                "class schedule",
+                "flexible batch"
+            ],
+            "answer": "Yes. Flexible batch timings are available.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "rapido_english_teaching_methodology",
+            "category": "Course",
+            "priority": 94,
             "question": "What teaching methodology do you follow?",
-            "answer": "We follow a personalized teaching approach with individual attention, conversation practice, and interactive learning."
-        },
-        {
-            "question": "How can I know the course duration and fees?",
-            "answer": "Please contact the academy for the latest duration and fee details."
+            "keywords": [
+                "teaching methodology",
+                "teaching method",
+                "teaching approach",
+                "how do you teach",
+                "individual attention",
+                "conversation practice",
+                "interactive learning"
+            ],
+            "answer": "We follow a personalized teaching approach with individual attention, conversation practice, and interactive learning.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }

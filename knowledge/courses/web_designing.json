@@ -48,7 +48,7 @@
     "teaching_methodology": "Personalized teaching with practical website designing exercises and individual attention.",
     "study_material": "Comprehensive study material is provided according to the course requirements.",
     "faculty": "Highly qualified, experienced, patient, and supportive faculty members.",
-    "certificate": "",
+    "certificate": "Yes. Students receive a certificate after successfully completing the Web Designing course.",
     "placement_support": "",
     "software_covered": [],
     "technologies": [],
@@ -92,28 +92,99 @@
     ],
     "faqs": [
         {
+            "id": "web_designing_eligibility",
+            "category": "Course",
+            "priority": 97,
             "question": "Who can join the Web Designing course?",
-            "answer": "Students, beginners, job seekers, freelancers, working professionals, and anyone interested in designing websites can join."
+            "keywords": [
+                "who can join",
+                "eligibility",
+                "web designing eligibility",
+                "who should join",
+                "students",
+                "beginners",
+                "job seekers",
+                "freelancers",
+                "working professionals"
+            ],
+            "answer": "Students, beginners, job seekers, freelancers, working professionals, and anyone interested in designing websites can join.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "web_designing_programming_knowledge",
+            "category": "Course",
+            "priority": 97,
             "question": "Do I need programming knowledge?",
-            "answer": "No official prerequisite has been specified. Basic computer knowledge is recommended."
+            "keywords": [
+                "programming knowledge",
+                "programming experience",
+                "coding knowledge",
+                "coding experience",
+                "prior programming knowledge",
+                "web designing prerequisites",
+                "prerequisites",
+                "prior knowledge",
+                "need coding"
+            ],
+            "answer": "No official prerequisite has been specified. Basic computer knowledge is recommended.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "web_designing_practical_training",
+            "category": "Course",
+            "priority": 95,
             "question": "Is practical training provided?",
-            "answer": "Yes. The course emphasizes practical website designing through hands-on exercises."
+            "keywords": [
+                "practical training",
+                "web designing practical",
+                "hands on",
+                "hands-on",
+                "practical learning",
+                "website designing practice",
+                "practical exercises"
+            ],
+            "answer": "Yes. The course emphasizes practical website designing through hands-on exercises.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "web_designing_projects",
+            "category": "Course",
+            "priority": 96,
             "question": "Will I build websites during the course?",
-            "answer": "Yes. Practical website designing is an important part of the training."
+            "keywords": [
+                "build websites",
+                "build website",
+                "create websites",
+                "create website",
+                "website projects",
+                "web designing projects",
+                "design websites",
+                "website development practice"
+            ],
+            "answer": "Yes. Practical website designing is an important part of the training.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         },
         {
+            "id": "web_designing_study_material",
+            "category": "Course",
+            "priority": 96,
             "question": "Do you provide study material?",
-            "answer": "Yes. Comprehensive study material is provided according to the course requirements."
-        },
-        {
-            "question": "How can I know the course duration and fees?",
-            "answer": "Please contact the academy for the latest duration and fee details."
+            "keywords": [
+                "study material",
+                "web designing study material",
+                "web design notes",
+                "course material",
+                "learning material",
+                "notes provided",
+                "study notes"
+            ],
+            "answer": "Yes. Comprehensive study material is provided according to the course requirements.",
+            "follow_up": [],
+            "last_verified": "2026-08"
         }
     ]
 }
