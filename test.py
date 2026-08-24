@@ -12,62 +12,13 @@ from chatbot import (
 
 SCENARIOS = {
 
-    "Greeting": [
-        "hello",
-        "hi",
-        "helo",
+    # -----------------------------------------------------
+    # TEST 001
+    # -----------------------------------------------------
+    "001 - Course Listing": [
+        "What courses do you offer?"
     ],
 
-    "Academy Information": [
-        "tell me about shital academy",
-        "what is shital academy",
-    ],
-
-    "Location": [
-        "where are you located",
-        "where is your branch",
-        "where are your branches",
-        "what is your address",
-        "what is your location",
-        "how can i reach you",
-    ],
-
-    "Timings": [
-        "what are your timings",
-        "what are the batch timings",
-    ],
-
-    "Course Listing": [
-        "what courses do you provide",
-        "which courses do you offer",
-    ],
-
-    "Python Course Context": [
-        "tell me about python",
-        "what are the fees",
-        "what is the duration",
-        "is it beginner friendly",
-        "what are the modules",
-        "what are the eligibility requirements",
-        "do i get a certificate",
-    ],
-
-    "Web Development Course Context": [
-        "tell me about web development",
-        "what are the fees",
-        "what is the duration",
-    ],
-
-    "Academy Services": [
-        "do you provide placement",
-        "how can i contact",
-        "what are the admission requirements",
-    ],
-
-    "Goodbye": [
-        "bye",
-        "byee",
-    ],
 }
 
 

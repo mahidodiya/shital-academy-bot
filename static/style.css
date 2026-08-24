@@ -24,6 +24,31 @@ body {
 
 
 /* ===========================
+   ACCESSIBILITY
+=========================== */
+
+.sr-only {
+
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+
+    border: 0;
+
+}
+
+
+/* ===========================
    CHAT CONTAINER
 =========================== */
 
@@ -76,6 +101,44 @@ body {
     align-items: center;
 
     gap: 15px;
+
+}
+
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+.new-chat-btn {
+
+    background: rgba(255, 255, 255, .15);
+
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, .5);
+
+    border-radius: 10px;
+
+    padding: 9px 16px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+    white-space: nowrap;
+
+}
+
+.new-chat-btn:hover {
+
+    background: rgba(255, 255, 255, .28);
 
 }
 
@@ -530,6 +593,14 @@ body {
 
 }
 
+.modal-content button:disabled {
+
+    background: #9ca3af;
+
+    cursor: not-allowed;
+
+}
+
 
 /* ===========================
    ANIMATION
@@ -612,6 +683,14 @@ body {
 
         width: 46px;
         height: 46px;
+    }
+
+    .new-chat-btn {
+
+        padding: 8px 12px;
+
+        font-size: 12px;
+
     }
 
     .bubble {

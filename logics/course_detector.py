@@ -1,185 +1,190 @@
-from rapidfuzz import fuzz
-from knowledge_loader import get_knowledge
+"""Course detection for Shital Academy.
+
+The course JSON files are the single source of truth.  We deliberately avoid
+fuzzy matching arbitrary KB keywords because generic words such as
+"english", "course", "accounting", etc. can cause false positives.
+"""
+
 import re
+from functools import lru_cache
+from rapidfuzz import fuzz
+
+from knowledge_loader import get_knowledge
 
 KNOWLEDGE = get_knowledge()
-COURSES = KNOWLEDGE["courses"]
+COURSES = KNOWLEDGE.get("courses", {})
 
-# Courses officially offered by the academy
-OFFERED_COURSES = {
-    # IT Courses
-    "java": "java",
-    "python": "python",
-    "c": "c",
-    "c++": "cpp",
-    "html": "html",
-    "bootstrap": "bootstrap",
-    "web development": "web_development",
-    "web designing": "web_designing",
-
-    # English Courses
-    "foundation course": "foundation_english",
-    "rapido english course": "rapido_english",
-    "basic to advanced english course": "spoken_english",
-    "special speaking course for english medium students": "spoken_english",
-    "ielts preparation": "ielts",
-    "customized english courses": "customized_english",
+# Conservative aliases for ambiguous/common user wording.  Course names and
+# aliases from the JSON files are still the primary source of truth.
+EXTRA_ALIASES = {
+    "ccc": ["ccc", "advanced ccc", "basic computer course", "computer basics course"],
+    "data_analytics": [
+        "data analytics", "data analyst", "data analyst course",
+        "data analysis", "data analysis course", "business analytics",
+        "analytics course", "python for data analysis",
+    ],
+    "excel": ["excel", "ms excel", "microsoft excel", "advanced excel", "advanced ms excel"],
+    "foundation_english": [
+        "foundation english", "foundation english course", "basic english course",
+        "foundation course", "english foundation course",
+    ],
+    "ielts": ["ielts", "ielts course", "ielts coaching", "ielts training", "ielts preparation"],
+    "office_executive": [
+        "office executive", "office executive course", "office administration course",
+        "office management course", "back office course",
+    ],
+    "python": ["python", "python programming", "python programming course", "python course"],
+    "rapido_english": ["rapido english", "rapido english course", "rapid english", "rapid english course"],
+    "spoken_english": [
+        "spoken english", "spoken english course", "english speaking course",
+        "english speaking", "speaking english",
+    ],
+    "tally": [
+        "tally", "tally prime", "tally prime with gst", "tally erp", "tally course",
+    ],
+    "web_designing": [
+        "web designing", "web design", "website designing", "web designing course",
+    ],
+    "web_development": [
+        "web development", "website development", "web developer course",
+        "web programming", "website programming",
+    ],
 }
 
-def detect_course(user_text: str):
-    """
-    Detect the best matching course.
+# Words that are too generic to identify a course by themselves.
+GENERIC_WORDS = {
+    "course", "courses", "class", "classes", "training", "learn", "learning",
+    "teach", "teaching", "academy", "skill", "skills", "program", "programming",
+    "english", "office", "computer", "data", "analysis", "analytics", "website",
+    "web", "design", "development", "basic", "advanced",
+}
 
-    Priority:
-    1. Exact official course name / alias
-    2. Exact keyword
-    3. Fuzzy match against individual course names/aliases
-    4. Fuzzy typo correction for short course names
 
-    Important:
-    - Avoids matching unrelated courses such as React -> Web Designing
-    - Allows typos such as Pythn -> Python
-    - Allows typos such as Web Developement -> Web Development
-    """
+def _normalize(text: str) -> str:
+    text = (text or "").lower().strip()
+    text = text.replace("’", "'")
+    # Keep +/# because they can be meaningful in course names in future.
+    text = re.sub(r"[^a-z0-9+#.\s'-]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
 
-    text = user_text.lower().strip()
 
-    # Remove common punctuation, but keep characters such as . and #
-    # because names like ".NET", "C++" can contain them.
-    cleaned_text = re.sub(r"[!?;,():]", " ", text)
-    cleaned_text = re.sub(r"\s+", " ", cleaned_text).strip()
+def _word_tokens(text: str):
+    return re.findall(r"[a-z0-9+#.]+", text)
 
-    words = set(cleaned_text.split())
 
-    # =========================================================
-    # 1. EXACT OFFICIALLY OFFERED COURSE MATCH
-    # =========================================================
-
-    for offered_name, course_id in OFFERED_COURSES.items():
-
-        if " " in offered_name:
-            if offered_name in cleaned_text:
-                return course_id, 100.0
-
-        else:
-            if offered_name in words:
-                return course_id, 100.0
-
-    # =========================================================
-    # 3. FUZZY MATCH ONLY AGAINST COURSE NAMES / ALIASES
-    # =========================================================
-    #
-    # We intentionally DO NOT fuzzy-match the entire sentence
-    # against course names.
-    #
-    # Example:
-    # "Tell me about React"
-    #
-    # should NOT become Web Designing just because
-    # "Tell me about React" has a partial similarity to it.
-    # =========================================================
-
+def _build_candidates():
+    """Build (phrase, course_id, source_type) candidates from the KB."""
     candidates = []
 
     for course_id, course in COURSES.items():
+        phrases = []
+        name = course.get("name", "")
+        if name:
+            phrases.append(name)
+        phrases.extend(course.get("aliases", []) or [])
+        phrases.extend(EXTRA_ALIASES.get(course_id, []))
 
-        course_name = course.get("name", "").lower().strip()
+        seen = set()
+        for phrase in phrases:
+            phrase = _normalize(phrase)
+            if not phrase or phrase in seen:
+                continue
+            seen.add(phrase)
+            candidates.append((phrase, course_id, "alias"))
 
-        if course_name:
-            candidates.append((course_name, course_id))
+    # Longest first makes "tally prime with gst" win before "tally".
+    candidates.sort(key=lambda x: (-len(x[0].split()), -len(x[0])))
+    return tuple(candidates)
 
-        for alias in course.get("aliases", []):
-            alias = alias.lower().strip()
 
-            if alias:
-                candidates.append((alias, course_id))
+COURSE_CANDIDATES = _build_candidates()
 
-    # =========================================================
-    # 4. FUZZY MATCH COURSE NAMES / ALIASES
-    # =========================================================
 
+@lru_cache(maxsize=2048)
+def detect_course(user_text: str):
+    """Return ``(course_id, confidence)`` or ``(None, confidence)``.
+
+    Matching order:
+      1. Exact course name/alias as a phrase.
+      2. Exact single-word alias only when it is distinctive.
+      3. High-confidence fuzzy typo correction against names/aliases.
+
+    KB keywords are intentionally *not* used as unrestricted course aliases;
+    they often contain generic terms and cause false positives.
+    """
+    text = _normalize(user_text)
+    if not text:
+        return None, 0.0
+
+    words = set(_word_tokens(text))
+
+    # 1) Exact phrase/name/alias match.
+    for phrase, course_id, _ in COURSE_CANDIDATES:
+        if len(phrase.split()) >= 2:
+            if re.search(rf"(?<![a-z0-9]){re.escape(phrase)}(?![a-z0-9])", text):
+                return course_id, 100.0
+
+    # 2) Exact distinctive single-word aliases.
+    single_word_map = {}
+    for phrase, course_id, _ in COURSE_CANDIDATES:
+        if len(phrase.split()) != 1:
+            continue
+        if phrase in GENERIC_WORDS:
+            continue
+        single_word_map.setdefault(phrase, set()).add(course_id)
+
+    for word in words:
+        course_ids = single_word_map.get(word)
+        if course_ids and len(course_ids) == 1:
+            return next(iter(course_ids)), 100.0
+
+    # 3) Fuzzy typo matching against official names/aliases only.
     best_course = None
     best_score = 0.0
 
-    for candidate, course_id in candidates:
+    for phrase, course_id, _ in COURSE_CANDIDATES:
+        phrase_words = phrase.split()
 
-        candidate_words = candidate.split()
-
-        # -----------------------------------------------------
-        # Single-word course names
-        # Example:
-        # Pythn     -> Python
-        # Pythoon   -> Python
-        # Jvaa      -> Java
-        # Bootstrp  -> Bootstrap
-        # -----------------------------------------------------
-        if len(candidate_words) == 1:
-
-            candidate_word = candidate_words[0]
-
-            for word in words:
-
-                if len(word) < 3:
-                    continue
-
-                score = fuzz.ratio(word, candidate_word)
-
-                if score > best_score:
-                    best_score = score
-                    best_course = course_id
-
-        # -----------------------------------------------------
-        # Multi-word course names
-        # Example:
-        # Web Developement -> Web Development
-        # Web Desiging     -> Web Designing
-        # -----------------------------------------------------
-        else:
-
-            # Extract meaningful words from the user's message.
-            # This prevents unrelated words such as "Tell me about"
-            # from dominating the comparison.
-            text_words = [
-                word for word in words
-                if len(word) >= 3
-            ]
-
-            if not text_words:
+        # Single-word aliases: compare individual user tokens.
+        if len(phrase_words) == 1:
+            target = phrase_words[0]
+            if target in GENERIC_WORDS or len(target) < 3:
                 continue
 
-            candidate_word_scores = []
-
-            for candidate_word in candidate_words:
-
-                # Find the closest word in the user's message.
-                word_score = max(
-                    fuzz.ratio(candidate_word, word)
-                    for word in text_words
-                )
-
-                candidate_word_scores.append(word_score)
-
-            # Every important word in the course name must have
-            # a reasonably good match.
-            if candidate_word_scores:
-
-                score = min(candidate_word_scores)
-
-                if score > best_score:
-                    best_score = score
+            for word in words:
+                if len(word) < 3:
+                    continue
+                score = fuzz.ratio(word, target)
+                # Short words need stricter matching to avoid false positives.
+                threshold = 92 if len(target) <= 4 else 88
+                if score >= threshold and score > best_score:
                     best_course = course_id
+                    best_score = float(score)
+            continue
 
+        # Multi-word aliases: every non-generic word must have a strong match.
+        meaningful = [w for w in phrase_words if w not in GENERIC_WORDS and len(w) >= 3]
+        if not meaningful:
+            continue
 
-    # =========================================================
-    # 5. FUZZY MATCH CONFIDENCE
-    # =========================================================
+        token_scores = []
+        for target in meaningful:
+            token_scores.append(max(fuzz.ratio(target, word) for word in words if len(word) >= 3))
 
-    MIN_CONFIDENCE = 88
+        if token_scores:
+            score = min(token_scores)
+            # Require strong agreement for all meaningful words.
+            if score >= 88 and score > best_score:
+                best_course = course_id
+                best_score = float(score)
 
-    if best_course is None or best_score < MIN_CONFIDENCE:
+    if best_course is None:
         return None, best_score
 
     return best_course, best_score
-def get_course_data(course_id):
-    return COURSES.get(course_id)
 
+
+def get_course_data(course_id):
+    """Return course data from the loaded knowledge base."""
+    return COURSES.get(course_id)

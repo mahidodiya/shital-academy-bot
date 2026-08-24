@@ -1,7 +1,81 @@
 import re
+from rapidfuzz import fuzz
 from knowledge_loader import get_knowledge
 
 KNOWLEDGE = get_knowledge()
+
+# =========================================================
+# TYPO-TOLERANT LISTING DETECTION
+# =========================================================
+#
+# The old version of this function matched a fixed list of exact
+# phrases like "what courses do you provide". That silently missed
+# very common real-world phrasings:
+#
+#   - singular "course" instead of "courses"
+#       ("what course do you provide")
+#   - typos ("what course you offfer")
+#
+# Anything that fell through here used to be picked up (badly) by
+# the generic fuzzy intent detector, which can misfire on short,
+# unrelated keywords like "bye" or "job" for long sentences. This
+# rewrite keeps the check narrow and safe by matching on
+# WORD-LEVEL tokens (never whole-sentence fuzzy matching), the same
+# pattern used by course_detector.py and greeting_detector.py.
+
+COURSE_WORD_RE = re.compile(r"\bcourses?\b")
+ENGLISH_WORD_RE = re.compile(r"\benglish\b")
+IT_WORD_RE = re.compile(r"\b(it|computer|computers|technical)\b")
+
+# Words that signal "I want to see the list of courses".
+LISTING_TRIGGERS = [
+    "provide", "provides", "providing",
+    "offer", "offers", "offering", "offered",
+    "available", "avail",
+    "list", "lists", "listing",
+]
+
+# Words that mean the user is asking about a specific ATTRIBUTE of
+# a course (fees, duration, ...) rather than asking for a listing,
+# even though "course" appears in the sentence. If any of these are
+# present we back off and let the normal intent pipeline
+# (course_fees, course_duration, ...) handle the message instead.
+NON_LISTING_TRIGGERS = [
+    "fee", "fees", "price", "cost", "duration", "certificate",
+    "eligibility", "syllabus", "module", "modules", "curriculum",
+    "batch", "timing", "timings", "placement", "faculty",
+]
+
+FUZZY_WORD_THRESHOLD = 82
+
+
+def _fuzzy_token_match(tokens, trigger, threshold=FUZZY_WORD_THRESHOLD):
+    """
+    True if any single token is an exact or near (typo-tolerant)
+    match for `trigger`. Word-vs-word only - never matched against
+    the whole sentence - to avoid the false-positive problem seen
+    in the generic intent detector.
+    """
+
+    for token in tokens:
+
+        if token == trigger:
+            return True
+
+        if len(token) < 3 or len(trigger) < 3:
+            continue
+
+        if fuzz.ratio(token, trigger) >= threshold:
+            return True
+
+    return False
+
+
+def _any_fuzzy_token_match(tokens, trigger_list):
+    return any(
+        _fuzzy_token_match(tokens, trigger)
+        for trigger in trigger_list
+    )
 
 
 def get_courses_offered(category=None):
@@ -21,64 +95,47 @@ def get_courses_offered(category=None):
 
 
 def detect_course_listing(user_text: str):
+    """
+    Detect a "show me the list of courses" request.
+
+    Typo-tolerant and works with singular ("course") or plural
+    ("courses") phrasing - matched word-by-word, never as a fuzzy
+    match against the whole sentence.
+    """
+
     text = re.sub(r"[^\w\s]", "", user_text.lower()).strip()
 
-    english_patterns = [
-        "what english courses do you offer",
-        "what english courses are available",
-        "which english courses do you offer",
-        "list english courses",
-        "english courses",
-        "english courses offered",
-        "english courses available",
-        "what english courses",
-    ]
+    if not text:
+        return None
 
-    for pattern in english_patterns:
-        if pattern in text:
-            return "english"
+    tokens = text.split()
 
-    it_patterns = [
-        "what computer courses do you offer",
-        "what computer courses are available",
-        "which computer courses do you offer",
-        "list computer courses",
-        "computer courses",
-        "computer courses offered",
-        "computer courses available",
-        "what it courses do you offer",
-        "what it courses are available",
-        "it courses",
-    ]
+    # Must mention "course"/"courses" in some form.
+    if not (
+        COURSE_WORD_RE.search(text)
+        or _any_fuzzy_token_match(tokens, ["course", "courses"])
+    ):
+        return None
 
-    for pattern in it_patterns:
-        if pattern in text:
-            return "it"
+    # If the message is really asking about a specific attribute
+    # (fees, duration, placement, ...) this is NOT a listing
+    # request - let the normal intent pipeline handle it.
+    if _any_fuzzy_token_match(tokens, NON_LISTING_TRIGGERS):
+        return None
 
-    all_patterns = [
-        "what courses do you provide",
-        "what courses do you offer",
-        "what courses are available",
-        "which courses do you offer",
-        "which courses are available",
-        "list all courses",
-        "list all available courses",
-        "all courses",
-        "courses offered",
-        "courses available",
-        "courses do you provide",
-        "what courses are offered",
-        "which courses are offered",
-        "what courses does the academy offer",
-        "which courses does the academy offer",
-        "what courses does shital academy offer",
-    ]
+    # A bare mention of "course" (e.g. "python course") should not
+    # be treated as "list everything" - we need an explicit
+    # listing-style trigger word too.
+    if not _any_fuzzy_token_match(tokens, LISTING_TRIGGERS):
+        return None
 
-    for pattern in all_patterns:
-        if pattern in text:
-            return "all"
+    if ENGLISH_WORD_RE.search(text):
+        return "english"
 
-    return None
+    if IT_WORD_RE.search(text):
+        return "it"
+
+    return "all"
 
 
 def format_course_listing(category):

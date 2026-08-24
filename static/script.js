@@ -7,15 +7,20 @@
 const chatBox = document.getElementById("chatBox");
 const messageInput = document.getElementById("messageInput");
 const sendButton = document.getElementById("sendButton");
+const newChatButton = document.getElementById("newChatButton");
 
 const typingIndicator = document.getElementById("typingIndicator");
 
 const leadModal = document.getElementById("leadModal");
 const leadForm = document.getElementById("leadForm");
+const leadSubmitButton = document.getElementById("leadSubmitButton");
 
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const mobileInput = document.getElementById("mobile");
+
+// ---------- Config ----------
+const REQUEST_TIMEOUT_MS = 20000;
 
 // ---------- State ----------
 let waitingForResponse = false;
@@ -23,8 +28,9 @@ let chatEnded = false;
 
 let sessionId = null;
 
-// Always start with the modal hidden
+// Always start with the modal hidden and the "new chat" control hidden
 leadModal.classList.add("hidden");
+newChatButton.classList.add("hidden");
 
 // ============================================
 // Helpers
@@ -67,6 +73,32 @@ function disableInput() {
     messageInput.disabled = true;
     sendButton.disabled = true;
     waitingForResponse = true;
+}
+
+// A fetch with a hard timeout, so a stalled connection doesn't leave
+// the typing indicator (or the lead form) hanging forever.
+async function fetchWithTimeout(url, options = {}) {
+
+    const controller = new AbortController();
+
+    const timeoutId = setTimeout(
+        () => controller.abort(),
+        REQUEST_TIMEOUT_MS
+    );
+
+    try {
+
+        return await fetch(url, {
+            ...options,
+            signal: controller.signal
+        });
+
+    } finally {
+
+        clearTimeout(timeoutId);
+
+    }
+
 }
 
 // ============================================
@@ -129,7 +161,7 @@ async function sendMessage() {
 
     try {
 
-        const response = await fetch("/chat", {
+        const response = await fetchWithTimeout("/chat", {
 
             method: "POST",
 
@@ -153,10 +185,13 @@ async function sendMessage() {
         const data = await response.json();
         sessionId = data.session_id;
 
-        addMessage(data.reply, "bot");
+        // NOTE: the backend returns the bot's reply under the
+        // "response" key (see chatbot.py / main.py), not "reply".
+        addMessage(data.response, "bot");
 
         if (data.trigger_lead_form) {
             leadModal.classList.remove("hidden");
+            nameInput.focus();
         }
 
         if (data.end_session) {
@@ -165,6 +200,9 @@ async function sendMessage() {
 
             messageInput.disabled = true;
             sendButton.disabled = true;
+
+            newChatButton.classList.remove("hidden");
+            newChatButton.focus();
 
             return;
         }
@@ -178,8 +216,12 @@ async function sendMessage() {
 
         console.error(err);
 
+        const timedOut = err.name === "AbortError";
+
         addMessage(
-            "⚠️ Unable to connect to the server. Please try again.",
+            timedOut
+                ? "⚠️ The server took too long to respond. Please try again."
+                : "⚠️ Unable to connect to the server. Please try again.",
             "bot"
         );
 
@@ -188,6 +230,34 @@ async function sendMessage() {
     }
 
 }
+
+// ============================================
+// New Chat
+// ============================================
+
+function startNewChat() {
+
+    sessionId = null;
+    chatEnded = false;
+
+    // Remove every message except the original welcome message
+    // (it's always the first child of the chat box).
+    while (chatBox.children.length > 1) {
+        chatBox.removeChild(chatBox.lastChild);
+    }
+
+    leadModal.classList.add("hidden");
+    leadForm.reset();
+
+    newChatButton.classList.add("hidden");
+
+    enableInput();
+
+    scrollBottom();
+
+}
+
+newChatButton.addEventListener("click", startNewChat);
 
 // ============================================
 // Lead Form
@@ -209,9 +279,12 @@ leadForm.addEventListener("submit", async function (e) {
 
     };
 
+    leadSubmitButton.disabled = true;
+    leadSubmitButton.innerText = "Saving...";
+
     try {
 
-        const response = await fetch("/lead", {
+        const response = await fetchWithTimeout("/lead", {
 
             method: "POST",
 
@@ -250,7 +323,20 @@ leadForm.addEventListener("submit", async function (e) {
 
         console.error(err);
 
-        alert("Unable to save your details.");
+        const timedOut = err.name === "AbortError";
+
+        alert(
+            timedOut
+                ? "The server took too long to respond. Please try again."
+                : "Unable to save your details."
+        );
+
+    }
+
+    finally {
+
+        leadSubmitButton.disabled = false;
+        leadSubmitButton.innerText = "Continue Chat";
 
     }
 

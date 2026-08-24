@@ -7,6 +7,17 @@ INTENTS = KNOWLEDGE["common"]["intents"]["intents"]
 
 MIN_CONFIDENCE = 80
 
+# Keywords shorter than this are only ever matched with an exact
+# word-boundary check (score=100 or nothing). rapidfuzz's
+# partial_ratio/token_set_ratio/WRatio are unreliable for very
+# short keywords (e.g. "bye", "job", "exit") compared against a
+# much longer, unrelated sentence - small coincidental character
+# overlap can push the score above MIN_CONFIDENCE and cause a
+# completely wrong intent to "win". Longer, more distinctive
+# keywords (e.g. "eligibility", "certificate") still get typo
+# tolerance via fuzzy matching.
+MIN_KEYWORD_LEN_FOR_FUZZY = 6
+
 
 def detect_intent(user_text):
     """
@@ -44,7 +55,12 @@ def detect_intent(user_text):
             # -------------------------
             # Fuzzy Match
             # -------------------------
-            else:
+            # Only attempted for keywords long/distinctive enough
+            # that a high fuzzy score is meaningful. Short keywords
+            # that don't appear verbatim simply don't match - see
+            # MIN_KEYWORD_LEN_FOR_FUZZY above.
+            # -------------------------
+            elif len(phrase) >= MIN_KEYWORD_LEN_FOR_FUZZY:
 
                 score = max(
                     fuzz.partial_ratio(text, phrase),
@@ -52,6 +68,10 @@ def detect_intent(user_text):
                     fuzz.token_set_ratio(text, phrase),
                     fuzz.WRatio(text, phrase),
                 )
+
+            else:
+
+                score = 0
 
             # -------------------------
             # Save Best Match
