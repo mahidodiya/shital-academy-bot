@@ -31,10 +31,10 @@
     "prerequisites": "No official prerequisites specified.",
     "duration": {
         "value": "",
-        "note": "python,Course duration varies. Please contact the academy for details."
+        "note": "Course duration varies. Please contact the academy for details."
     },
     "fees": {
-        "range": "Varies by course,python",
+        "range": "",
         "note": "Please contact the academy for the latest fee details."
     },
     "mode": [
@@ -60,7 +60,10 @@
     "software_covered": [
         "Python"
     ],
-    "syllabus": {},
+    "syllabus": {
+        "status": "not_provided",
+        "note": "The detailed Python syllabus is not available in the current knowledge base. Please contact the academy for the latest syllabus."
+    },
     "practical_training": true,
     "projects": [],
     "learning_outcomes": [
@@ -122,7 +125,14 @@
                 "programming experience required",
                 "python experience required",
                 "need coding experience",
-                "beginner python"
+                "beginner python",
+                "no programming experience",
+                "no coding experience",
+                "without programming experience",
+                "without coding experience",
+                "anything about programming",
+                "know nothing about programming",
+                "new to programming"
             ],
             "answer": "No official prerequisite or prior programming knowledge is required for the Python course.",
             "follow_up": [],

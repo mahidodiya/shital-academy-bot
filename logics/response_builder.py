@@ -16,6 +16,8 @@ UNAVAILABLE_COURSE_NAMES = {
     "html": "HTML",
     "bootstrap": "Bootstrap",
     "customized_english": "Customized English Courses",
+    "basic_to_advanced_english": "Basic to Advanced English Course",
+    "special_speaking_english": "Special Speaking Course for English Medium Students",
 }
 
 
@@ -128,6 +130,12 @@ def can_answer_from_course(course, intent):
     # Eligibility
     # -----------------------------------------------------
 
+    if intent == "prerequisites":
+        # Prerequisite questions are answered from the course FAQ so
+        # the user gets the exact verified wording rather than a raw
+        # field dump.
+        return False
+
     if intent == "course_eligibility":
 
         eligibility = course.get("eligibility")
@@ -149,12 +157,23 @@ def can_answer_from_course(course, intent):
         return bool(course.get("certificate"))
 
     # -----------------------------------------------------
+    # Study Material
+    # -----------------------------------------------------
+
+    if intent == "study_material":
+
+        return bool(course.get("study_material"))
+
+    # -----------------------------------------------------
     # Course Modules
     # -----------------------------------------------------
 
     if intent == "course_modules":
 
-        return bool(course.get("modules"))
+        return bool(
+            course.get("modules")
+            or course.get("syllabus")
+        )
 
     # -----------------------------------------------------
     # Learning Outcomes
@@ -254,16 +273,59 @@ def build_response(
     # =====================================================
 
     if course_id and not course:
-        
-        fallback_response = COURSE_FALLBACK_RESPONSES.get(course_id)
-        
-        if fallback_response:
-            return fallback_response
 
         course_name = UNAVAILABLE_COURSE_NAMES.get(
             course_id,
             course_id.replace("_", " ").title()
         )
+
+        # Answer the requested field safely when the academy offers
+        # the course but its detailed JSON is not available yet.
+        unavailable_by_intent = {
+            "course_start_date": (
+                f"I don't have a confirmed starting date for {course_name} yet. "
+                f"Please contact Shital Academy for the next available batch date."
+            ),
+            "course_fees": (
+                f"I don't have the detailed fee information for "
+                f"{course_name} yet. Please contact Shital Academy "
+                f"for the latest fee details."
+            ),
+            "course_duration": (
+                f"I don't have the detailed duration for "
+                f"{course_name} yet. Please contact Shital Academy "
+                f"for the latest course duration."
+            ),
+            "course_modules": (
+                f"I don't have the detailed syllabus for "
+                f"{course_name} yet. Please contact Shital Academy "
+                f"for the latest syllabus."
+            ),
+            "prerequisites": (
+                f"I don't have the detailed prerequisite information for "
+                f"{course_name} yet. Please contact Shital Academy."
+            ),
+            "course_eligibility": (
+                f"I don't have the detailed eligibility information for "
+                f"{course_name} yet. Please contact Shital Academy."
+            ),
+            "course_certificate": (
+                f"I don't have the certificate details for "
+                f"{course_name} yet. Please contact Shital Academy."
+            ),
+            "certificate_recognition": (
+                f"I don't have confirmed information about whether the {course_name} certificate "
+                f"is government-recognized. Please contact Shital Academy to confirm."
+            ),
+        }
+
+        if intent in unavailable_by_intent:
+            return unavailable_by_intent[intent]
+
+        fallback_response = COURSE_FALLBACK_RESPONSES.get(course_id)
+
+        if fallback_response:
+            return fallback_response
 
         return (
             f"I don't have detailed information about "
@@ -280,6 +342,19 @@ def build_response(
             "name",
             "this course"
         )
+
+        # -------------------------------------------------
+        # Prerequisites
+        # -------------------------------------------------
+
+        if intent == "prerequisites":
+            response = _build_faq_response(course_faq)
+            if response:
+                return response
+
+            prerequisites = course.get("prerequisites")
+            if prerequisites:
+                return str(prerequisites)
 
         # -------------------------------------------------
         # Course Information
@@ -323,10 +398,16 @@ def build_response(
 
             elif duration:
 
-                return (
-                    f"The duration of {course_name} "
-                    f"is {duration}."
-                )
+                normalized_duration = str(duration).strip().lower()
+
+                if (
+                    normalized_duration
+                    and "varies" not in normalized_duration
+                ):
+                    return (
+                        f"The duration of {course_name} "
+                        f"is {duration}."
+                    )
 
         # -------------------------------------------------
         # Course Fees
@@ -341,19 +422,28 @@ def build_response(
                 fee_range = fees.get("range")
                 note = fees.get("note")
 
-                if fee_range:
+                # Empty/placeholder ranges are not real prices.
+                if fee_range and str(fee_range).strip():
+                    normalized_fee = str(fee_range).strip().lower()
 
-                    if note:
+                    placeholder = (
+                        not normalized_fee
+                        or "varies by course" in normalized_fee
+                        or "contact the academy" in normalized_fee
+                    )
+
+                    if not placeholder:
+                        if note:
+                            return (
+                                f"The fees for {course_name} "
+                                f"are {fee_range}.\n\n"
+                                f"{note}"
+                            )
+
                         return (
                             f"The fees for {course_name} "
-                            f"are {fee_range}.\n\n"
-                            f"{note}"
+                            f"are {fee_range}."
                         )
-
-                    return (
-                        f"The fees for {course_name} "
-                        f"are {fee_range}."
-                    )
 
                 if note:
                     return note
@@ -397,6 +487,35 @@ def build_response(
                 )
 
         # -------------------------------------------------
+        # Study Material
+        # -------------------------------------------------
+
+        if intent == "study_material":
+
+            study_material = course.get("study_material")
+
+            if study_material:
+                return study_material
+
+        # -------------------------------------------------
+        # Certificate recognition / government approval
+        # -------------------------------------------------
+
+        if intent == "certificate_recognition":
+            certificate = course.get("certificate")
+            if certificate:
+                return (
+                    f"{certificate}\n\n"
+                    f"The current knowledge base does not specify whether the "
+                    f"certificate is government-recognized or has a particular accreditation. "
+                    f"Please contact Shital Academy to confirm the certificate's recognition status."
+                )
+            return (
+                f"I don't have confirmed information about the recognition status of the "
+                f"{course_name} certificate. Please contact Shital Academy."
+            )
+
+        # -------------------------------------------------
         # Certificate
         # -------------------------------------------------
 
@@ -413,27 +532,89 @@ def build_response(
 
         if intent == "course_modules":
 
+            # Different course files use either `modules` or `syllabus`.
+            # Treat both as the same user-facing "syllabus/modules"
+            # concept, but never invent syllabus content.
             modules = course.get("modules")
+            syllabus = course.get("syllabus")
+            curriculum = modules if modules else syllabus
 
-            if modules:
+            if isinstance(curriculum, dict):
+                status = curriculum.get("status")
+                note = curriculum.get("note")
 
-                if isinstance(modules, list):
+                if note and status == "not_provided":
+                    return note
+
+                # Most course JSON files organize syllabus as
+                # category -> list of topics. Flatten it into a
+                # readable response without inventing content.
+                explicit_content = (
+                    curriculum.get("items")
+                    or curriculum.get("topics")
+                    or curriculum.get("content")
+                )
+
+                if explicit_content:
+                    curriculum = explicit_content
+                else:
+                    flattened = []
+
+                    for category, topics in curriculum.items():
+                        if category in {"status", "note"}:
+                            continue
+
+                        if isinstance(topics, list):
+                            flattened.append(
+                                (category.replace("_", " ").title(), topics)
+                            )
+                        elif topics:
+                            flattened.append(
+                                (category.replace("_", " ").title(), [str(topics)])
+                            )
+
+                    curriculum = flattened
+
+            if curriculum:
+
+                if (
+                    isinstance(curriculum, list)
+                    and curriculum
+                    and isinstance(curriculum[0], tuple)
+                ):
+                    sections = []
+
+                    for category, topics in curriculum:
+                        topic_text = "\n".join(
+                            f"  • {topic}" for topic in topics
+                        )
+                        sections.append(
+                            f"{category}:\n{topic_text}"
+                        )
+
+                    return (
+                        f"Syllabus / modules covered in "
+                        f"{course_name}:\n\n"
+                        + "\n\n".join(sections)
+                    )
+
+                if isinstance(curriculum, list):
 
                     module_text = "\n".join(
                         f"• {module}"
-                        for module in modules
+                        for module in curriculum
                     )
 
                     return (
-                        f"Modules covered in "
+                        f"Syllabus / modules covered in "
                         f"{course_name}:\n\n"
                         f"{module_text}"
                     )
 
                 return (
-                    f"Modules covered in "
+                    f"Syllabus / modules covered in "
                     f"{course_name}:\n\n"
-                    f"{modules}"
+                    f"{curriculum}"
                 )
 
         # -------------------------------------------------
@@ -547,7 +728,15 @@ def build_response(
             "course_fees": f"I don't have fee information for {course_name} yet.",
             "course_duration": f"I don't have duration information for {course_name} yet.",
             "course_certificate": f"I don't have certificate information for {course_name} yet.",
-            "course_modules": f"I don't have module information for {course_name} yet.",
+            "certificate_recognition": (
+                f"I don't have confirmed information about whether the {course_name} certificate "
+                f"is government-recognized. Please contact Shital Academy to confirm."
+            ),
+            "course_modules": (
+                f"I don't have the detailed syllabus/module information "
+                f"for {course_name} yet."
+            ),
+            "prerequisites": f"I don't have prerequisite information for {course_name} yet.",
             "course_eligibility": f"I don't have eligibility information for {course_name} yet.",
         }
 
@@ -577,6 +766,11 @@ def build_response(
         # -------------------------------------------------
 
         if intent == "branches":
+            if academy_faq and academy_faq.get("id") == "branch_near_sanskar_mandal":
+                response = _build_faq_response(academy_faq)
+                if response:
+                    return response
+
             branches = []
 
             if isinstance(knowledge, dict):
@@ -645,6 +839,13 @@ def build_response(
 
             return "I don't have academy timing information yet."      
                 
+        # -------------------------------------------------
+        # Online / Offline Classes
+        # -------------------------------------------------
+
+        if intent == "online_classes":
+            return "Yes. Shital Academy offers offline classroom training. For the specific course and batch schedule, please contact the academy."
+
         # -------------------------------------------------
         # Academy FAQ
         # -------------------------------------------------

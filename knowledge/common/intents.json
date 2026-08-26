@@ -1,6 +1,6 @@
 {
     "last_updated": "2026-08",
-    "version": "2.0",
+    "version": "3.0",
     "intents": [
         {
             "id": "greeting",
@@ -14,8 +14,7 @@
                 "good afternoon",
                 "good evening",
                 "namaste",
-                "kem cho",
-                "hy"
+                "kem cho"
             ]
         },
         {
@@ -85,7 +84,10 @@
                 "fees",
                 "price",
                 "cost",
-                "charges"
+                "charges",
+                "how much",
+                "how much is",
+                "how much does"
             ]
         },
         {
@@ -94,7 +96,10 @@
             "keywords": [
                 "certificate",
                 "certification",
-                "course certificate"
+                "course certificate",
+                "certifcate",
+                "certifcate after",
+                "certificate after"
             ]
         },
         {
@@ -102,14 +107,14 @@
             "priority": 92,
             "keywords": [
                 "placement",
-                "job",
-                "career",
-                "interview",
-                "employment",
-                "placement",
+                "job placement",
                 "placement support",
                 "job assistance",
-                "career support"
+                "career support",
+                "placement assistance",
+                "get a job after",
+                "job after course",
+                "employment after course"
             ]
         },
         {
@@ -124,13 +129,23 @@
         },
         {
             "id": "batch",
-            "priority": 90,
+            "priority": 96,
             "keywords": [
                 "batch",
-                "schedule",
-                "morning",
-                "evening",
-                "weekend"
+                "batch timing",
+                "batch timings",
+                "flexible batch",
+                "flexible timings",
+                "class schedule",
+                "class timing",
+                "morning batch",
+                "evening batch",
+                "after 6 pm",
+                "after 6",
+                "sunday class",
+                "sunday classes",
+                "weekend batch",
+                "weekend classes"
             ]
         },
         {
@@ -148,7 +163,16 @@
                 "when do you open",
                 "when do you close",
                 "opening time",
-                "closing time"
+                "closing time",
+                "what are the timings",
+                "what are the academy timings",
+                "timing",
+                "timings",
+                "opening hours",
+                "closing hours",
+                "working hours",
+                "when are you open",
+                "when are you closed"
             ]
         },
         {
@@ -261,7 +285,9 @@
                 "foundation english",
                 "rapido english",
                 "ielts",
-                "english"
+                "english",
+                "customized english",
+                "customised english"
             ]
         },
         {
@@ -275,7 +301,14 @@
                 "office executive",
                 "web development",
                 "web designing",
-                "data analytics"
+                "data analytics",
+                "c++",
+                "cpp",
+                "c plus plus",
+                "c programming",
+                "java",
+                "html",
+                "bootstrap"
             ]
         },
         {
@@ -286,7 +319,10 @@
                 "compare",
                 "better",
                 "vs",
-                "which is best"
+                "which is best",
+                "confused between",
+                "between foundation and rapido",
+                "between rapido and spoken english"
             ]
         },
         {
@@ -297,7 +333,177 @@
                 "suggest",
                 "which course",
                 "best course",
-                "confused"
+                "confused",
+                "for a job",
+                "for job",
+                "for mis",
+                "for back office",
+                "career goal",
+                "career goals",
+                "want to learn for"
+            ]
+        },
+        {
+            "id": "refund_policy",
+            "priority": 97,
+            "keywords": [
+                "refund",
+                "refundable",
+                "refund policy",
+                "money back",
+                "cancel admission",
+                "cancel my admission"
+            ]
+        },
+        {
+            "id": "installment_payment",
+            "priority": 97,
+            "keywords": [
+                "installment",
+                "installments",
+                "emi",
+                "monthly installment",
+                "monthly installments",
+                "pay in installments",
+                "pay monthly",
+                "payment plan"
+            ]
+        },
+        {
+            "id": "discounts",
+            "priority": 93,
+            "keywords": [
+                "discount",
+                "discounts",
+                "offer",
+                "offers",
+                "two friends",
+                "friends join together",
+                "group discount",
+                "concession"
+            ]
+        },
+        {
+            "id": "documents_required",
+            "priority": 97,
+            "keywords": [
+                "documents required",
+                "what documents",
+                "which documents",
+                "documents for admission",
+                "id proof",
+                "admission documents",
+                "bring for admission"
+            ]
+        },
+        {
+            "id": "online_classes",
+            "priority": 94,
+            "keywords": [
+                "online classes",
+                "online class",
+                "online batch",
+                "online batches",
+                "virtual classes",
+                "remote classes",
+                "offline",
+                "offline classes",
+                "offline class",
+                "is it offline",
+                "in person",
+                "classroom"
+            ]
+        },
+        {
+            "id": "practice_tests",
+            "priority": 93,
+            "keywords": [
+                "mock test",
+                "mock tests",
+                "practice test",
+                "practice tests",
+                "ielts mock",
+                "test practice"
+            ]
+        },
+        {
+            "id": "language_of_instruction",
+            "priority": 93,
+            "keywords": [
+                "language of instruction",
+                "teaching language",
+                "classes in gujarati",
+                "classes in hindi",
+                "gujarati or hindi",
+                "hindi or gujarati",
+                "only english",
+                "taught in english",
+                "class language"
+            ]
+        },
+        {
+            "id": "missed_class",
+            "priority": 92,
+            "keywords": [
+                "miss a class",
+                "missed class",
+                "miss classes",
+                "backup class",
+                "backup classes",
+                "makeup class",
+                "make up class",
+                "miss lecture",
+                "absence due to exams"
+            ]
+        },
+        {
+            "id": "parking",
+            "priority": 90,
+            "keywords": [
+                "parking",
+                "two wheeler parking",
+                "two-wheeler parking",
+                "bike parking",
+                "car parking",
+                "parking space"
+            ]
+        },
+        {
+            "id": "prerequisites",
+            "priority": 95,
+            "keywords": [
+                "prior programming knowledge",
+                "prior programming experience",
+                "programming knowledge required",
+                "coding knowledge required",
+                "need programming knowledge",
+                "need coding experience",
+                "without programming knowledge",
+                "without coding knowledge",
+                "no programming background",
+                "no coding background",
+                "no programming experience",
+                "no coding experience",
+                "without programming experience",
+                "without coding experience",
+                "dont know programming",
+                "do not know programming",
+                "know nothing about programming",
+                "anything about programming",
+                "new to programming"
+            ]
+        },
+        {
+            "id": "equipment",
+            "priority": 90,
+            "keywords": [
+                "own laptop",
+                "my laptop",
+                "bring laptop",
+                "laptop required",
+                "need a laptop",
+                "computer required",
+                "bring my own laptop"
             ]
         },
         {
@@ -314,7 +520,8 @@
                 "modules",
                 "curriculum",
                 "syllabus",
-                "course content"
+                "course content",
+                "what will i learn"
             ]
         },
         {

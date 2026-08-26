@@ -49,7 +49,7 @@
                 "id proof",
                 "admission documents"
             ],
-            "answer": "The required documents may vary. Please contact the academy for the latest admission requirements.",
+            "answer": "Please contact the academy for course-specific admission requirements.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -79,7 +79,7 @@
                 "minimum age",
                 "maximum age"
             ],
-            "answer": "Most courses are open to learners of different age groups.",
+            "answer": "There is no age limit. Anyone can join Shital Academy courses.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -122,7 +122,7 @@
                 "free demo",
                 "demo class"
             ],
-            "answer": "demo classes are avaliable based on your selected course.",
+            "answer": "Yes, demo classes are available for selected courses so students can understand the teaching method, course content, and learning environment before taking admission.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -169,7 +169,7 @@
                 "monthly payment",
                 "partial payment"
             ],
-            "answer": "Please contact the academy to know whether installment options are available.",
+            "answer": "Yes, installment facilities are available for selected courses. The installment structure may vary depending on the course and fee amount. Please contact the academy for details.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -200,7 +200,7 @@
                 "scholarship",
                 "concession"
             ],
-            "answer": "Please contact the academy to know about any available discounts or promotional offers.",
+            "answer": "Discounts are very limited and are offered only on special festivals or occasions. Please contact the academy for the latest offers and eligibility.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -214,7 +214,7 @@
                 "cancel admission",
                 "money back"
             ],
-            "answer": "No refund policy:Once payment is made,it cannot be refunded.",
+            "answer": "No refund policy: once payment is made, it cannot be refunded.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -245,7 +245,7 @@
                 "evening",
                 "class timing"
             ],
-            "answer": "Flexible batch timings are available.from 7:00 a.m. to 8:00 p.m.",
+            "answer": "Yes. Flexible batch timings are available from 7:00 a.m. to 8:00 p.m.",
             "follow_up": [
                 "Which course are you interested in?"
             ],
@@ -262,7 +262,7 @@
                 "sunday",
                 "weekend classes"
             ],
-            "answer": "Weekend batches may be available depending on the course and branch.",
+            "answer": "Weekend batches may be available depending on the course and branch. Please contact the academy for the current schedule.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -277,7 +277,7 @@
                 "remote",
                 "online course"
             ],
-            "answer": "Please contact the academy to know whether online classes are currently available for your preferred course.",
+            "answer": "Online batches may be available depending on the preferred course. Please contact the academy to check current online-batch availability.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -320,7 +320,7 @@
                 "leave",
                 "miss lecture"
             ],
-            "answer": "If you miss a class, please discuss it with your faculty or branch to know the available options.",
+            "answer": "If you miss a class, please discuss it with your faculty or branch to know whether backup or other options are available for your course.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -394,7 +394,7 @@
                 "completion certificate",
                 "course certificate"
             ],
-            "answer": "Certificate availability depends on the selected course.",
+            "answer": "Yes. Students receive a certificate after successfully completing the course.",
             "follow_up": [
                 "Which course are you asking about?"
             ],
@@ -411,7 +411,7 @@
                 "career support",
                 "job assistance"
             ],
-            "answer": "Placement support depends on the selected course.",
+            "answer": "Yes, placement support is available for the Diploma in Office Executive course and IT courses. The level of placement assistance may vary depending on the course.",
             "follow_up": [
                 "Which course are you interested in?"
             ],
@@ -488,7 +488,12 @@
                 "location",
                 "address",
                 "center",
-                "office"
+                "office",
+                "sanskar mandal",
+                "solanki restaurant",
+                "vitthalwadi branch",
+                "hardik complex",
+                "omkar complex"
             ],
             "answer": "Shital Academy has multiple branches. Please check the branch information or contact the academy to find the nearest branch.",
             "follow_up": [],
@@ -694,6 +699,37 @@
                 "education"
             ],
             "answer": "Shital Academy offers career-oriented training programs, practical learning, experienced faculty, flexible batches, and personalized guidance across multiple courses.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "laptop_requirement",
+            "category": "Course",
+            "priority": 89,
+            "question": "Do I need to bring my own laptop?",
+            "keywords": [
+                "own laptop",
+                "bring laptop",
+                "laptop required",
+                "need a laptop",
+                "personal laptop"
+            ],
+            "answer": "I don't have confirmed information about laptop requirements yet. Please contact the academy to check whether a laptop is required for your selected course.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "branch_near_sanskar_mandal",
+            "category": "Branches",
+            "priority": 97,
+            "question": "Which branch is closer to Sanskar Mandal?",
+            "keywords": [
+                "sanskar mandal",
+                "near sanskar mandal",
+                "closest to sanskar mandal",
+                "branch near sanskar mandal"
+            ],
+            "answer": "Branch 1 is near Sanskar Mandal: 2nd Floor, Omkar Complex, Between Sanskar Mandal and Ram Mantra Mandir Road, Near Solanki Restaurant, Bhavnagar.",
             "follow_up": [],
             "last_verified": "2026-08"
         }

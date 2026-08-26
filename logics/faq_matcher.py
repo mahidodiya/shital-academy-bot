@@ -11,6 +11,66 @@ COURSES = KNOWLEDGE["courses"]
 MIN_CONFIDENCE = 80
 
 
+# A course FAQ is allowed to answer only the user-facing topic it belongs
+# to. This prevents a vague fuzzy match such as "python syllabus" from
+# selecting an unrelated FAQ like "who can join Python?".
+COURSE_FAQ_TOPIC_TERMS = {
+    "course_modules": (
+        "syllabus", "module", "modules", "topic", "topics",
+        "curriculum", "course content", "what will i learn",
+    ),
+    "learning_outcomes": (
+        "learn", "learning", "outcome", "outcomes", "skills",
+    ),
+    "course_fees": (
+        "fee", "fees", "price", "cost", "charge", "payment",
+    ),
+    "course_duration": (
+        "duration", "how long", "months", "weeks",
+    ),
+    "course_certificate": (
+        "certificate", "certification",
+    ),
+    "course_eligibility": (
+        "eligibility", "eligible", "qualification", "prerequisite",
+        "requirements", "who can join",
+    ),
+    "beginner_friendly": (
+        "beginner", "beginners", "no experience", "suitable",
+    ),
+    "practice_tests": (
+        "mock test", "mock tests", "practice test", "practice tests", "test practice",
+    ),
+    "prerequisites": (
+        "prerequisite", "prior programming", "prior knowledge", "coding knowledge",
+        "programming knowledge", "experience required", "no experience",
+    ),
+    "equipment": (
+        "laptop", "computer required", "own laptop",
+    ),
+    "study_material": (
+        "study material", "notes", "books", "learning material",
+        "course material",
+    ),
+}
+
+
+def _faq_matches_topic(faq, intent):
+    """Return True when a course FAQ belongs to the requested topic."""
+    terms = COURSE_FAQ_TOPIC_TERMS.get(intent)
+
+    if not terms:
+        return True
+
+    haystack = " ".join([
+        str(faq.get("question", "")),
+        " ".join(str(k) for k in faq.get("keywords", []) or []),
+        str(faq.get("category", "")),
+    ]).lower()
+
+    return any(term in haystack for term in terms)
+
+
 # =========================================================
 # FAQ → INTENT MAPPING
 # =========================================================
@@ -19,7 +79,7 @@ FAQ_INTENTS = {
 
     "admission_process": "admission",
     "course_guidance": "recommendation",
-    "documents_required": "admission",
+    "documents_required": "documents_required",
     "eligibility": "course_eligibility",
     "age_limit": "course_eligibility",
     "admission_open": "admission",
@@ -28,18 +88,18 @@ FAQ_INTENTS = {
     "registration_process": "admission",
 
     "fees_information": "course_fees",
-    "installment_payment": "course_fees",
+    "installment_payment": "installment_payment",
     "payment_methods": "course_fees",
-    "discounts": "course_fees",
-    "refund_policy": "course_fees",
+    "discounts": "discounts",
+    "refund_policy": "refund_policy",
     "fee_receipt": "course_fees",
 
-    "batch_timings": "course_info",
-    "weekend_batches": "course_info",
-    "online_classes": "course_info",
+    "batch_timings": "batch",
+    "weekend_batches": "batch",
+    "online_classes": "online_classes",
     "offline_classes": "course_info",
-    "batch_change": "course_info",
-    "missed_class": "course_info",
+    "batch_change": "batch",
+    "missed_class": "missed_class",
 
     "faculty_experience": "academy_info",
     "individual_attention": "academy_info",
@@ -56,18 +116,20 @@ FAQ_INTENTS = {
     "why_choose_academy": "academy_info",
 
     "contact_information": "contact",
-    "branch_locations": "contact",
+    "branch_locations": "branches",
 
-    "parking_facility": "academy_info",
+    "parking_facility": "parking",
     "computer_lab": "academy_info",
 
     "attendance": "academy_info",
     "holiday_classes": "academy_info",
     "leave_policy": "academy_info",
 
-    "language_of_instruction": "academy_info",
+    "language_of_instruction": "language_of_instruction",
     "beginner_friendly": "beginner_friendly",
     "working_professionals": "course_eligibility",
+    "laptop_requirement": "equipment",
+    "python_prior_programming_knowledge": "prerequisites",
 
     "course_duration": "course_duration",
     "course_mode": "course_info",
@@ -170,6 +232,47 @@ def _find_best_match(query, faqs, intent=None):
             ],
         },
 
+        "prerequisites": {
+            "python_prior_programming_knowledge": ["prior programming", "programming knowledge", "coding experience", "prior knowledge", "without programming", "without coding"],
+        },
+        "equipment": {
+            "laptop_requirement": ["laptop", "own laptop", "bring laptop", "laptop required"],
+        },
+        "batch": {
+            "batch_timings": ["batch", "batch timings", "flexible timings", "after 6 pm", "after 6", "class schedule"],
+            "weekend_batches": ["weekend", "sunday", "saturday"],
+        },
+        "online_classes": {
+            "online_classes": ["online", "online classes", "online batch", "virtual", "remote"],
+        },
+        "missed_class": {
+            "missed_class": ["miss class", "missed class", "backup class", "backup classes", "makeup", "absence"],
+        },
+        "language_of_instruction": {
+            "language_of_instruction": ["language", "gujarati", "hindi", "english", "teaching language"],
+        },
+        "parking": {
+            "parking_facility": ["parking", "two wheeler", "bike parking", "parking space"],
+        },
+        "branches": {
+            "branch_near_sanskar_mandal": ["sanskar mandal", "near sanskar mandal", "closest to sanskar mandal"],
+        },
+
+        "documents_required": {
+            "documents_required": ["documents", "id proof", "photo", "bring for admission"],
+        },
+        "refund_policy": {
+            "refund_policy": ["refund", "refundable", "money back", "cancel admission"],
+        },
+        "installment_payment": {
+            "installment_payment": ["installment", "installments", "emi", "monthly installment", "pay monthly"],
+        },
+        "discounts": {
+            "discounts": ["discount", "discounts", "two friends", "group discount", "offer"],
+        },
+        "practice_tests": {
+            "ielts_mock_tests": ["mock test", "mock tests", "practice test", "practice tests"],
+        },
         "course_eligibility": {
             "eligibility": [
                 "eligibility", "qualification",
@@ -425,6 +528,11 @@ def search_course_faq(course_id, query, intent=None):
 
     for faq in faqs:
 
+        # Do not allow a fuzzy match from another topic to answer
+        # a course-specific question.
+        if not _faq_matches_topic(faq, intent):
+            continue
+
         question = _normalize(
             faq.get("question", "")
         )
@@ -435,13 +543,27 @@ def search_course_faq(course_id, query, intent=None):
             continue
 
         # ---------------------------------------------
-        # Question similarity
+        # Question similarity + FAQ keyword evidence
         # ---------------------------------------------
 
         score = _calculate_score(
             query,
             question
         )
+
+        keyword_bonus = 0
+        for keyword in faq.get("keywords", []) or []:
+            keyword = _normalize(keyword)
+            if not keyword:
+                continue
+            if re.search(r"\b" + re.escape(keyword) + r"\b", query):
+                keyword_bonus = max(keyword_bonus, 35)
+            else:
+                # Allow high-confidence typo/wording variants without
+                # letting a generic keyword dominate the whole question.
+                candidate_score = _calculate_score(query, keyword)
+                if candidate_score >= 92:
+                    keyword_bonus = max(keyword_bonus, 22)
 
         # ---------------------------------------------
         # Intent-based bonus
@@ -487,7 +609,7 @@ def search_course_faq(course_id, query, intent=None):
         # Final score
         # ---------------------------------------------
 
-        final_score = score + intent_bonus
+        final_score = score + intent_bonus + keyword_bonus
 
         if final_score > best_score:
 

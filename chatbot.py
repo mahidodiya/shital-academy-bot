@@ -23,6 +23,8 @@ chatbot.py's own job is orchestration only:
 - shaping the final dictionary returned to the frontend/API
 """
 
+import re
+
 from logics.course_listing import (
     detect_course_listing,
     format_course_listing,
@@ -41,6 +43,7 @@ from logics.faq_matcher import (
     search_course_faq,
     search_academy_faq,
 )
+from logics.query_analyzer import analyze_topics, comparison_courses
 
 from logics.greeting_detector import (
     greetings,
@@ -71,7 +74,7 @@ from session_manager import (
 
 # Academy requirement:
 # Ask for lead details after this many REAL questions.
-LEAD_CAPTURE_AFTER = 1
+LEAD_CAPTURE_AFTER = 3
 
 
 # =========================================================
@@ -85,10 +88,14 @@ COURSE_CONTEXT_INTENTS = {
     "course_fees",
     "course_duration",
     "course_eligibility",
+    "prerequisites",
     "course_certificate",
+    "certificate_recognition",
     "course_modules",
     "learning_outcomes",
     "beginner_friendly",
+    "study_material",
+    "practice_tests",
 }
 
 
@@ -98,6 +105,16 @@ ACADEMY_INTENTS = {
     "demo_class",
     "academy_info",
     "contact",
+    "online_classes",
+    "batch",
+    "refund_policy",
+    "installment_payment",
+    "discounts",
+    "documents_required",
+    "missed_class",
+    "language_of_instruction",
+    "parking",
+    "equipment",
     "branches",
     "academy_timings",
     "help",
@@ -185,7 +202,39 @@ def is_course_offered(course_id, knowledge):
                 if not isinstance(offered_course, str):
                     continue
 
-                offered_id = offered_course.lower().replace(" ", "_")
+                offered_normalized = offered_course.strip().lower()
+
+                # Map the public academy catalog name to the internal
+                # course id. This keeps courses such as C++/Customized
+                # English consistent with course_detector.py.
+                catalog_ids = {
+                    "c": "c",
+                    "c++": "cpp",
+                    "java": "java",
+                    "html": "html",
+                    "bootstrap": "bootstrap",
+                    "customized english courses": "customized_english",
+                    "basic to advanced english course": "basic_to_advanced_english",
+                    "special speaking course for english medium students": "special_speaking_english",
+                    "foundation course": "foundation_english",
+                    "foundation english course": "foundation_english",
+                    "rapido english course": "rapido_english",
+                    "spoken english": "spoken_english",
+                    "ielts preparation": "ielts",
+                    "web designing": "web_designing",
+                    "web development": "web_development",
+                    "python programming": "python",
+                    "tally prime with gst": "tally",
+                    "data analytics": "data_analytics",
+                    "advanced excel": "excel",
+                    "advanced ccc": "ccc",
+                    "office executive": "office_executive",
+                }
+
+                offered_id = catalog_ids.get(
+                    offered_normalized,
+                    offered_normalized.replace(" ", "_")
+                )
 
                 if offered_id == course_id:
                     return True
@@ -577,7 +626,276 @@ def process_message(message, session_id=None):
         }
 
     # =====================================================
-    # 6. COUNT REAL QUESTION
+    # 6. THANKS / GRATITUDE
+    # =====================================================
+
+    if normalized_message in {
+        "thanks",
+        "thank you",
+        "thankyou",
+        "thx",
+        "ty",
+        "thanks a lot",
+        "thank you so much",
+    }:
+
+        response = "You're welcome! 😊 Let me know if you need anything else."
+
+        save_message(session_id, "Bot", response)
+
+        return {
+            "response": response,
+            "session_id": session_id,
+            "intent": "thanks",
+            "intent_score": 100.0,
+            "course": None,
+            "course_score": 0.0,
+            "course_from_context": False,
+            "course_can_answer": False,
+            "course_faq": None,
+            "course_faq_score": 0.0,
+            "academy_faq": None,
+            "academy_faq_score": 0.0,
+            "course_offered": False,
+            "trigger_lead_form": False,
+            "end_session": False,
+        }
+
+    # =====================================================
+    # 7. DETECT INTENT
+    # =====================================================
+
+    intent, intent_score = detect_intent(message)
+
+    # =====================================================
+    # 8. DETECT COURSE
+    # =====================================================
+
+    course_id, course_score = detect_course(message)
+
+
+    # =====================================================
+    # 9. QUERY ANALYSIS: MULTI-TOPIC + COMPARISON
+    # =====================================================
+    topics = analyze_topics(message)
+
+    # A course-specific eligibility question such as
+    # "Can a senior citizen join CCC?" also contains the word "join".
+    # Do not let the generic admission FAQ contaminate the answer.
+    if "course_eligibility" in topics and "admission" in topics:
+        topics.remove("admission")
+    if "certificate_recognition" in topics and "course_certificate" in topics:
+        topics.remove("course_certificate")
+    if "course_modules" in topics and "language_of_instruction" in topics:
+        topics.remove("language_of_instruction")
+
+    comparison_ids = comparison_courses(message, detect_course)
+
+    # A comparison must name at least two recognizable courses.
+    comparison_language = bool(re.search(r"\b(vs|versus|or|between)\b", normalized_message))
+    if len(comparison_ids) >= 2 and (
+        intent in {"comparison", "recommendation"}
+        or "confused" in normalized_message
+        or comparison_language
+    ):
+        knowledge = get_knowledge()
+        names = []
+        for cid in comparison_ids:
+            course_data = knowledge.get("courses", {}).get(cid, {})
+            names.append(course_data.get("name", cid.replace("_", " ").title()))
+        details = []
+        for cid in comparison_ids:
+            course_data = knowledge.get("courses", {}).get(cid, {})
+            desc = course_data.get("description")
+            if desc:
+                details.append(
+                    f"{course_data.get('name', cid.replace('_',' ').title())}: {desc}"
+                )
+        response = (
+            f"You are comparing {' and '.join(names)}.\n\n"
+            + "\n\n".join(details)
+            + "\n\nIf you tell me your main goal, I can help you choose between them."
+        )
+        save_message(session_id, "Bot", response)
+        lead = get_lead(session_id)
+        lead["question_count"] = lead.get("question_count", 0) + 1
+        return {
+            "response": response, "session_id": session_id,
+            "intent": "comparison", "intent_score": 100.0,
+            "course": comparison_ids[0], "course_score": 100.0,
+            "course_from_context": False, "course_can_answer": False,
+            "course_faq": None, "course_faq_score": 0.0,
+            "academy_faq": None, "academy_faq_score": 0.0,
+            "course_offered": True,
+            "trigger_lead_form": should_trigger_lead_form(session_id),
+            "end_session": False,
+        }
+
+    # A single explicit course plus a career goal is a recommendation/career-fit
+    # question, not a placement request. Use the course's verified career data.
+    if course_id and intent == "recommendation" and len(comparison_ids) < 2:
+        knowledge = get_knowledge()
+        course_data = knowledge.get("courses", {}).get(course_id)
+        if course_data:
+            name = course_data.get("name", course_id.replace("_", " ").title())
+            desc = course_data.get("description", "")
+            careers = course_data.get("career_opportunities", [])
+            response = f"{name}\n\n{desc}" if desc else name
+            if careers:
+                response += "\n\nCareer opportunities listed for this course:\n" + "\n".join(f"• {x}" for x in careers)
+            response += "\n\nIf you tell me your exact job goal, I can help you compare this with another suitable course."
+            save_message(session_id, "Bot", response)
+            lead = get_lead(session_id)
+            lead["question_count"] = lead.get("question_count", 0) + 1
+            return {
+                "response": response, "session_id": session_id,
+                "intent": "recommendation", "intent_score": 100.0,
+                "course": course_id, "course_score": course_score,
+                "course_from_context": False, "course_can_answer": False,
+                "course_faq": None, "course_faq_score": 0.0,
+                "academy_faq": None, "academy_faq_score": 0.0,
+                "course_offered": True,
+                "trigger_lead_form": should_trigger_lead_form(session_id),
+                "end_session": False,
+            }
+
+    # Multiple specific topics in one message are answered separately.
+    if len(topics) >= 2:
+        knowledge = get_knowledge()
+        resolved_course_id = course_id or get_context(session_id).get_course()
+        resolved_course = knowledge.get("courses", {}).get(resolved_course_id) if resolved_course_id else None
+        responses = []
+
+        for topic in topics:
+            if topic == "course_start_date":
+                answer = (
+                    "I don't have a confirmed starting date for this course yet. "
+                    "Please contact Shital Academy for the next available batch date."
+                )
+            elif topic in {
+                "academy_timings", "batch", "branches", "online_classes",
+                "installment_payment", "discounts", "documents_required",
+                "missed_class", "language_of_instruction", "parking",
+                "equipment", "refund_policy", "demo_class", "placement",
+                "admission",
+            }:
+                if topic == "online_classes" and "offline" in normalized_message:
+                    if "online" in normalized_message:
+                        answer = (
+                            "Shital Academy offers offline classroom training. "
+                            "Online batch availability should be confirmed for your preferred course and schedule. "
+                            "Please contact the academy for the current online-batch availability."
+                        )
+                    else:
+                        answer = (
+                            "Yes. Shital Academy offers offline classroom training. "
+                            "For the specific course and batch schedule, please contact the academy."
+                        )
+                elif topic == "demo_class" and any(x in normalized_message for x in ("free", "without paying", "before paying")):
+                    answer = (
+                        "Yes, demo classes are available for selected courses so students can understand the teaching method, "
+                        "course content, and learning environment before taking admission. The current information does not "
+                        "confirm that every demo class is free, so please contact the academy for the selected course."
+                    )
+                else:
+                    faq, _ = search_academy_faq(message, topic)
+                    answer = build_response(
+                        intent=topic,
+                        course=resolved_course,
+                        course_id=resolved_course_id,
+                        academy_faq=faq,
+                        knowledge=knowledge,
+                    )
+            else:
+                faq, _ = (
+                    search_course_faq(resolved_course_id, message, topic)
+                    if resolved_course_id else (None, 0.0)
+                )
+                answer = build_response(
+                    intent=topic,
+                    course=resolved_course,
+                    course_id=resolved_course_id,
+                    course_faq=faq,
+                    knowledge=knowledge,
+                )
+
+            if answer and answer not in responses:
+                responses.append(answer)
+
+        if responses:
+            response = "\n\n".join(responses)
+            save_message(session_id, "Bot", response)
+            lead = get_lead(session_id)
+            lead["question_count"] = lead.get("question_count", 0) + 1
+            return {
+                "response": response, "session_id": session_id,
+                "intent": topics[0], "intent_score": 100.0,
+                "course": resolved_course_id,
+                "course_score": 100.0 if resolved_course_id else 0.0,
+                "course_from_context": bool(resolved_course_id and not course_id),
+                "course_can_answer": False,
+                "course_faq": None, "course_faq_score": 0.0,
+                "academy_faq": None, "academy_faq_score": 0.0,
+                "course_offered": bool(resolved_course_id),
+                "trigger_lead_form": should_trigger_lead_form(session_id),
+                "end_session": False,
+            }
+
+    # Use a specific topic when the generic intent detector chose a broad
+    # course category such as "computer_course" or "english_course".
+    if topics:
+        priority = [
+            "course_fees", "course_duration", "course_start_date", "certificate_recognition", "course_modules",
+            "study_material", "course_certificate", "practice_tests",
+            "prerequisites", "course_eligibility", "placement",
+            "demo_class", "installment_payment", "documents_required",
+            "refund_policy", "online_classes", "batch", "academy_timings",
+            "branches", "language_of_instruction", "parking", "equipment",
+            "missed_class", "discounts", "recommendation", "admission",
+        ]
+        for topic in priority:
+            if topic in topics:
+                intent = topic
+                intent_score = 100.0
+                break
+
+    # =====================================================
+    # 9. OUT-OF-SCOPE / UNKNOWN
+    # =====================================================
+    # Never search the academy FAQ when we do not have a reliable
+    # intent. This is the key production guard against unrelated
+    # questions receiving random academy answers.
+
+    if intent is None:
+
+        response = (
+            "I can help with Shital Academy's courses, fees, "
+            "admissions, timings, batches, branches, and other "
+            "academy-related questions. What would you like to know?"
+        )
+
+        save_message(session_id, "Bot", response)
+
+        return {
+            "response": response,
+            "session_id": session_id,
+            "intent": None,
+            "intent_score": intent_score,
+            "course": course_id,
+            "course_score": course_score,
+            "course_from_context": False,
+            "course_can_answer": False,
+            "course_faq": None,
+            "course_faq_score": 0.0,
+            "academy_faq": None,
+            "academy_faq_score": 0.0,
+            "course_offered": bool(course_id),
+            "trigger_lead_form": False,
+            "end_session": False,
+        }
+
+    # =====================================================
+    # 10. COUNT REAL QUESTION
     # =====================================================
 
     lead = get_lead(session_id)
@@ -587,23 +905,7 @@ def process_message(message, session_id=None):
     )
 
     # =====================================================
-    # 7. DETECT INTENT
-    # =====================================================
-
-    intent, intent_score = detect_intent(
-        message
-    )
-
-    # =====================================================
-    # 8. DETECT COURSE
-    # =====================================================
-
-    course_id, course_score = detect_course(
-        message
-    )
-
-    # =====================================================
-    # 9. RESOLVE COURSE CONTEXT
+    # 11. RESOLVE COURSE CONTEXT
     # =====================================================
 
     (
@@ -618,7 +920,7 @@ def process_message(message, session_id=None):
     )
 
     # =====================================================
-    # 10. LOAD KNOWLEDGE
+    # 12. LOAD KNOWLEDGE
     # =====================================================
 
     knowledge = get_knowledge()
@@ -707,7 +1009,7 @@ def process_message(message, session_id=None):
         # course-specific academy question.
         if not (
             course_id
-            and intent in ACADEMY_INTENTS
+            and intent in COURSE_CONTEXT_INTENTS
         ):
 
             (
@@ -718,18 +1020,53 @@ def process_message(message, session_id=None):
                 intent,
             )
 
+    # Offline questions are distinct from online-batch availability.
+    if intent == "online_classes" and "offline" in normalized_message:
+        if "online" in normalized_message:
+            response = (
+                "Shital Academy offers offline classroom training. "
+                "Online batch availability should be confirmed for your preferred course and schedule. "
+                "Please contact the academy for the current online-batch availability."
+            )
+        else:
+            response = (
+                "Yes. Shital Academy offers offline classroom training. "
+                "For the specific course and batch schedule, please contact the academy."
+            )
+    elif intent == "demo_class" and any(x in normalized_message for x in ("free", "without paying", "before paying")):
+        response = (
+            "Yes, demo classes are available for selected courses so students can understand the teaching method, "
+            "course content, and learning environment before taking admission. The current information does not "
+            "confirm that every demo class is free, so please contact the academy for the selected course."
+        )
+    else:
+        response = None
+
     # =====================================================
     # 16. BUILD FINAL RESPONSE
     # =====================================================
 
-    response = build_response(
-        intent=intent,
-        course=course,
-        course_id=course_id,
-        course_faq=course_faq,
-        academy_faq=academy_faq,
-        knowledge=knowledge,
-    )
+    if response is None:
+        response = build_response(
+            intent=intent,
+            course=course,
+            course_id=course_id,
+            course_faq=course_faq,
+            academy_faq=academy_faq,
+            knowledge=knowledge,
+        )
+
+    # Never imply guaranteed placement when the academy only confirms
+    # placement support and says assistance may vary by course.
+    if intent == "placement" and any(
+        word in normalized_message
+        for word in ("guaranteed", "guarantee", "100% job", "sure job")
+    ):
+        response = (
+            "Placement support is available for the Diploma in Office Executive "
+            "course and IT courses. The academy does not state that placement is "
+            "guaranteed; the level of assistance may vary depending on the course."
+        )
 
     # =====================================================
     # 17. SAVE BOT RESPONSE

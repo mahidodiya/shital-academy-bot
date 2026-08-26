@@ -49,6 +49,27 @@ EXTRA_ALIASES = {
         "web development", "website development", "web developer course",
         "web programming", "website programming",
     ],
+
+    # Courses officially offered by the academy but without a detailed
+    # course JSON yet. They are still detectable so the bot can give a
+    # safe "details not available" response instead of pretending they
+    # do not exist.
+    "c": ["c", "c programming", "c language", "c course"],
+    "cpp": ["c++", "cpp", "c plus plus", "c++ course"],
+    "java": ["java", "java programming", "java course"],
+    "html": ["html", "html course", "html web course"],
+    "bootstrap": ["bootstrap", "bootstrap course"],
+    "customized_english": [
+        "customized english", "customised english",
+        "customized english course", "customised english course",
+    ],
+    "basic_to_advanced_english": [
+        "basic to advanced english", "basic to advanced english course",
+    ],
+    "special_speaking_english": [
+        "special speaking", "special speaking course",
+        "special speaking course for english medium students",
+    ],
 }
 
 # Words that are too generic to identify a course by themselves.
@@ -77,7 +98,12 @@ def _build_candidates():
     """Build (phrase, course_id, source_type) candidates from the KB."""
     candidates = []
 
-    for course_id, course in COURSES.items():
+    # Include both detailed course JSON files and officially offered
+    # courses that do not yet have a detailed JSON file.
+    all_course_ids = set(COURSES.keys()) | set(EXTRA_ALIASES.keys())
+
+    for course_id in all_course_ids:
+        course = COURSES.get(course_id, {})
         phrases = []
         name = course.get("name", "")
         if name:

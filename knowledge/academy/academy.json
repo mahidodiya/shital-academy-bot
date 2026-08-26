@@ -40,7 +40,8 @@
             "Basic to Advanced English Course",
             "Special Speaking Course for English Medium Students",
             "IELTS Preparation",
-            "Customized English Courses"
+            "Customized English Courses",
+            "Spoken English"
         ],
         "it": [
             "Web Development",
@@ -50,7 +51,12 @@
             "Java",
             "HTML",
             "Python",
-            "Bootstrap"
+            "Bootstrap",
+            "Tally Prime with GST",
+            "Data Analytics",
+            "Advanced Excel",
+            "Advanced CCC",
+            "Office Executive"
         ]
     },
     "fees": {
