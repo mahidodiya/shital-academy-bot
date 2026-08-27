@@ -313,10 +313,6 @@ def build_response(
                 f"I don't have the certificate details for "
                 f"{course_name} yet. Please contact Shital Academy."
             ),
-            "certificate_recognition": (
-                f"I don't have confirmed information about whether the {course_name} certificate "
-                f"is government-recognized. Please contact Shital Academy to confirm."
-            ),
         }
 
         if intent in unavailable_by_intent:
@@ -498,7 +494,7 @@ def build_response(
                 return study_material
 
         # -------------------------------------------------
-        # Certificate recognition / government approval
+        # Certificate
         # -------------------------------------------------
 
         if intent == "certificate_recognition":
@@ -506,18 +502,13 @@ def build_response(
             if certificate:
                 return (
                     f"{certificate}\n\n"
-                    f"The current knowledge base does not specify whether the "
-                    f"certificate is government-recognized or has a particular accreditation. "
-                    f"Please contact Shital Academy to confirm the certificate's recognition status."
+                    "I don't have verified information about government recognition of the certificate, "
+                    "so please confirm the government recognition details with the academy."
                 )
             return (
-                f"I don't have confirmed information about the recognition status of the "
-                f"{course_name} certificate. Please contact Shital Academy."
+                "I don't have verified information about government recognition of the certificate. "
+                "Please confirm this directly with the academy."
             )
-
-        # -------------------------------------------------
-        # Certificate
-        # -------------------------------------------------
 
         if intent == "course_certificate":
 
@@ -729,12 +720,16 @@ def build_response(
             "course_duration": f"I don't have duration information for {course_name} yet.",
             "course_certificate": f"I don't have certificate information for {course_name} yet.",
             "certificate_recognition": (
-                f"I don't have confirmed information about whether the {course_name} certificate "
-                f"is government-recognized. Please contact Shital Academy to confirm."
+                "I don't have verified information about government recognition of the certificate. "
+                "Please confirm this directly with the academy."
+            ),
+            "placement_guarantee": (
+                "Placement support may be available, but I don't have a verified guarantee of placement. "
+                "Please confirm the current placement policy with the academy."
             ),
             "course_modules": (
                 f"I don't have the detailed syllabus/module information "
-                f"for {course_name} yet."
+                f"for {course_name} yet. Please contact the academy for the latest detailed syllabus."
             ),
             "prerequisites": f"I don't have prerequisite information for {course_name} yet.",
             "course_eligibility": f"I don't have eligibility information for {course_name} yet.",
@@ -840,11 +835,84 @@ def build_response(
             return "I don't have academy timing information yet."      
                 
         # -------------------------------------------------
+        # Verified academy-level answers
+        # -------------------------------------------------
+
+        if intent == "payment_methods":
+            return "We accept multiple payment methods, including Cash, UPI, and Online Bank Payment. Card payment availability can be confirmed with the academy."
+
+        if intent == "fee_receipt":
+            return "Yes. Students can obtain a payment receipt after successful fee payment."
+
+        if intent == "internship":
+            return "Internship opportunities vary depending on the course. Please contact the academy for current availability."
+
+        if intent == "leave_policy":
+            return "If you need leave, please inform your faculty or branch in advance whenever possible."
+
+        if intent == "teaching_methodology":
+            academy_info = (knowledge or {}).get("academy", {}).get("academy", {}) if isinstance(knowledge, dict) else {}
+            return academy_info.get("teaching_methodology") or "The academy follows a personalized teaching approach with individual attention."
+
+        if intent == "why_choose":
+            academy_info = (knowledge or {}).get("academy", {}).get("academy", {}) if isinstance(knowledge, dict) else {}
+            reasons = academy_info.get("why_choose_us", []) if isinstance(academy_info, dict) else []
+            if reasons:
+                return "Why choose Shital Academy:\n\n" + "\n".join(f"• {reason}" for reason in reasons)
+            return "Shital Academy focuses on practical learning, experienced faculty, flexible batches, personalized guidance and career-oriented training."
+
+        if intent == "admission_open":
+            return "Yes, admissions are open. Availability depends on the course and batch."
+
+        if intent == "join_anytime":
+            return "Joining depends on batch availability."
+
+        if intent == "batch_change":
+            return "Batch changes depend on seat availability and academy policy."
+
+        if intent == "practical_training":
+            return "Yes. Most technical and professional courses focus on practical learning along with theory."
+
+        # -------------------------------------------------
+        # Generic course fee range
+        # -------------------------------------------------
+
+        if intent == "course_fees":
+            return (
+                "Course fees generally range from ₹6,500 to ₹25,000, depending on the course. "
+                "Please contact the academy for the exact fee and current offers."
+            )
+
+        # -------------------------------------------------
+        # Placement guarantee
+        # -------------------------------------------------
+
+        if intent == "placement_guarantee":
+            return (
+                "Placement support is available for the Diploma in Office Executive course and IT courses, "
+                "but placement is not guaranteed. The level of assistance may vary depending on the course."
+            )
+
+        # -------------------------------------------------
+        # Certificate recognition
+        # -------------------------------------------------
+
+        if intent == "certificate_recognition":
+            return (
+                "Shital Academy provides certificates after successful course completion. "
+                "I don't have verified information that the certificate is government-recognized, "
+                "so please confirm recognition details with the academy."
+            )
+
+        # -------------------------------------------------
         # Online / Offline Classes
         # -------------------------------------------------
 
         if intent == "online_classes":
-            return "Yes. Shital Academy offers offline classroom training. For the specific course and batch schedule, please contact the academy."
+            return (
+                "Online batches may be available depending on the preferred course. "
+                "Please contact the academy to check current online-batch availability."
+            )
 
         # -------------------------------------------------
         # Academy FAQ

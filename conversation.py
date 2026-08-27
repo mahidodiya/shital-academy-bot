@@ -15,6 +15,11 @@ class ConversationContext:
         # Last detected intent
         self.intent = None
 
+        # Pending follow-up question/state.  This lets the bot continue
+        # a clarification instead of treating the next short message
+        # (for example "yes" or "python") as a brand-new question.
+        self.pending = None
+
 
     # =====================================================
     # COURSE
@@ -44,6 +49,22 @@ class ConversationContext:
     def get_intent(self):
 
         return self.intent
+
+
+    # =====================================================
+    # PENDING FOLLOW-UP
+    # =====================================================
+
+    def set_pending(self, pending):
+        self.pending = pending if pending else None
+
+
+    def get_pending(self):
+        return self.pending
+
+
+    def clear_pending(self):
+        self.pending = None
 
 
     # =====================================================

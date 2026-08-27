@@ -76,7 +76,7 @@ EXTRA_ALIASES = {
 GENERIC_WORDS = {
     "course", "courses", "class", "classes", "training", "learn", "learning",
     "teach", "teaching", "academy", "skill", "skills", "program", "programming",
-    "english", "office", "computer", "data", "analysis", "analytics", "website",
+    "english", "office", "computer", "data", "analysis", "analytics", "website", "language",
     "web", "design", "development", "basic", "advanced",
 }
 
@@ -194,9 +194,13 @@ def detect_course(user_text: str):
         if not meaningful:
             continue
 
+        candidate_words = [word for word in words if len(word) >= 3]
+        if not candidate_words:
+            continue
+
         token_scores = []
         for target in meaningful:
-            token_scores.append(max(fuzz.ratio(target, word) for word in words if len(word) >= 3))
+            token_scores.append(max(fuzz.ratio(target, word) for word in candidate_words))
 
         if token_scores:
             score = min(token_scores)

@@ -113,7 +113,7 @@ FAQ_INTENTS = {
     "internship": "placement",
 
     "about_academy": "academy_info",
-    "why_choose_academy": "academy_info",
+    "why_choose_academy": "why_choose",
 
     "contact_information": "contact",
     "branch_locations": "branches",

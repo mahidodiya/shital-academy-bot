@@ -60,27 +60,6 @@ def _fuzzy_keyword_score(text, phrase):
     return best
 
 
-def _augment_intents(intents):
-    """Add high-value production phrases without mutating the loaded JSON."""
-    additions = {
-        "certificate": ["government recognized", "govt recognized", "recognized certificate", "recognised certificate", "certificate standard"],
-        "course_modules": [
-            "django", "flask", "power bi", "powerbi", "sql", "mysql",
-            "payroll", "export sales", "gujarati typing", "english typing",
-            "ai tools", "shortcut keys", "shortcuts", "tally and excel",
-        ],
-        "course_eligibility": ["senior citizen", "senior citizens", "can senior citizen join", "can anyone join"],
-    }
-    merged = []
-    for item in intents:
-        item = dict(item)
-        extra = additions.get(item.get("id"), [])
-        if extra:
-            item["keywords"] = list(dict.fromkeys(list(item.get("keywords", [])) + extra))
-        merged.append(item)
-    return merged
-
-
 def detect_intent(user_text):
     """
     Detect intent conservatively.
@@ -105,7 +84,7 @@ def detect_intent(user_text):
     best_priority = -1
     best_phrase_length = 0
 
-    for intent in _augment_intents(INTENTS):
+    for intent in INTENTS:
         intent_name = intent["id"]
         priority = intent.get("priority", 0)
 

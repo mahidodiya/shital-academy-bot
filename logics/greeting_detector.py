@@ -19,11 +19,11 @@ FUZZY_CUTOFF = 0.8
 MIN_WORD_LEN_FOR_FUZZY = 4
 
 GREETING_PHRASES = [
-    "hello", "hi", "hey", "howdy", "greetings",
+    "hello", "hi", "hii", "hey", "howdy", "greetings",
     "good morning", "good afternoon", "good evening", "good day",
     "what's up", "whats up", "how are you", "how's it going",
     "how do you do", "nice to meet you", "welcome",
-    "hy", "hiya", "yo", "sup",
+    "hy", "hii", "hiii", "hiya", "yo", "sup",
 ]
 
 GOODBYE_PHRASES = [

@@ -34,7 +34,7 @@
             ],
             "answer": "Yes. Our counselors help students choose the most suitable course according to their education, interests and career goals.",
             "follow_up": [
-                "What is your education and career goal?"
+                "What is your education level and career goal? (For example: MIS, accounting, back office, programming, data analytics, or English speaking.)"
             ],
             "last_verified": "2026-08"
         },
@@ -49,7 +49,7 @@
                 "id proof",
                 "admission documents"
             ],
-            "answer": "Please contact the academy for course-specific admission requirements.",
+            "answer": "Please contact the academy for the course-specific admission requirements and documents required for admission.",
             "follow_up": [],
             "last_verified": "2026-08"
         },
@@ -455,7 +455,10 @@
                 "why choose",
                 "benefits",
                 "advantages",
-                "best academy"
+                "best academy",
+                "why should i join",
+                "why should i join shital academy",
+                "why join shital academy"
             ],
             "answer": "Shital Academy focuses on practical learning, experienced faculty, flexible batches, personalized guidance and career-oriented training.",
             "follow_up": [],
@@ -493,7 +496,9 @@
                 "solanki restaurant",
                 "vitthalwadi branch",
                 "hardik complex",
-                "omkar complex"
+                "omkar complex",
+                "which branch is in vitthalwadi",
+                "branch in vitthalwadi"
             ],
             "answer": "Shital Academy has multiple branches. Please check the branch information or contact the academy to find the nearest branch.",
             "follow_up": [],
@@ -730,6 +735,21 @@
                 "branch near sanskar mandal"
             ],
             "answer": "Branch 1 is near Sanskar Mandal: 2nd Floor, Omkar Complex, Between Sanskar Mandal and Ram Mantra Mandir Road, Near Solanki Restaurant, Bhavnagar.",
+            "follow_up": [],
+            "last_verified": "2026-08"
+        },
+        {
+            "id": "branch_in_vitthalwadi",
+            "category": "Branches",
+            "priority": 98,
+            "question": "Which branch is in Vitthalwadi?",
+            "keywords": [
+                "vitthalwadi",
+                "which branch is in vitthalwadi",
+                "branch in vitthalwadi",
+                "vitthalwadi branch"
+            ],
+            "answer": "Branch 2 is in Vitthalwadi: 2nd Floor, Hardik Complex, Besides Suraj Sofa, Vitthalwadi, Bhavnagar.",
             "follow_up": [],
             "last_verified": "2026-08"
         }

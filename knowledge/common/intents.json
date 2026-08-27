@@ -14,7 +14,8 @@
                 "good afternoon",
                 "good evening",
                 "namaste",
-                "kem cho"
+                "kem cho",
+                "hiii"
             ]
         },
         {
@@ -107,14 +108,13 @@
             "priority": 92,
             "keywords": [
                 "placement",
-                "job placement",
+                "job",
+                "career",
+                "interview",
+                "employment",
                 "placement support",
                 "job assistance",
-                "career support",
-                "placement assistance",
-                "get a job after",
-                "job after course",
-                "employment after course"
+                "career support"
             ]
         },
         {
@@ -218,7 +218,10 @@
                 "where are you located",
                 "where is your branch",
                 "where are your branches",
-                "how can I reach you"
+                "how can I reach you",
+                "which branch is in vitthalwadi",
+                "branch in vitthalwadi",
+                "vitthalwadi"
             ]
         },
         {
@@ -263,7 +266,10 @@
                 "about shital academy",
                 "academy",
                 "institute",
-                "who are you"
+                "who are you",
+                "what do you do",
+                "what does the academy do",
+                "what does shital academy do"
             ]
         },
         {
@@ -334,13 +340,12 @@
                 "which course",
                 "best course",
                 "confused",
-                "for a job",
-                "for job",
-                "for mis",
-                "for back office",
-                "career goal",
-                "career goals",
-                "want to learn for"
+                "which course is better",
+                "which course is best",
+                "good for mis",
+                "good for back office",
+                "good for programming",
+                "good for data analyst job"
             ]
         },
         {
@@ -572,6 +577,106 @@
                 "good for beginners",
                 "can beginners join",
                 "is this suitable for beginners"
+            ]
+        },
+        {
+            "id": "payment_methods",
+            "priority": 95,
+            "keywords": [
+                "upi",
+                "cash",
+                "bank transfer",
+                "card payment",
+                "payment methods"
+            ]
+        },
+        {
+            "id": "fee_receipt",
+            "priority": 94,
+            "keywords": [
+                "fee receipt",
+                "payment receipt",
+                "receipt",
+                "invoice"
+            ]
+        },
+        {
+            "id": "internship",
+            "priority": 92,
+            "keywords": [
+                "internship",
+                "internships"
+            ]
+        },
+        {
+            "id": "leave_policy",
+            "priority": 90,
+            "keywords": [
+                "take leave",
+                "leave during",
+                "holiday during"
+            ]
+        },
+        {
+            "id": "teaching_methodology",
+            "priority": 91,
+            "keywords": [
+                "teaching methodology",
+                "teaching method",
+                "how do you teach"
+            ]
+        },
+        {
+            "id": "why_choose",
+            "priority": 90,
+            "keywords": [
+                "why should i choose",
+                "why choose shital",
+                "why shital academy"
+            ]
+        },
+        {
+            "id": "admission_open",
+            "priority": 96,
+            "keywords": [
+                "admissions open",
+                "admission open"
+            ]
+        },
+        {
+            "id": "join_anytime",
+            "priority": 94,
+            "keywords": [
+                "join anytime",
+                "can i join anytime"
+            ]
+        },
+        {
+            "id": "practical_training",
+            "priority": 93,
+            "keywords": [
+                "practical training",
+                "hands-on training",
+                "do courses include practical"
+            ]
+        },
+        {
+            "id": "certificate_recognition",
+            "priority": 96,
+            "keywords": [
+                "government recognized",
+                "government recognition",
+                "govt recognized",
+                "recognized certificate"
+            ]
+        },
+        {
+            "id": "placement_guarantee",
+            "priority": 97,
+            "keywords": [
+                "placement guaranteed",
+                "guaranteed placement",
+                "placement guarantee"
             ]
         }
     ]
