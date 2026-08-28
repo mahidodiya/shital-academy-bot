@@ -72,8 +72,9 @@ from session_manager import (
 # =========================================================
 
 # Academy requirement:
-# Ask for lead details after this many REAL questions.
-LEAD_CAPTURE_AFTER = 3
+# Ask for lead details after the first REAL question.
+# Greetings / thanks / goodbye do not count as questions.
+LEAD_CAPTURE_AFTER = 1
 
 
 # =========================================================
@@ -457,13 +458,13 @@ def _scenario_from_goal(text):
         return "data_analyst"
     if any(x in t for x in ("back office", "office job", "office work")):
         return "back_office"
-    if any(x in t for x in ("programming", "coding", "developer")):
+    if any(x in t for x in ("programming", "programing", "program", "coding", "coder", "developer")):
         return "programming"
     if any(x in t for x in ("accounting", "accountant", "accounts job")):
         return "accounting"
     if any(x in t for x in ("grammar", "grammatical")):
         return "grammar"
-    if any(x in t for x in ("speaking", "speaking confidence", "conversation")):
+    if any(x in t for x in ("speaking", "speaking confidence", "conversation", "speking")):
         return "speaking"
     if any(x in t for x in ("weak in english", "basic english", "beginner in english")):
         return "weak_english"
@@ -584,7 +585,38 @@ def _handle_pending_followup(message, session_id):
             context.clear_pending()
             return {"kind": "replay", "message": guided}
 
-    # An explicit course name always resolves a pending "which course?" prompt.
+    # A plain-language career goal should resolve a pending course-guidance
+    # prompt before course-name detection. This prevents words such as
+    # "programming" from being treated as a course name when the user is
+    # answering the goal question.
+    if pending.get("kind") == "course_guidance":
+        scenario = _scenario_from_goal(text)
+        if scenario:
+            course_map = {
+                "mis": "excel", "data_analyst": "data_analytics",
+                "back_office": "office_executive", "programming": "python",
+                "accounting": "tally", "grammar": "foundation_english",
+                "speaking": "rapido_english", "weak_english": "foundation_english",
+            }
+            cid = course_map.get(scenario)
+            if cid:
+                course = get_knowledge().get("courses", {}).get(cid, {})
+                name = course.get("name", cid.replace("_", " ").title())
+                context.set_course(cid)
+                context.clear_pending()
+                reasons = {
+                    "mis": "Advanced Excel is directly useful for MIS work because it covers data management, analysis, reporting and dashboards.",
+                    "data_analyst": "Data Analytics is directly aligned with data analyst work involving data handling, reporting and visualization.",
+                    "back_office": "Office Executive is designed for office-based careers and covers office productivity and administration skills.",
+                    "programming": "Python Programming builds programming and problem-solving skills for software development.",
+                    "accounting": "Tally Prime with GST is focused on accounting and related business operations.",
+                    "grammar": "Foundation English focuses on grammar and core English language skills.",
+                    "speaking": "Rapido English focuses directly on speaking, conversation, pronunciation and confidence.",
+                    "weak_english": "Foundation English is the better starting point for building essential English skills.",
+                }
+                return {"kind": "replay", "message": f"Based on your goal, **{name}** would be a suitable choice. {reasons[scenario]}"}
+
+    # An explicit course name always resolves a pending course-specific prompt.
     cid, score = detect_course(text)
     if cid and score >= 85:
         kind = pending.get("kind")
@@ -1413,7 +1445,10 @@ def process_message(message, session_id=None):
             _set_pending(session_id, "admission_course")
         elif intent == "demo_class":
             _set_pending(session_id, "demo_course")
-    elif intent == "recommendation" and response and "What is your education level and career goal?" in response:
+    elif intent == "recommendation" and response and (
+        "What is your education and career goal?" in response
+        or "What is your education level and career goal?" in response
+    ):
         _set_pending(session_id, "course_guidance")
 
     # =====================================================
