@@ -8,17 +8,16 @@ This module is responsible for:
 - Validating email addresses
 - Validating mobile numbers
 - Sending captured lead information and conversation
-  transcript to the academy
+  transcript to the academy using Resend
 
 The actual lead form is handled by the API/frontend.
 """
 
 import os
 import re
-import smtplib
+import requests
 
 from datetime import datetime
-from email.mime.text import MIMEText
 
 from dotenv import load_dotenv
 
@@ -34,13 +33,25 @@ from session_manager import (
 
 load_dotenv()
 
-SMTP_SERVER = os.getenv("SMTP_SERVER")
-SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+# Resend API configuration
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
 
-SMTP_EMAIL = os.getenv("SMTP_EMAIL")
-SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
-
+# Academy email where leads should be received
 ACADEMY_EMAIL = os.getenv("ACADEMY_EMAIL")
+
+# Sender email
+#
+# If you have not verified your own domain in Resend,
+# use Resend's testing sender:
+#
+# onboarding@resend.dev
+#
+# Later, after verifying your domain, you can change
+# this environment variable to your own academy email.
+RESEND_FROM_EMAIL = os.getenv(
+    "RESEND_FROM_EMAIL",
+    "onboarding@resend.dev"
+)
 
 
 # =========================================================
@@ -197,7 +208,7 @@ def save_lead(
 
 
 # =========================================================
-# Send Transcript to Academy
+# Send Transcript to Academy using Resend
 # =========================================================
 
 def send_transcript_to_academy(
@@ -205,7 +216,7 @@ def send_transcript_to_academy(
 ):
     """
     Send captured lead details and conversation
-    transcript to the academy.
+    transcript to the academy using Resend API.
     """
 
     lead = get_lead(
@@ -216,27 +227,50 @@ def send_transcript_to_academy(
         session_id
     )
 
+    # -----------------------------------------------------
+    # Validate lead
+    # -----------------------------------------------------
+
     if not lead:
         return False
 
     if not lead.get("captured"):
         return False
 
+    # -----------------------------------------------------
+    # Prevent duplicate emails
+    # -----------------------------------------------------
+
     if lead.get("email_sent"):
         return True
+
     # -----------------------------------------------------
-    # Check SMTP configuration
+    # Check Resend configuration
     # -----------------------------------------------------
 
-    if not all([
-        SMTP_SERVER,
-        SMTP_EMAIL,
-        SMTP_PASSWORD,
-        ACADEMY_EMAIL,
-    ]):
+    if not RESEND_API_KEY:
 
         print(
-            "Email configuration is incomplete."
+            "Email configuration error: "
+            "RESEND_API_KEY is missing."
+        )
+
+        return False
+
+    if not ACADEMY_EMAIL:
+
+        print(
+            "Email configuration error: "
+            "ACADEMY_EMAIL is missing."
+        )
+
+        return False
+
+    if not RESEND_FROM_EMAIL:
+
+        print(
+            "Email configuration error: "
+            "RESEND_FROM_EMAIL is missing."
         )
 
         return False
@@ -261,17 +295,28 @@ Conversation
 {chr(10).join(conversation)}
 """
 
-    msg = MIMEText(
-        body
-    )
-
-    msg["Subject"] = (
+    subject = (
         f"New Chatbot Lead - "
         f"{lead.get('name', 'Unknown')}"
     )
 
-    msg["From"] = SMTP_EMAIL
-    msg["To"] = ACADEMY_EMAIL
+    # -----------------------------------------------------
+    # Resend API request
+    # -----------------------------------------------------
+
+    url = "https://api.resend.com/emails"
+
+    headers = {
+        "Authorization": f"Bearer {RESEND_API_KEY}",
+        "Content-Type": "application/json",
+    }
+
+    payload = {
+        "from": RESEND_FROM_EMAIL,
+        "to": [ACADEMY_EMAIL],
+        "subject": subject,
+        "text": body,
+    }
 
     # -----------------------------------------------------
     # Send email
@@ -279,26 +324,47 @@ Conversation
 
     try:
 
-        server = smtplib.SMTP(
-            SMTP_SERVER,
-            SMTP_PORT
+        response = requests.post(
+            url,
+            headers=headers,
+            json=payload,
+            timeout=15
         )
 
-        server.starttls()
+        # Resend returns HTTP 200 when the email
+        # request is accepted successfully.
+        if response.status_code in (200, 201):
 
-        server.login(
-            SMTP_EMAIL,
-            SMTP_PASSWORD
+            # Mark email as sent only after
+            # successful API response.
+            lead["email_sent"] = True
+
+            print(
+                "Lead email sent successfully."
+            )
+
+            return True
+
+        # -------------------------------------------------
+        # Resend returned an error
+        # -------------------------------------------------
+
+        print(
+            "Resend Email Error:",
+            response.status_code,
+            response.text
         )
 
-        server.send_message(
-            msg
+        return False
+
+    except requests.RequestException as e:
+
+        print(
+            "Email Network Error:",
+            e
         )
 
-        server.quit()
-        # Mark email as sent only after successful delivery
-        lead["email_sent"] = True
-        return True
+        return False
 
     except Exception as e:
 
