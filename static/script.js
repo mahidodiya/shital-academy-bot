@@ -113,7 +113,12 @@ function addMessage(text, sender) {
 
     const avatar = document.createElement("div");
     avatar.className = "avatar";
-    avatar.innerHTML = sender === "bot" ? "🤖" : "👤";
+
+    if (sender === "bot") {
+        avatar.innerHTML = '<img src="templates/bot.jpg" alt="Bot">';
+    } else {
+        avatar.innerHTML = "👤";
+    }
 
     const content = document.createElement("div");
     content.className = "message-content";

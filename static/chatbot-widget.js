@@ -45,31 +45,37 @@
                         box-shadow 0.2s ease;
         }
 
+        #shital-chatbot-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
         #shital-chatbot-button:hover {
             transform: scale(1.06);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         #shital-chatbot-window {
-            position: fixed;
-            right: 24px;
-            bottom: 100px;
+    position: fixed;
+    right: 24px;
+    bottom: 90px;
 
-            width: 420px;
-            height: 680px;
+    width: 360px;
+    height: 550px;
 
-            border: none;
-            border-radius: 18px;
+    border: none;
+    border-radius: 18px;
 
-            background: white;
+    background: white;
 
-            box-shadow:
-                0 15px 50px rgba(0, 0, 0, 0.25);
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.25);
 
-            display: none;
+    display: none;
 
-            overflow: hidden;
-        }
+    overflow: hidden;
+}
 
         #shital-chatbot-window.shital-chatbot-open {
             display: block;
@@ -120,8 +126,7 @@
 
     button.id = "shital-chatbot-button";
     button.type = "button";
-    button.innerHTML = "🤖";
-
+    button.innerHTML = '<img src="templates/bot.jpg" alt="Bot">';
     button.setAttribute(
         "aria-label",
         "Open Shital Academy AI Assistant"
@@ -180,7 +185,7 @@
 
         iframe.classList.remove("shital-chatbot-open");
 
-        button.innerHTML = "🤖";
+        button.innerHTML = '<img src="templates/bot.jpg" alt="Bot">';
 
         button.setAttribute(
             "aria-label",
