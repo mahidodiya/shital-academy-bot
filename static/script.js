@@ -20,6 +20,7 @@ const emailInput = document.getElementById("email");
 const mobileInput = document.getElementById("mobile");
 
 // ---------- Config ----------
+const API_BASE_URL = "https://shital-academy-assistant.onrender.com";
 const REQUEST_TIMEOUT_MS = 20000;
 
 // ---------- State ----------
@@ -161,20 +162,21 @@ async function sendMessage() {
 
     try {
 
-        const response = await fetchWithTimeout("/chat", {
+        const response = await fetchWithTimeout(
+            `${API_BASE_URL}/chat`,
+            {
+                method: "POST",
 
-            method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+                body: JSON.stringify({
+                    message: message,
+                    session_id: sessionId
+                })
 
-            body: JSON.stringify({
-                message: message,
-                session_id: sessionId
-            })
-
-        });
+            });
 
         hideTyping();
 
@@ -284,17 +286,18 @@ leadForm.addEventListener("submit", async function (e) {
 
     try {
 
-        const response = await fetchWithTimeout("/lead", {
+        const response = await fetchWithTimeout(
+            `${API_BASE_URL}/lead`,
+            {
+                method: "POST",
 
-            method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+                body: JSON.stringify(payload)
 
-            body: JSON.stringify(payload)
-
-        });
+            });
 
         const result = await response.json();
 
