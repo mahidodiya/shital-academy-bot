@@ -339,9 +339,6 @@ Conversation
             # successful API response.
             lead["email_sent"] = True
 
-            print(
-                "Lead email sent successfully."
-            )
 
             return True
 
