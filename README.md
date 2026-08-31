@@ -2,7 +2,7 @@
 
 An AI-powered chatbot built with **FastAPI**, **spaCy**, and **Groq LLM** to answer student queries about Shital Academy. The chatbot first searches a local knowledge base for fast, accurate responses and falls back to an LLM when no suitable answer is found.
 
-🌐 **Live Demo:** https://shital-academy-bot.onrender.com
+🌐 **Live Demo:** [https://shital-academy-assistant.onrender.com]
 
 ---
 
