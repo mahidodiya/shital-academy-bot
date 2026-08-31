@@ -116,7 +116,7 @@ body {
 
 
 /* ===========================
-   HEADER AVATAR
+   HEADER AVATAR / LOGO
 =========================== */
 
 .bot-avatar {
@@ -138,13 +138,20 @@ body {
     align-items: center;
 
     flex-shrink: 0;
+
+    padding: 2px;
 }
 
 .bot-avatar img {
     width: 100%;
     height: 100%;
 
-    object-fit: cover;
+    /*
+       IMPORTANT:
+       contain keeps the complete logo visible
+       instead of cropping it.
+    */
+    object-fit: contain;
 
     display: block;
 
@@ -312,13 +319,19 @@ body {
         0 2px 8px rgba(0, 0, 0, .08);
 
     flex-shrink: 0;
+
+    padding: 1px;
 }
 
 .avatar img {
     width: 100%;
     height: 100%;
 
-    object-fit: cover;
+    /*
+       IMPORTANT:
+       Show complete logo without cropping.
+    */
+    object-fit: contain;
 
     border-radius: 50%;
 
@@ -715,11 +728,26 @@ body {
         min-height: 68px;
     }
 
+    /*
+       Mobile header logo
+       Slightly smaller + full image visible.
+    */
     .bot-avatar {
         width: 42px;
         height: 42px;
 
         min-width: 42px;
+
+        padding: 2px;
+    }
+
+    .bot-avatar img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+
+        border-radius: 50%;
     }
 
     .header-left {
@@ -761,6 +789,17 @@ body {
         margin-right: 8px;
 
         font-size: 15px;
+
+        padding: 1px;
+    }
+
+    .avatar img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+
+        border-radius: 50%;
     }
 
     .message.user .avatar {
@@ -841,11 +880,26 @@ body {
         padding: 10px 14px;
     }
 
+    /*
+       Smaller mobile header logo.
+       Entire logo stays visible.
+    */
     .bot-avatar {
         width: 38px;
         height: 38px;
 
         min-width: 38px;
+
+        padding: 2px;
+    }
+
+    .bot-avatar img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+
+        border-radius: 50%;
     }
 
     .chat-header h1 {
@@ -867,6 +921,17 @@ body {
         min-width: 30px;
 
         font-size: 14px;
+
+        padding: 1px;
+    }
+
+    .avatar img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+
+        border-radius: 50%;
     }
 
     .message-content {
@@ -913,11 +978,26 @@ body {
         padding: 8px 10px;
     }
 
+    /*
+       Very small phone:
+       keep logo visible without cropping.
+    */
     .bot-avatar {
         width: 35px;
         height: 35px;
 
         min-width: 35px;
+
+        padding: 2px;
+    }
+
+    .bot-avatar img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+
+        border-radius: 50%;
     }
 
     .chat-header h1 {
