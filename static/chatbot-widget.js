@@ -23,9 +23,7 @@
             "shital-academy-chatbot-widget"
         )
     ) {
-
         return;
-
     }
 
 
@@ -39,9 +37,9 @@
 
     style.textContent = `
 
-        /* =========================
-           WIDGET
-        ========================= */
+        /* ========================================
+           WIDGET CONTAINER
+        ======================================== */
 
         #shital-academy-chatbot-widget {
 
@@ -57,14 +55,14 @@
         }
 
 
-        /* =========================
+        /* ========================================
            CHAT BUTTON
-        ========================= */
+        ======================================== */
 
         #shital-chatbot-button {
 
-            width: 58px;
-            height: 58px;
+            width: 56px;
+            height: 56px;
 
             padding: 0;
 
@@ -86,7 +84,7 @@
             overflow: hidden;
 
             box-shadow:
-                0 7px 22px
+                0 6px 20px
                 rgba(0, 0, 0, 0.25);
 
             transition:
@@ -101,15 +99,15 @@
             transform: scale(1.05);
 
             box-shadow:
-                0 9px 26px
+                0 8px 24px
                 rgba(0, 0, 0, 0.30);
 
         }
 
 
-        /* =========================
+        /* ========================================
            BOT IMAGE
-        ========================= */
+        ======================================== */
 
         #shital-chatbot-button img {
 
@@ -125,22 +123,22 @@
         }
 
 
-        /* =========================
+        /* ========================================
            CLOSE BUTTON
-        ========================= */
+        ======================================== */
 
         #shital-chatbot-button.shital-close {
 
-            font-size: 30px;
+            font-size: 27px;
 
             background: #e51c23;
 
         }
 
 
-        /* =========================
+        /* ========================================
            CHAT WINDOW
-        ========================= */
+        ======================================== */
 
         #shital-chatbot-window {
 
@@ -153,6 +151,10 @@
             width: 360px;
 
             height: 550px;
+
+            max-width: calc(100vw - 40px);
+
+            max-height: calc(100dvh - 110px);
 
             border: none;
 
@@ -168,8 +170,6 @@
 
             overflow: hidden;
 
-            background-color: white;
-
         }
 
 
@@ -180,9 +180,9 @@
         }
 
 
-        /* =========================
-           TABLET / MOBILE
-        ========================= */
+        /* ========================================
+           TABLET
+        ======================================== */
 
         @media (max-width: 768px) {
 
@@ -191,55 +191,6 @@
                 right: 12px;
 
                 bottom: 12px;
-
-            }
-
-
-            #shital-chatbot-button {
-
-                width: 54px;
-
-                height: 54px;
-
-            }
-
-
-            #shital-chatbot-window {
-
-                right: 12px;
-
-                bottom: 78px;
-
-                width:
-                    calc(100vw - 24px);
-
-                max-width: 350px;
-
-                height:
-                    calc(100dvh - 120px);
-
-                max-height: 540px;
-
-                min-height: 400px;
-
-                border-radius: 14px;
-
-            }
-
-        }
-
-
-        /* =========================
-           SMALL MOBILE
-        ========================= */
-
-        @media (max-width: 480px) {
-
-            #shital-academy-chatbot-widget {
-
-                right: 10px;
-
-                bottom: 10px;
 
             }
 
@@ -255,23 +206,71 @@
 
             #shital-chatbot-window {
 
+                right: 12px;
+
+                bottom: 76px;
+
+                width: calc(100vw - 24px);
+
+                max-width: 360px;
+
+                height: min(
+                    560px,
+                    calc(100dvh - 100px)
+                );
+
+                max-height: calc(100dvh - 100px);
+
+                min-height: 0;
+
+                border-radius: 14px;
+
+            }
+
+        }
+
+
+        /* ========================================
+           MOBILE
+        ======================================== */
+
+        @media (max-width: 480px) {
+
+            #shital-academy-chatbot-widget {
+
+                right: 10px;
+
+                bottom: 10px;
+
+            }
+
+
+            #shital-chatbot-button {
+
+                width: 50px;
+
+                height: 50px;
+
+            }
+
+
+            #shital-chatbot-window {
+
                 left: 10px;
 
                 right: 10px;
 
-                bottom: 70px;
+                bottom: 68px;
 
-                width:
-                    calc(100vw - 20px);
+                width: calc(100vw - 20px);
 
                 max-width: none;
 
-                height:
-                    calc(100dvh - 90px);
+                height: calc(100dvh - 85px);
 
-                max-height: 510px;
+                max-height: calc(100dvh - 85px);
 
-                min-height: 380px;
+                min-height: 0;
 
                 border-radius: 13px;
 
@@ -280,11 +279,29 @@
         }
 
 
-        /* =========================
-           VERY SMALL PHONES
-        ========================= */
+        /* ========================================
+           SMALL PHONES
+        ======================================== */
 
         @media (max-width: 360px) {
+
+            #shital-academy-chatbot-widget {
+
+                right: 8px;
+
+                bottom: 8px;
+
+            }
+
+
+            #shital-chatbot-button {
+
+                width: 48px;
+
+                height: 48px;
+
+            }
+
 
             #shital-chatbot-window {
 
@@ -292,15 +309,15 @@
 
                 right: 8px;
 
-                bottom: 66px;
+                bottom: 64px;
 
-                width:
-                    calc(100vw - 16px);
+                width: calc(100vw - 16px);
 
-                height:
-                    calc(100dvh - 82px);
+                height: calc(100dvh - 78px);
 
-                max-height: 480px;
+                max-height: calc(100dvh - 78px);
+
+                border-radius: 12px;
 
             }
 
@@ -470,9 +487,7 @@
 
                 closeChatbot();
 
-            }
-
-            else {
+            } else {
 
                 openChatbot();
 
