@@ -122,8 +122,7 @@ The application is deployed on **Render**.
 
 Live URL:
 
-https://shital-academy-bot.onrender.com
-
+https://shital-academy-assistant.onrender.com
 ---
 
 ## 🔮 Future Improvements

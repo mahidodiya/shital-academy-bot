@@ -1,11 +1,12 @@
 /* =========================================================
-SHITAL ACADEMY AI ASSISTANT
-Responsive Chatbot Styles
+   SHITAL ACADEMY AI ASSISTANT
+   Responsive Chatbot
 ========================================================= */
 
-/* =========================================================
-GOOGLE FONT / RESET
-========================================================= */
+
+/* =========================
+   RESET
+========================= */
 
 * {
     margin: 0;
@@ -25,9 +26,10 @@ body {
     color: #222;
 }
 
-/* =========================================================
-ACCESSIBILITY
-========================================================= */
+
+/* =========================
+   ACCESSIBILITY
+========================= */
 
 .sr-only {
     position: absolute;
@@ -41,13 +43,19 @@ ACCESSIBILITY
     border: 0;
 }
 
-/* =========================================================
-CHAT CONTAINER
-========================================================= */
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   MAIN CHAT CONTAINER
+========================= */
 
 .chat-container {
-    width: min(100%, 900px);
-    height: min(95vh, 850px);
+    width: 100%;
+    max-width: 900px;
+    height: 95vh;
 
     background: #ffffff;
 
@@ -59,15 +67,15 @@ CHAT CONTAINER
 
     box-shadow:
         0 10px 35px rgba(0, 0, 0, 0.12);
-
 }
 
-/* =========================================================
-HEADER
-========================================================= */
+
+/* =========================
+   HEADER
+========================= */
 
 .chat-header {
-    background: #123b6d;
+    background: #173f73;
     color: white;
 
     padding: 16px 22px;
@@ -77,16 +85,18 @@ HEADER
     justify-content: space-between;
 
     min-height: 82px;
-
 }
 
 .header-left {
     display: flex;
     align-items: center;
+
     gap: 13px;
-
     min-width: 0;
+}
 
+.header-text {
+    min-width: 0;
 }
 
 .header-right {
@@ -94,9 +104,10 @@ HEADER
     align-items: center;
 }
 
-/* =========================================================
-BOT HEADER AVATAR
-========================================================= */
+
+/* =========================
+   HEADER AVATAR
+========================= */
 
 .bot-avatar {
     width: 52px;
@@ -107,14 +118,13 @@ BOT HEADER AVATAR
     border-radius: 50%;
     overflow: hidden;
 
-    background: #ffffff;
+    background: white;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     border: 2px solid rgba(255, 255, 255, 0.85);
-
 }
 
 .bot-avatar img {
@@ -124,20 +134,20 @@ BOT HEADER AVATAR
     display: block;
 
     object-fit: cover;
-
 }
 
-/* =========================================================
-HEADER TEXT
-========================================================= */
+
+/* =========================
+   HEADER TEXT
+========================= */
 
 .chat-header h1 {
     font-size: 21px;
     font-weight: 600;
 
     line-height: 1.25;
-    margin-bottom: 3px;
 
+    margin-bottom: 3px;
 }
 
 .chat-header p {
@@ -145,12 +155,12 @@ HEADER TEXT
     opacity: 0.9;
 
     line-height: 1.4;
-
 }
 
-/* =========================================================
-NEW CHAT BUTTON
-========================================================= */
+
+/* =========================
+   NEW CHAT
+========================= */
 
 .new-chat-btn {
     background: rgba(255, 255, 255, 0.12);
@@ -168,20 +178,17 @@ NEW CHAT BUTTON
 
     cursor: pointer;
 
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-
+    transition: 0.2s ease;
 }
 
 .new-chat-btn:hover {
     background: rgba(255, 255, 255, 0.22);
-    transform: translateY(-1px);
 }
 
-/* =========================================================
-CHAT AREA
-========================================================= */
+
+/* =========================
+   CHAT AREA
+========================= */
 
 .chat-box {
     flex: 1;
@@ -197,12 +204,12 @@ CHAT AREA
     scroll-behavior: smooth;
 
     overscroll-behavior: contain;
-
 }
 
-/* =========================================================
-SCROLLBAR
-========================================================= */
+
+/* =========================
+   SCROLLBAR
+========================= */
 
 .chat-box::-webkit-scrollbar {
     width: 7px;
@@ -217,13 +224,10 @@ SCROLLBAR
     border-radius: 20px;
 }
 
-.chat-box::-webkit-scrollbar-thumb:hover {
-    background: #aebccc;
-}
 
-/* =========================================================
-MESSAGE
-========================================================= */
+/* =========================
+   MESSAGE
+========================= */
 
 .message {
     display: flex;
@@ -232,15 +236,14 @@ MESSAGE
     margin-bottom: 17px;
 
     animation: fadeIn 0.25s ease;
-
-}
-
-.message.user {
-    flex-direction: row-reverse;
 }
 
 .message.bot {
     justify-content: flex-start;
+}
+
+.message.user {
+    flex-direction: row-reverse;
 }
 
 .message.user .avatar {
@@ -259,12 +262,12 @@ MESSAGE
     min-width: 0;
 
     max-width: calc(100% - 52px);
-
 }
 
-/* =========================================================
-MESSAGE AVATAR
-========================================================= */
+
+/* =========================
+   MESSAGE AVATAR
+========================= */
 
 .avatar {
     width: 40px;
@@ -286,7 +289,6 @@ MESSAGE AVATAR
 
     box-shadow:
         0 2px 8px rgba(0, 0, 0, 0.08);
-
 }
 
 .avatar img {
@@ -298,16 +300,17 @@ MESSAGE AVATAR
     object-fit: cover;
 
     border-radius: 50%;
-
 }
 
-/* =========================================================
-CHAT BUBBLES
-========================================================= */
+
+/* =========================
+   CHAT BUBBLES
+========================= */
 
 .bubble {
     width: fit-content;
-    max-width: min(620px, 100%);
+
+    max-width: 100%;
 
     padding: 13px 16px;
 
@@ -319,31 +322,31 @@ CHAT BUBBLES
 
     word-wrap: break-word;
     overflow-wrap: anywhere;
-
 }
 
 .bot .bubble {
     background: #ffffff;
+
     color: #333333;
 
     border-top-left-radius: 5px;
 
     box-shadow:
         0 2px 8px rgba(0, 0, 0, 0.04);
-
 }
 
 .user .bubble {
-    background: #123b6d;
+    background: #e51c23;
+
     color: white;
 
     border-top-right-radius: 5px;
-
 }
 
-/* =========================================================
-BUBBLE CONTENT
-========================================================= */
+
+/* =========================
+   BUBBLE CONTENT
+========================= */
 
 .bubble p+p {
     margin-top: 8px;
@@ -358,9 +361,10 @@ BUBBLE CONTENT
     margin-bottom: 5px;
 }
 
-/* =========================================================
-MESSAGE TIME
-========================================================= */
+
+/* =========================
+   TIME
+========================= */
 
 .time {
     margin-top: 5px;
@@ -368,12 +372,12 @@ MESSAGE TIME
     font-size: 11px;
 
     color: #8a8f98;
-
 }
 
-/* =========================================================
-TYPING INDICATOR
-========================================================= */
+
+/* =========================
+   TYPING
+========================= */
 
 .typing {
     display: flex;
@@ -384,7 +388,6 @@ TYPING INDICATOR
     padding: 0 18px 12px;
 
     background: #f4f7fb;
-
 }
 
 .typing-bubble {
@@ -400,7 +403,6 @@ TYPING INDICATOR
 
     box-shadow:
         0 2px 8px rgba(0, 0, 0, 0.07);
-
 }
 
 .typing-bubble span {
@@ -409,10 +411,9 @@ TYPING INDICATOR
 
     border-radius: 50%;
 
-    background: #123b6d;
+    background: #e51c23;
 
     animation: typing 1.2s infinite;
-
 }
 
 .typing-bubble span:nth-child(2) {
@@ -423,18 +424,10 @@ TYPING INDICATOR
     animation-delay: 0.4s;
 }
 
-/* =========================================================
-HIDDEN
-========================================================= */
 
-.modal.hidden,
-.hidden {
-    display: none !important;
-}
-
-/* =========================================================
-FOOTER
-========================================================= */
+/* =========================
+   FOOTER
+========================= */
 
 .chat-footer {
     background: white;
@@ -442,18 +435,17 @@ FOOTER
     padding: 13px 16px;
 
     display: flex;
-
     align-items: flex-end;
 
     gap: 10px;
 
     border-top: 1px solid #e3e7ed;
-
 }
 
-/* =========================================================
-MESSAGE INPUT
-========================================================= */
+
+/* =========================
+   TEXT INPUT
+========================= */
 
 .chat-footer textarea {
     flex: 1;
@@ -477,31 +469,26 @@ MESSAGE INPUT
     min-height: 48px;
     max-height: 120px;
 
-    background: #ffffff;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-
+    background: white;
 }
 
 .chat-footer textarea:focus {
-    border-color: #123b6d;
+    border-color: #e51c23;
 
     box-shadow:
-        0 0 0 3px rgba(18, 59, 109, 0.08);
-
+        0 0 0 3px rgba(229, 28, 35, 0.10);
 }
 
-/* =========================================================
-SEND BUTTON
-========================================================= */
+
+/* =========================
+   SEND BUTTON
+========================= */
 
 .chat-footer button {
     min-width: 82px;
     height: 48px;
 
-    background: #c62828;
+    background: #e51c23;
 
     color: white;
 
@@ -514,32 +501,26 @@ SEND BUTTON
     cursor: pointer;
 
     font-size: 14px;
+
     font-weight: 600;
 
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-
+    transition: 0.2s ease;
 }
 
 .chat-footer button:hover {
-    background: #a91f1f;
-    transform: translateY(-1px);
-}
-
-.chat-footer button:active {
-    transform: translateY(0);
+    background: #c9161d;
 }
 
 .chat-footer button:disabled {
     background: #aeb4bd;
+
     cursor: not-allowed;
-    transform: none;
 }
 
-/* =========================================================
-MODAL
-========================================================= */
+
+/* =========================
+   MODAL
+========================= */
 
 .modal {
     position: fixed;
@@ -556,12 +537,7 @@ MODAL
     z-index: 1000;
 
     padding: 16px;
-
 }
-
-/* =========================================================
-MODAL CONTENT
-========================================================= */
 
 .modal-content {
     width: min(100%, 420px);
@@ -578,16 +554,14 @@ MODAL CONTENT
 
     box-shadow:
         0 15px 45px rgba(0, 0, 0, 0.2);
-
 }
 
 .modal-content h2 {
     margin-bottom: 9px;
 
-    color: #123b6d;
+    color: #173f73;
 
     font-size: 22px;
-
 }
 
 .modal-content p {
@@ -598,12 +572,12 @@ MODAL CONTENT
     font-size: 14px;
 
     line-height: 1.5;
-
 }
 
-/* =========================================================
-MODAL INPUTS
-========================================================= */
+
+/* =========================
+   FORM
+========================= */
 
 .modal-content input {
     width: 100%;
@@ -612,36 +586,26 @@ MODAL INPUTS
 
     padding: 12px 13px;
 
-    border: 1px solid #d2d7df;
+    border: 1px solid #d4d9e1;
 
     border-radius: 10px;
 
     outline: none;
 
     font-size: 14px;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-
 }
 
 .modal-content input:focus {
-    border-color: #123b6d;
+    border-color: #e51c23;
 
     box-shadow:
-        0 0 0 3px rgba(18, 59, 109, 0.08);
-
+        0 0 0 3px rgba(229, 28, 35, 0.10);
 }
-
-/* =========================================================
-MODAL BUTTON
-========================================================= */
 
 .modal-content button {
     width: 100%;
 
-    background: #c62828;
+    background: #e51c23;
 
     color: white;
 
@@ -656,32 +620,28 @@ MODAL BUTTON
     font-size: 15px;
 
     font-weight: 600;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-
 }
 
 .modal-content button:hover {
-    background: #a91f1f;
-    transform: translateY(-1px);
+    background: #c9161d;
 }
 
 .modal-content button:disabled {
     background: #aeb4bd;
+
     cursor: not-allowed;
-    transform: none;
 }
 
-/* =========================================================
-ANIMATIONS
-========================================================= */
+
+/* =========================
+   ANIMATIONS
+========================= */
 
 @keyframes fadeIn {
+
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(15px);
     }
 
     to {
@@ -689,17 +649,17 @@ ANIMATIONS
         transform: translateY(0);
     }
 
-
 }
 
 @keyframes typing {
+
     0% {
         transform: translateY(0);
         opacity: 0.3;
     }
 
     50% {
-        transform: translateY(-5px);
+        transform: translateY(-6px);
         opacity: 1;
     }
 
@@ -708,28 +668,26 @@ ANIMATIONS
         opacity: 0.3;
     }
 
-
 }
 
+
 /* =========================================================
-TABLET
+   TABLET
 ========================================================= */
 
 @media (max-width: 768px) {
 
     .chat-container {
         width: 100%;
-        height: 100dvh;
-
-        max-width: none;
+        height: 100vh;
 
         border-radius: 0;
     }
 
     .chat-header {
-        padding: 13px 16px;
+        padding: 13px 15px;
 
-        min-height: 70px;
+        min-height: 68px;
     }
 
     .bot-avatar {
@@ -740,92 +698,63 @@ TABLET
     }
 
     .header-left {
-        gap: 10px;
+        gap: 9px;
     }
 
     .chat-header h1 {
-        font-size: 18px;
+        font-size: 17px;
     }
 
     .chat-header p {
-        font-size: 12px;
-    }
-
-    .new-chat-btn {
-        padding: 7px 10px;
         font-size: 11px;
     }
 
     .chat-box {
-        padding: 16px 12px;
-    }
-
-    .message {
-        margin-bottom: 14px;
-    }
-
-    .avatar {
-        width: 36px;
-        height: 36px;
-
-        flex-basis: 36px;
-
-        margin-right: 8px;
-    }
-
-    .message.user .avatar {
-        margin-left: 8px;
+        padding: 15px;
     }
 
     .message-content {
-        max-width: calc(100% - 44px);
+        max-width: calc(100% - 47px);
+    }
+
+    .avatar {
+        width: 37px;
+        height: 37px;
+
+        flex-basis: 37px;
+
+        margin-right: 9px;
+    }
+
+    .message.user .avatar {
+        margin-left: 9px;
     }
 
     .bubble {
-        max-width: 100%;
-
         padding: 11px 13px;
-
-        font-size: 13.5px;
-
-        border-radius: 15px;
+        font-size: 13px;
     }
 
     .chat-footer {
-        padding: 10px;
-
-        gap: 8px;
-
-        padding-bottom: max(10px, env(safe-area-inset-bottom));
+        padding: 9px;
     }
 
     .chat-footer textarea {
-        min-height: 46px;
-
-        padding: 11px 12px;
-
-        font-size: 13.5px;
+        min-height: 45px;
+        padding: 10px;
     }
 
     .chat-footer button {
         min-width: 68px;
-
-        height: 46px;
-
-        padding: 0 14px;
-
-        font-size: 13px;
+        height: 45px;
+        padding: 0 12px;
     }
-
-    .typing {
-        padding: 0 12px 10px;
-    }
-
 
 }
 
+
 /* =========================================================
-SMALL MOBILE
+   MOBILE
 ========================================================= */
 
 @media (max-width: 480px) {
@@ -846,24 +775,27 @@ SMALL MOBILE
     }
 
     .chat-header p {
-        font-size: 11px;
-    }
-
-    .new-chat-btn {
-        padding: 6px 8px;
-
         font-size: 10px;
     }
 
+    .new-chat-btn {
+        font-size: 10px;
+        padding: 6px 8px;
+    }
+
     .chat-box {
-        padding: 14px 9px;
+        padding: 12px;
+    }
+
+    .message {
+        margin-bottom: 13px;
     }
 
     .avatar {
-        width: 32px;
-        height: 32px;
+        width: 34px;
+        height: 34px;
 
-        flex-basis: 32px;
+        flex-basis: 34px;
 
         margin-right: 7px;
     }
@@ -873,14 +805,12 @@ SMALL MOBILE
     }
 
     .message-content {
-        max-width: calc(100% - 39px);
+        max-width: calc(100% - 41px);
     }
 
     .bubble {
         padding: 10px 12px;
-
         font-size: 13px;
-
         line-height: 1.5;
     }
 
@@ -890,24 +820,21 @@ SMALL MOBILE
 
     .chat-footer {
         padding: 8px;
+        gap: 7px;
     }
 
     .chat-footer textarea {
         min-height: 44px;
-
-        padding: 10px;
-
+        padding: 9px;
         border-radius: 11px;
     }
 
     .chat-footer button {
         min-width: 62px;
-
         height: 44px;
-
-        padding: 0 10px;
-
+        padding: 0 9px;
         border-radius: 11px;
+        font-size: 12px;
     }
 
     .modal {
@@ -916,19 +843,14 @@ SMALL MOBILE
 
     .modal-content {
         padding: 20px;
-
         border-radius: 14px;
     }
 
-    .modal-content h2 {
-        font-size: 19px;
-    }
-
-
 }
 
+
 /* =========================================================
-VERY SMALL DEVICES
+   VERY SMALL PHONES
 ========================================================= */
 
 @media (max-width: 360px) {
@@ -938,22 +860,22 @@ VERY SMALL DEVICES
     }
 
     .chat-header p {
-        font-size: 10px;
+        font-size: 9px;
     }
 
-    .new-chat-btn {
-        font-size: 9px;
-        padding: 5px 7px;
+    .bot-avatar {
+        width: 37px;
+        height: 37px;
+        flex-basis: 37px;
     }
 
     .bubble {
-        font-size: 12.5px;
+        font-size: 12px;
     }
 
     .chat-footer button {
         min-width: 56px;
-        font-size: 12px;
+        font-size: 11px;
     }
-
 
 }

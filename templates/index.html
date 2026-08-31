@@ -2,16 +2,13 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Shital Academy AI Assistant</title>
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
@@ -20,7 +17,6 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="/static/style.css">
-
 </head>
 
 <body>
@@ -34,15 +30,12 @@
         <div class="header-left">
 
             <div class="bot-avatar">
-                <img src="bot.jpg" alt="Bot">
+                <img src="/static/bot.jpg" alt="Shital Academy AI Assistant">
             </div>
 
-            <div>
-
+            <div class="header-text">
                 <h1>Shital Academy</h1>
-
                 <p>AI Assistant • Online</p>
-
             </div>
 
         </div>
@@ -61,6 +54,7 @@
 
     </header>
 
+
     <!-- ================= CHAT ================= -->
 
     <main
@@ -74,35 +68,30 @@
         <div class="message bot">
 
             <div class="avatar">
-    <img src="bot.jpg" alt="Bot">
-</div>
+                <img src="/static/bot.jpg" alt="Bot">
+            </div>
 
             <div class="message-content">
 
                 <div class="bubble">
 
-                    <p>👋 Hello! Welcome to <strong>Shital Academy.</strong></p>
+                    <p>
+                        👋 Hello! Welcome to
+                        <strong>Shital Academy.</strong>
+                    </p>
 
                     <p>I'm your AI Assistant.</p>
 
                     <p>Ask me anything about:</p>
 
                     <ul>
-
                         <li>📚 Courses</li>
-
                         <li>💰 Fees</li>
-
                         <li>🕒 Batch Timings</li>
-
                         <li>🎓 Admissions</li>
-
                         <li>💼 Placements</li>
-
                         <li>🌍 IELTS</li>
-
                         <li>💻 Programming Courses</li>
-
                     </ul>
 
                     <p>How can I help you today?</p>
@@ -117,23 +106,26 @@
 
     </main>
 
+
     <!-- ================= TYPING INDICATOR ================= -->
 
-    <div id="typingIndicator" class="typing hidden" aria-hidden="true">
+    <div
+        id="typingIndicator"
+        class="typing hidden"
+        aria-hidden="true">
 
         <div class="avatar">
-    <img src="bot.jpg" alt="Bot">
-</div>
+            <img src="/static/bot.jpg" alt="Bot">
+        </div>
 
         <div class="typing-bubble">
-
             <span></span>
             <span></span>
             <span></span>
-
         </div>
 
     </div>
+
 
     <!-- ================= LEAD FORM ================= -->
 
@@ -146,7 +138,9 @@
 
         <div class="modal-content">
 
-            <h2 id="leadModalTitle">Let's Stay Connected</h2>
+            <h2 id="leadModalTitle">
+                Let's Stay Connected
+            </h2>
 
             <p>
                 Before we continue, please share your details.
@@ -154,7 +148,10 @@
 
             <form id="leadForm">
 
-                <label class="sr-only" for="name">Full Name</label>
+                <label class="sr-only" for="name">
+                    Full Name
+                </label>
+
                 <input
                     type="text"
                     id="name"
@@ -162,7 +159,11 @@
                     autocomplete="name"
                     required>
 
-                <label class="sr-only" for="email">Email Address</label>
+
+                <label class="sr-only" for="email">
+                    Email Address
+                </label>
+
                 <input
                     type="email"
                     id="email"
@@ -170,7 +171,11 @@
                     autocomplete="email"
                     required>
 
-                <label class="sr-only" for="mobile">Mobile Number</label>
+
+                <label class="sr-only" for="mobile">
+                    Mobile Number
+                </label>
+
                 <input
                     type="tel"
                     id="mobile"
@@ -178,7 +183,10 @@
                     autocomplete="tel"
                     required>
 
-                <button id="leadSubmitButton" type="submit">
+
+                <button
+                    id="leadSubmitButton"
+                    type="submit">
                     Continue Chat
                 </button>
 
@@ -188,17 +196,25 @@
 
     </div>
 
+
     <!-- ================= INPUT ================= -->
 
     <footer class="chat-footer">
 
-        <label class="sr-only" for="messageInput">Type your message</label>
+        <label
+            class="sr-only"
+            for="messageInput">
+            Type your message
+        </label>
+
         <textarea
             id="messageInput"
             placeholder="Type your message..."
             rows="1"></textarea>
 
-        <button id="sendButton" type="button">
+        <button
+            id="sendButton"
+            type="button">
             Send
         </button>
 
@@ -206,10 +222,10 @@
 
 </div>
 
+
 <!-- JavaScript -->
 
 <script src="/static/script.js"></script>
 
 </body>
-
 </html>

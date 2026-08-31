@@ -3,98 +3,183 @@
 // script.js
 // ============================================
 
-// ---------- DOM ----------
+
+// ============================================
+// DOM
+// ============================================
+
 const chatBox = document.getElementById("chatBox");
-const messageInput = document.getElementById("messageInput");
-const sendButton = document.getElementById("sendButton");
-const newChatButton = document.getElementById("newChatButton");
 
-const typingIndicator = document.getElementById("typingIndicator");
+const messageInput =
+    document.getElementById("messageInput");
 
-const leadModal = document.getElementById("leadModal");
-const leadForm = document.getElementById("leadForm");
-const leadSubmitButton = document.getElementById("leadSubmitButton");
+const sendButton =
+    document.getElementById("sendButton");
 
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const mobileInput = document.getElementById("mobile");
+const newChatButton =
+    document.getElementById("newChatButton");
 
-// ---------- Config ----------
-const API_BASE_URL = "https://shital-academy-assistant.onrender.com";
+const typingIndicator =
+    document.getElementById("typingIndicator");
+
+const leadModal =
+    document.getElementById("leadModal");
+
+const leadForm =
+    document.getElementById("leadForm");
+
+const leadSubmitButton =
+    document.getElementById("leadSubmitButton");
+
+const nameInput =
+    document.getElementById("name");
+
+const emailInput =
+    document.getElementById("email");
+
+const mobileInput =
+    document.getElementById("mobile");
+
+
+// ============================================
+// CONFIG
+// ============================================
+
+const API_BASE_URL =
+    "https://shital-academy-assistant.onrender.com";
+
 const REQUEST_TIMEOUT_MS = 20000;
 
-// ---------- State ----------
+
+// ============================================
+// STATE
+// ============================================
+
 let waitingForResponse = false;
+
 let chatEnded = false;
 
 let sessionId = null;
 
-// Always start with the modal hidden and the "new chat" control hidden
-leadModal.classList.add("hidden");
-newChatButton.classList.add("hidden");
 
 // ============================================
-// Helpers
+// INITIAL STATE
+// ============================================
+
+leadModal.classList.add("hidden");
+
+newChatButton.classList.add("hidden");
+
+
+// ============================================
+// HELPERS
 // ============================================
 
 function currentTime() {
+
     return new Date().toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit"
     });
+
 }
+
 
 function scrollBottom() {
-    chatBox.scrollTop = chatBox.scrollHeight;
+
+    chatBox.scrollTop =
+        chatBox.scrollHeight;
+
 }
+
 
 function showTyping() {
+
     typingIndicator.classList.remove("hidden");
+
     scrollBottom();
+
 }
+
 
 function hideTyping() {
+
     typingIndicator.classList.add("hidden");
+
 }
+
 
 function escapeHTML(text) {
-    const div = document.createElement("div");
+
+    const div =
+        document.createElement("div");
+
     div.innerText = text;
+
     return div.innerHTML;
+
 }
+
+
+// ============================================
+// INPUT CONTROL
+// ============================================
 
 function enableInput() {
+
     messageInput.disabled = false;
+
     sendButton.disabled = false;
+
     waitingForResponse = false;
+
     messageInput.focus();
+
 }
+
 
 function disableInput() {
+
     messageInput.disabled = true;
+
     sendButton.disabled = true;
+
     waitingForResponse = true;
+
 }
 
-// A fetch with a hard timeout, so a stalled connection doesn't leave
-// the typing indicator (or the lead form) hanging forever.
-async function fetchWithTimeout(url, options = {}) {
 
-    const controller = new AbortController();
+// ============================================
+// FETCH WITH TIMEOUT
+// ============================================
 
-    const timeoutId = setTimeout(
-        () => controller.abort(),
-        REQUEST_TIMEOUT_MS
-    );
+async function fetchWithTimeout(
+    url,
+    options = {}
+) {
+
+    const controller =
+        new AbortController();
+
+    const timeoutId =
+        setTimeout(
+            () => controller.abort(),
+            REQUEST_TIMEOUT_MS
+        );
 
     try {
 
-        return await fetch(url, {
-            ...options,
-            signal: controller.signal
-        });
+        return await fetch(
+            url,
+            {
+                ...options,
+                signal: controller.signal
+            }
+        );
 
-    } finally {
+    }
+
+    finally {
 
         clearTimeout(timeoutId);
 
@@ -102,135 +187,250 @@ async function fetchWithTimeout(url, options = {}) {
 
 }
 
+
 // ============================================
-// Message UI
+// MESSAGE UI
 // ============================================
 
-function addMessage(text, sender) {
+function addMessage(
+    text,
+    sender
+) {
 
-    const message = document.createElement("div");
-    message.className = `message ${sender}`;
+    const message =
+        document.createElement("div");
 
-    const avatar = document.createElement("div");
+    message.className =
+        `message ${sender}`;
+
+
+    // Avatar
+
+    const avatar =
+        document.createElement("div");
+
     avatar.className = "avatar";
 
+
     if (sender === "bot") {
-        avatar.innerHTML = '<img src="templates/bot.jpg" alt="Bot">';
-    } else {
-        avatar.innerHTML = "👤";
+
+        avatar.innerHTML =
+            `<img
+                src="/static/bot.jpg"
+                alt="Bot"
+            >`;
+
     }
 
-    const content = document.createElement("div");
-    content.className = "message-content";
+    else {
 
-    const bubble = document.createElement("div");
-    bubble.className = "bubble";
-    bubble.innerHTML = escapeHTML(text).replace(/\n/g, "<br>");
+        avatar.innerHTML = "👤";
 
-    const time = document.createElement("span");
+    }
+
+
+    // Content
+
+    const content =
+        document.createElement("div");
+
+    content.className =
+        "message-content";
+
+
+    // Bubble
+
+    const bubble =
+        document.createElement("div");
+
+    bubble.className =
+        "bubble";
+
+    bubble.innerHTML =
+        escapeHTML(text)
+            .replace(/\n/g, "<br>");
+
+
+    // Time
+
+    const time =
+        document.createElement("span");
+
     time.className = "time";
-    time.innerText = currentTime();
+
+    time.innerText =
+        currentTime();
+
+
+    // Assemble
 
     content.appendChild(bubble);
+
     content.appendChild(time);
 
     message.appendChild(avatar);
+
     message.appendChild(content);
 
     chatBox.appendChild(message);
 
+
     scrollBottom();
+
 }
 
+
 // ============================================
-// Send Message
+// SEND MESSAGE
 // ============================================
 
 async function sendMessage() {
 
-    if (chatEnded) return;
+    if (chatEnded) {
+        return;
+    }
 
-    const message = messageInput.value.trim();
 
-    if (!message) return;
+    const message =
+        messageInput.value.trim();
 
-    if (waitingForResponse) return;
 
-    addMessage(message, "user");
+    if (!message) {
+        return;
+    }
+
+
+    if (waitingForResponse) {
+        return;
+    }
+
+
+    addMessage(
+        message,
+        "user"
+    );
+
 
     messageInput.value = "";
-    messageInput.style.height = "52px";
+
+    messageInput.style.height =
+        "45px";
+
 
     disableInput();
 
     showTyping();
 
+
     try {
 
-        const response = await fetchWithTimeout(
-            `${API_BASE_URL}/chat`,
-            {
-                method: "POST",
+        const response =
+            await fetchWithTimeout(
+                `${API_BASE_URL}/chat`,
+                {
+                    method: "POST",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-                body: JSON.stringify({
-                    message: message,
-                    session_id: sessionId
-                })
+                    body: JSON.stringify({
+                        message: message,
+                        session_id: sessionId
+                    })
+                }
+            );
 
-            });
 
         hideTyping();
 
+
         if (!response.ok) {
-            throw new Error("Server Error");
+
+            throw new Error(
+                "Server Error"
+            );
+
         }
 
-        const data = await response.json();
-        sessionId = data.session_id;
 
-        // NOTE: the backend returns the bot's reply under the
-        // "response" key (see chatbot.py / main.py), not "reply".
-        addMessage(data.response, "bot");
+        const data =
+            await response.json();
+
+
+        sessionId =
+            data.session_id;
+
+
+        addMessage(
+            data.response,
+            "bot"
+        );
+
+
+        // Lead form
 
         if (data.trigger_lead_form) {
-            leadModal.classList.remove("hidden");
+
+            leadModal.classList.remove(
+                "hidden"
+            );
+
             nameInput.focus();
+
         }
+
+
+        // End session
 
         if (data.end_session) {
 
             chatEnded = true;
 
             messageInput.disabled = true;
+
             sendButton.disabled = true;
 
-            newChatButton.classList.remove("hidden");
+            newChatButton.classList.remove(
+                "hidden"
+            );
+
             newChatButton.focus();
 
             return;
+
         }
+
 
         enableInput();
 
     }
+
+
     catch (err) {
 
         hideTyping();
 
         console.error(err);
 
-        const timedOut = err.name === "AbortError";
+
+        const timedOut =
+            err.name === "AbortError";
+
 
         addMessage(
+
             timedOut
+
                 ? "⚠️ The server took too long to respond. Please try again."
+
                 : "⚠️ Unable to connect to the server. Please try again.",
+
             "bot"
+
         );
+
 
         enableInput();
 
@@ -238,25 +438,41 @@ async function sendMessage() {
 
 }
 
+
 // ============================================
-// New Chat
+// NEW CHAT
 // ============================================
 
 function startNewChat() {
 
     sessionId = null;
+
     chatEnded = false;
 
-    // Remove every message except the original welcome message
-    // (it's always the first child of the chat box).
-    while (chatBox.children.length > 1) {
-        chatBox.removeChild(chatBox.lastChild);
+
+    // Keep welcome message
+
+    while (
+        chatBox.children.length > 1
+    ) {
+
+        chatBox.removeChild(
+            chatBox.lastChild
+        );
+
     }
 
-    leadModal.classList.add("hidden");
+
+    leadModal.classList.add(
+        "hidden"
+    );
+
     leadForm.reset();
 
-    newChatButton.classList.add("hidden");
+    newChatButton.classList.add(
+        "hidden"
+    );
+
 
     enableInput();
 
@@ -264,131 +480,191 @@ function startNewChat() {
 
 }
 
-newChatButton.addEventListener("click", startNewChat);
+
+newChatButton.addEventListener(
+    "click",
+    startNewChat
+);
+
 
 // ============================================
-// Lead Form
+// LEAD FORM
 // ============================================
 
-leadForm.addEventListener("submit", async function (e) {
-
-    e.preventDefault();
-
-    const payload = {
-
-        session_id: sessionId,
-
-        name: nameInput.value.trim(),
-
-        email: emailInput.value.trim(),
-
-        mobile: mobileInput.value.trim()
-
-    };
-
-    leadSubmitButton.disabled = true;
-    leadSubmitButton.innerText = "Saving...";
-
-    try {
-
-        const response = await fetchWithTimeout(
-            `${API_BASE_URL}/lead`,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify(payload)
-
-            });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-
-            alert(result.detail || "Invalid details.");
-
-            return;
-
-        }
-
-        leadModal.classList.add("hidden");
-
-        leadForm.reset();
-
-        addMessage(
-            "✅ Thank you! Your details have been saved successfully.",
-            "bot"
-        );
-
-        messageInput.focus();
-
-    }
-
-    catch (err) {
-
-        console.error(err);
-
-        const timedOut = err.name === "AbortError";
-
-        alert(
-            timedOut
-                ? "The server took too long to respond. Please try again."
-                : "Unable to save your details."
-        );
-
-    }
-
-    finally {
-
-        leadSubmitButton.disabled = false;
-        leadSubmitButton.innerText = "Continue Chat";
-
-    }
-
-});
-
-// ============================================
-// Auto Resize Textarea
-// ============================================
-
-messageInput.addEventListener("input", function () {
-
-    this.style.height = "auto";
-
-    this.style.height = this.scrollHeight + "px";
-
-});
-
-// ============================================
-// Send Button
-// ============================================
-
-sendButton.addEventListener("click", sendMessage);
-
-// ============================================
-// Enter Key
-// ============================================
-
-messageInput.addEventListener("keydown", function (e) {
-
-    if (
-        e.key === "Enter" &&
-        !e.shiftKey
-    ) {
+leadForm.addEventListener(
+    "submit",
+    async function (e) {
 
         e.preventDefault();
 
-        sendMessage();
+
+        const payload = {
+
+            session_id: sessionId,
+
+            name:
+                nameInput.value.trim(),
+
+            email:
+                emailInput.value.trim(),
+
+            mobile:
+                mobileInput.value.trim()
+
+        };
+
+
+        leadSubmitButton.disabled = true;
+
+        leadSubmitButton.innerText =
+            "Saving...";
+
+
+        try {
+
+            const response =
+                await fetchWithTimeout(
+                    `${API_BASE_URL}/lead`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(payload)
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                alert(
+                    result.detail ||
+                    "Invalid details."
+                );
+
+                return;
+
+            }
+
+
+            leadModal.classList.add(
+                "hidden"
+            );
+
+            leadForm.reset();
+
+
+            addMessage(
+                "✅ Thank you! Your details have been saved successfully.",
+                "bot"
+            );
+
+
+            messageInput.focus();
+
+        }
+
+
+        catch (err) {
+
+            console.error(err);
+
+
+            const timedOut =
+                err.name === "AbortError";
+
+
+            alert(
+
+                timedOut
+
+                    ? "The server took too long to respond. Please try again."
+
+                    : "Unable to save your details."
+
+            );
+
+        }
+
+
+        finally {
+
+            leadSubmitButton.disabled =
+                false;
+
+            leadSubmitButton.innerText =
+                "Continue Chat";
+
+        }
 
     }
+);
 
-});
 
 // ============================================
-// Focus
+// AUTO RESIZE TEXTAREA
+// ============================================
+
+messageInput.addEventListener(
+    "input",
+    function () {
+
+        this.style.height =
+            "auto";
+
+        this.style.height =
+            Math.min(
+                this.scrollHeight,
+                120
+            ) + "px";
+
+    }
+);
+
+
+// ============================================
+// SEND BUTTON
+// ============================================
+
+sendButton.addEventListener(
+    "click",
+    sendMessage
+);
+
+
+// ============================================
+// ENTER KEY
+// ============================================
+
+messageInput.addEventListener(
+    "keydown",
+    function (e) {
+
+        if (
+            e.key === "Enter" &&
+            !e.shiftKey
+        ) {
+
+            e.preventDefault();
+
+            sendMessage();
+
+        }
+
+    }
+);
+
+
+// ============================================
+// INITIAL FOCUS
 // ============================================
 
 messageInput.focus();
